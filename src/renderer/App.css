@@ -1,62 +1,90 @@
-/*
- * @NOTE: Prepend a `~` to css file paths that are in your node_modules
- *        See https://github.com/webpack-contrib/sass-loader#imports
- */
-body {
-  position: relative;
-  color: white;
-  height: 100vh;
-  background: linear-gradient(
-    200.96deg,
-    #fedc2a -29.09%,
-    #dd5789 51.77%,
-    #7a2c9e 129.35%
-  );
-  font-family: sans-serif;
-  overflow-y: hidden;
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* MAIN-MENU STYLING--START */
+.mainMenu_main_class {
+  min-height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.main_content {
+  background-color: rgba(0, 0, 0, 0.6);
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 15%;
+  flex-wrap: wrap;
+  overflow-x: hidden;
+  padding: 3rem 0rem;
 }
-
-button {
-  background-color: white;
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: none;
-  appearance: none;
-  font-size: 1.3rem;
-  box-shadow: 0px 8px 28px -6px rgba(24, 39, 75, 0.12),
-    0px 18px 88px -4px rgba(24, 39, 75, 0.14);
-  transition: all ease-in 0.1s;
-  cursor: pointer;
-  opacity: 0.9;
+.content_first_half {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
-button:hover {
-  transform: scale(1.05);
-  opacity: 1;
+.content_first_half_main_heading > p {
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: #ffffff;
 }
-
-li {
-  list-style: none;
+.content_first_half_main_heading {
+  display: flex;
+  flex-direction: column;
 }
-
-a {
-  text-decoration: none;
-  height: fit-content;
-  width: fit-content;
-  margin: 10px;
+.content_first_half_main_heading span {
+  font-size: 5.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
 }
-
-a:hover {
-  opacity: 1;
-  text-decoration: none;
-}
-
-.Hello {
+.content_second_half {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px 0;
+  flex-direction: column;
 }
+.content_second_half > a {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 3rem 0rem;
+}
+.button_slider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.button_slider_button {
+  width: 600px;
+  height: 70px;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.199);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-decoration: none;
+  transition: 0.3s ease-in-out;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #ffffff9d;
+}
+.button_slider_button:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+}
+/* MAIN-MENU STYLING--END */
