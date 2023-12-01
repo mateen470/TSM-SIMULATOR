@@ -92,12 +92,13 @@
 }
 /* MAIN-MENU STYLING--END */
 
-/* SIMULATION-PAGE-START */
+/* SIMULATION-MENU-PAGE-START */
 .simulation_main_class {
   min-height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  display: flex;
 }
 .side_bar {
   height: 100vh;
@@ -131,15 +132,41 @@
 }
 .menu_side_bar_items {
   border-top: 1px solid #27353f;
-  font-size: 2rem;
-  font-weight: 500;
-  color: #ffffff;
   height: 60px;
   padding: 10px;
   cursor: pointer;
   white-space: nowrap;
 }
-.simulation_footer {
+.simulation_sections {
+  width: 80%;
+}
+/* SIMULATION-MENU-PAGE-END */
+
+/* SIMULATION-SELECT-STUDENT-COMPONENT-START */
+.select_student_main_heading {
+  font-size: 2.1rem;
+  font-weight: 500;
+  color: #ffffff;
+  padding: 1.5rem;
+}
+.select_student_dropdown_main_class {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+.select_student_dropdown_1 {
+  width: 700px;
+  height: 70px;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(2px);
+  border-radius: 10px;
+}
+/* SIMULATION-SELECT-STUDENT-COMPONENT-END */
+
+/* FOOTER-START */
+.footer {
   position: absolute;
   bottom: 0px;
   display: flex;
@@ -152,30 +179,30 @@
   border-top: 1px solid #27353f;
   height: 80px;
 }
-.simulation_footer span {
+.footer span {
   padding-top: 1rem;
 }
-.simulation_footer_first_box {
+.footer_first_box {
   width: 25%;
   display: flex;
   justify-content: space-between;
   cursor: pointer;
 }
-.simulation_footer_second_box {
+.footer_second_box {
   width: 31%;
   display: flex;
   justify-content: space-between;
   cursor: pointer;
 }
-#simulation_footer_second_box_second_span {
+#footer_second_box_second_span {
   width: 300px;
   padding: 1rem 2rem;
   border-left: 1px solid #27353f;
 }
-#simulation_footer_second_box_second_span span {
+#footer_second_box_second_span span {
   color: #8b8f90;
 }
 .underline:hover {
   text-decoration: underline;
 }
-/* SIMULATION-PAGE-END */
+/* FOOTER-END */

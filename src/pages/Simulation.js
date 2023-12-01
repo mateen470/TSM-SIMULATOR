@@ -1,8 +1,17 @@
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import '../renderer/App.css';
 import mainMenu from '../TSM-img/main_menu.svg';
+import Footer from '../components/Footer';
+import Difficulty from '../components/simulation-components/Difficulty';
+import SelectMap from '../components/simulation-components/SelectMap';
+import SelectStudent from '../components/simulation-components/SelectStudent';
+import Verify from '../components/simulation-components/Verify';
+import Weather from '../components/simulation-components/Weather';
 
 export default function Simulation() {
+  const [activeMenuItem, setActiveMenuItem] = useState('SELECT STUDENT');
+
   const menuItemArray = [
     { name: 'SELECT STUDENT' },
     { name: 'SELECT MAP' },
@@ -11,6 +20,10 @@ export default function Simulation() {
     { name: 'VERIFY' },
   ];
 
+  const handleMenuItemClick = (name) => {
+    setActiveMenuItem(name);
+  };
+
   return (
     <div
       className="simulation_main_class"
@@ -18,37 +31,47 @@ export default function Simulation() {
     >
       <div className="side_bar">
         <NavLink className="navigation_button" to="/">
-          <span id="first_span_navigation_button" className="underline">
-            {' '}
-            SIMULATION /
-          </span>
-          <span id="second_span_navigation_button" className="underline">
-            {' '}
-            SETTINGS
-          </span>
+          <span id="first_span_navigation_button">SIMULATION /</span>
+          <span id="second_span_navigation_button">SETTINGS</span>
         </NavLink>
         <div className="menu_side_bar">
           {menuItemArray.map((data, index) => {
             return (
-              <div key={index} className="menu_side_bar_items underline">
+              <div
+                key={index}
+                className={`menu_side_bar_items underline ${
+                  activeMenuItem === data.name ? 'active' : ''
+                }`}
+                onClick={() => handleMenuItemClick(data.name)}
+                style={{
+                  fontSize: activeMenuItem === data.name ? '2rem' : '1.8rem',
+                  fontWeight: activeMenuItem === data.name ? '600' : '500',
+                  color: activeMenuItem === data.name ? '#ffffff' : '#8E959E',
+                  transition: 'all 0.1s ease-in-out',
+                }}
+              >
                 {data.name}
               </div>
             );
           })}
         </div>
-        <div className="simulation_footer">
-          <div className="simulation_footer_first_box">
-            <span className="underline">BACK</span>
-            <span className="underline">HELP</span>
-          </div>
-          <div className="simulation_footer_second_box">
-            <span className="underline">TUTORIALS</span>
-            <div id="simulation_footer_second_box_second_span">
-              <span className="underline">CONTINUE</span>
-            </div>
-          </div>
-        </div>
       </div>
+      <div className="simulation_sections">
+        {activeMenuItem === 'SELECT STUDENT' ? (
+          <SelectStudent />
+        ) : activeMenuItem === 'SELECT MAP' ? (
+          <SelectMap />
+        ) : activeMenuItem === 'WEATHER' ? (
+          <Weather />
+        ) : activeMenuItem === 'DIFFICULTY' ? (
+          <Difficulty />
+        ) : activeMenuItem === 'VERIFY' ? (
+          <Verify />
+        ) : (
+          'PAGE NOT FOUND!'
+        )}
+      </div>
+      <Footer />
     </div>
   );
 }
