@@ -5,7 +5,7 @@ import SwiperCore from 'swiper';
 import { Mousewheel, Pagination } from 'swiper/modules';
 import '../renderer/App.css';
 import 'swiper/css';
-import mainMenu from './TSM-img/main_menu.svg';
+import mainMenu from '../TSM-img/main_menu.svg';
 
 SwiperCore.use([Mousewheel, Pagination]);
 
@@ -13,7 +13,7 @@ export default function MainMenu() {
   const buttonArray = [
     { name: 'TEST MODE', link: '/' },
     { name: 'TUTORIALS', link: '/' },
-    { name: 'START SIMULATION', link: '/' },
+    { name: 'START SIMULATION', link: '/simulation' },
     { name: 'ADD INSTRUCTORS', link: '/' },
     { name: 'ADD STUDENTS', link: '/' },
     { name: 'PAST SIMULATIONS', link: '/' },
@@ -28,7 +28,7 @@ export default function MainMenu() {
       const scaleSlides = () => {
         swiperInstance.slides.forEach((slide, index) => {
           let scale = 1 - Math.abs(index - swiperInstance.activeIndex) * 0.1;
-          scale = Math.max(scale, 0.7);
+          scale = Math.max(scale, 0.72);
           slide.style.transform = `scale(${scale})`;
         });
       };

@@ -58,12 +58,12 @@
   color: #ffffff;
   margin: 3rem 0rem;
 }
-
 .mySwiper {
-  height: 540px;
+  height: 500px;
 }
 .swiper_slide {
   transition: transform 0.3s ease-in-out;
+  margin: 5px 0px;
 }
 .button_slider_button {
   width: 540px;
@@ -74,6 +74,7 @@
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(3px);
+  transition: transform 0.3s ease-in-out;
 }
 .swiper_slide a {
   text-decoration: none;
@@ -82,9 +83,99 @@
   font-weight: 700;
 }
 .swiper-slide-active .button_slider_button {
-  transform: scale(0.96);
-  background-color: rgba(255, 255, 255, 0.27);
+  transform: scale(0.99);
+  background-color: rgba(255, 255, 255, 0.23);
   color: #ffffff;
+  font-size: 2.2rem;
   backdrop-filter: blur(0px);
+  transition: transform 0.3s ease-in-out;
 }
 /* MAIN-MENU STYLING--END */
+
+/* SIMULATION-PAGE-START */
+.simulation_main_class {
+  min-height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.side_bar {
+  height: 100vh;
+  width: 20%;
+  border-right: 1px solid #27353f;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.navigation_button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 100px;
+  text-decoration: none;
+}
+#first_span_navigation_button {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+#second_span_navigation_button {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+.menu_side_bar {
+  margin-top: 15vh;
+}
+.menu_side_bar_items {
+  border-top: 1px solid #27353f;
+  font-size: 2rem;
+  font-weight: 500;
+  color: #ffffff;
+  height: 60px;
+  padding: 10px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.simulation_footer {
+  position: absolute;
+  bottom: 0px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #ffffff;
+  min-width: 100vw;
+  padding: 0rem 2rem;
+  border-top: 1px solid #27353f;
+  height: 80px;
+}
+.simulation_footer span {
+  padding-top: 1rem;
+}
+.simulation_footer_first_box {
+  width: 25%;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.simulation_footer_second_box {
+  width: 31%;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+#simulation_footer_second_box_second_span {
+  width: 300px;
+  padding: 1rem 2rem;
+  border-left: 1px solid #27353f;
+}
+#simulation_footer_second_box_second_span span {
+  color: #8b8f90;
+}
+.underline:hover {
+  text-decoration: underline;
+}
+/* SIMULATION-PAGE-END */
