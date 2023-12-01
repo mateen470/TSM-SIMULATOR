@@ -5,7 +5,6 @@
   box-sizing: border-box;
   font-family: 'Rajdhani', sans-serif;
 }
-
 ::-webkit-scrollbar {
   display: none;
 }
@@ -18,15 +17,13 @@
   background-size: cover;
 }
 .main_content {
-  background-color: rgba(0, 0, 0, 0.6);
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 15%;
+  gap: 10%;
   flex-wrap: wrap;
   overflow-x: hidden;
-  padding: 3rem 0rem;
 }
 .content_first_half {
   display: flex;
@@ -61,30 +58,33 @@
   color: #ffffff;
   margin: 3rem 0rem;
 }
-.button_slider {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
+
+.mySwiper {
+  height: 540px;
+}
+.swiper_slide {
+  transition: transform 0.3s ease-in-out;
 }
 .button_slider_button {
-  width: 600px;
+  width: 540px;
   height: 70px;
-  border-radius: 15px;
-  background-color: rgba(255, 255, 255, 0.199);
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.13);
   display: flex;
-  justify-content: center;
   align-items: center;
-  flex-direction: column;
-  text-decoration: none;
-  transition: 0.3s ease-in-out;
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: #ffffff9d;
+  justify-content: center;
+  backdrop-filter: blur(3px);
 }
-.button_slider_button:hover {
-  background-color: rgba(255, 255, 255, 0.4);
+.swiper_slide a {
+  text-decoration: none;
+  color: #ffffff9d;
+  font-size: 2rem;
+  font-weight: 700;
+}
+.swiper-slide-active .button_slider_button {
+  transform: scale(0.96);
+  background-color: rgba(255, 255, 255, 0.27);
   color: #ffffff;
+  backdrop-filter: blur(0px);
 }
 /* MAIN-MENU STYLING--END */
