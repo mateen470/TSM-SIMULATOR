@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import '../renderer/App.css';
 import mainMenu from '../TSM-img/main_menu.svg';
-import Footer from '../components/Footer';
+import Footer from '../utility/Footer';
 import Difficulty from '../components/simulation-components/Difficulty';
 import SelectMap from '../components/simulation-components/SelectMap';
 import SelectStudent from '../components/simulation-components/SelectStudent';
