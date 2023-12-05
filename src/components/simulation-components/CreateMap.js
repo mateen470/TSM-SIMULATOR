@@ -5,6 +5,7 @@ import Draggable from './Draggable';
 import Droppable from './Dropable';
 import mainMenu from '../../TSM-img/main_menu.svg';
 import backButton from '../../TSM-img/back_button.svg';
+import LineChart from './Linechart';
 
 export default function CreateMap() {
   const [parent, setParent] = useState(null);
@@ -26,7 +27,7 @@ export default function CreateMap() {
         <span id="second_span_navigation_button">CREATE MAP</span>
       </NavLink>
       <div className="create_map_grid_container">
-        <DndContext onDragEnd={handleDragEnd}>
+        {/* <DndContext onDragEnd={handleDragEnd}>
           <Droppable id="droppable">
             {parent === 'droppable' ? (
               <Draggable id="draggable">Drag me</Draggable>
@@ -35,7 +36,8 @@ export default function CreateMap() {
             )}
           </Droppable>
           {!parent && <Draggable id="draggable">Drag me</Draggable>}
-        </DndContext>
+        </DndContext> */}
+        <LineChart/>
       </div>
     </div>
   );
