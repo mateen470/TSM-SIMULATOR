@@ -9,7 +9,7 @@ export default function Weather() {
   const [selectedWeather, setSelectedWeather] = useState(options[0]);
   const [temperature, setTemperature] = useState(50);
   const [windSpeed, setWindSpeed] = useState(40);
-  const [windDirection, setWindDirection] = useState(5);
+  const [windDirection, setWindDirection] = useState(8);
 
   const handleWeather = (option) => {
     setSelectedWeather(option);

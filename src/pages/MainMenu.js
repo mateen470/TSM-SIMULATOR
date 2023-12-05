@@ -3,8 +3,8 @@ import React, { useEffect, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from 'swiper';
 import { Mousewheel, Pagination } from 'swiper/modules';
-import '../renderer/App.css';
 import 'swiper/css';
+import '../renderer/App.css';
 import mainMenu from '../TSM-img/main_menu.svg';
 
 SwiperCore.use([Mousewheel, Pagination]);

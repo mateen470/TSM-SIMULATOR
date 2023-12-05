@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import '../renderer/App.css';
 import mainMenu from '../TSM-img/main_menu.svg';
+import backButton from '../TSM-img/back_button.svg';
 import Footer from '../utility/Footer';
 import Difficulty from '../components/simulation-components/Difficulty';
 import SelectMap from '../components/simulation-components/SelectMap';
@@ -31,7 +32,9 @@ export default function Simulation() {
     >
       <div className="side_bar">
         <NavLink className="navigation_button" to="/">
-          <span id="first_span_navigation_button">SIMULATION /</span>
+          <span id="first_span_navigation_button">
+            <img src={backButton} alt="back" /> SIMULATION /
+          </span>
           <span id="second_span_navigation_button">SETTINGS</span>
         </NavLink>
         <div className="menu_side_bar">
