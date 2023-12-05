@@ -5,7 +5,7 @@ import Draggable from './Draggable';
 import Droppable from './Dropable';
 import mainMenu from '../../TSM-img/main_menu.svg';
 import backButton from '../../TSM-img/back_button.svg';
-import LineChart from './Linechart';
+import GridCanvas from './GridCanvas';
 
 export default function CreateMap() {
   const [parent, setParent] = useState(null);
@@ -37,7 +37,7 @@ export default function CreateMap() {
           </Droppable>
           {!parent && <Draggable id="draggable">Drag me</Draggable>}
         </DndContext> */}
-        <LineChart/>
+        <GridCanvas/>
       </div>
     </div>
   );
