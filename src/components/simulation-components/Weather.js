@@ -7,7 +7,7 @@ export default function Weather() {
   const options = ['AUTUMN', 'SPRING', 'WINTER', 'SUMMER'];
 
   const [selectedWeather, setSelectedWeather] = useState(options[0]);
-  const [temperature, setTemperature] = useState(50);
+  const [temperature, setTemperature] = useState(60);
   const [windSpeed, setWindSpeed] = useState(40);
   const [windDirection, setWindDirection] = useState(8);
 
@@ -31,7 +31,11 @@ export default function Weather() {
                 ></div>
               </div>
               <div className="progress_bar_value_box">
-                {temperature}
+                <input
+                  type="number"
+                  value={temperature}
+                  onChange={(e) => setTemperature(e.target.value)}
+                />
                 {'\u00b0'}C
               </div>
             </div>
@@ -45,7 +49,14 @@ export default function Weather() {
                   style={{ width: `${windSpeed}%` }}
                 ></div>
               </div>
-              <div className="progress_bar_value_box"> {windSpeed} knots</div>
+              <div className="progress_bar_value_box">
+                <input
+                  type="number"
+                  value={windSpeed}
+                  onChange={(e) => setWindSpeed(e.target.value)}
+                />
+                knots
+              </div>
             </div>
           </div>
         </div>

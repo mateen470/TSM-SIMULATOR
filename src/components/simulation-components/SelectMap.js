@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useSpring, animated } from 'react-spring';
+import { NavLink } from 'react-router-dom';
 import '../../renderer/App.css';
 import map1 from '../../TSM-img/map_1.svg';
 import map2 from '../../TSM-img/map_2.svg';
 import map3 from '../../TSM-img/map_3.svg';
 import MapCarousel from './MapCarousel';
 import MapDetailModel from './MapDetailModel';
-import { NavLink } from 'react-router-dom';
 
 export default function SelectMap() {
   const [selectedSlide, setSelectedSlide] = useState(0);
