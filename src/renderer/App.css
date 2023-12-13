@@ -281,17 +281,22 @@ input[type='number'] {
   align-items: center;
   gap: 10px;
 }
-.progress_bar_container {
+.progress_bar_container input[type='range'] {
+  -webkit-appearance: none;
   width: 400px;
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 20px;
   overflow: hidden;
   height: 17px;
 }
-.progress_bar {
-  height: 17px;
-  background-color: #ffffff;
-  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.103);
+.progress_bar_container input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 15px;
+  height: 40px;
+  background: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: -350px 0px 0px 340px #f5f5f5;
+  cursor: pointer;
 }
 .progress_bar_value_box {
   border-radius: 20px;
@@ -587,26 +592,6 @@ input[type='number'] {
   height: 100px;
   text-decoration: none;
 }
-.create_map_grid_container {
-  width: 90%;
-  background-color: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(2px);
-  border-radius: 10px;
-  margin: auto;
-  margin-top: 1rem;
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  align-items: center;
-}
-.create_map_grid_objects_info {
-  width: 100%;
-  height: 400px;
-}
-.create_map_grid {
-  height: 400px;
-  margin: 0.5rem 2rem 0rem 0rem;
-}
 .parameters_create_map_main_container {
   width: 100%;
   margin-top: 1rem;
@@ -731,7 +716,8 @@ input[type='number'] {
 .select_enemy_object,
 .select_enemy,
 .select_buildings,
-.select_natural_objects {
+.select_natural_objects,
+.select_your_tank {
   background-color: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(2px);
   border-radius: 10px;
@@ -787,11 +773,15 @@ input[type='number'] {
   overflow: hidden;
 }
 .selected_object_details_object_name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 1.8rem;
   font-weight: 700;
   color: #ffffff;
   text-transform: uppercase;
   border-bottom: 1px solid white;
+  position: relative;
 }
 .selected_object_details_values_container {
   display: flex;
@@ -823,6 +813,54 @@ input[type='number'] {
   left: 8.5rem;
   top: 5rem;
 }
+.btn_main_container {
+  position: absolute;
+  right: 0px;
+  top: 2px;
+}
+.btn {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.4rem;
+  border: 1px solid white;
+  height: 30px;
+  width: 100px;
+  cursor: pointer;
+  text-decoration: none;
+  background: none;
+  cursor: pointer;
+  transition: color 0.4s linear;
+  position: relative;
+}
+.btn:hover {
+  color: #000000;
+}
+.btn::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  z-index: -1;
+  transition: transform 0.5s;
+  transform-origin: 0 0;
+  transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+}
+.btn1::before {
+  transform: scaleX(0);
+}
+.btn2::before {
+  transform: scaleY(0);
+}
+.btn1:hover::before {
+  transform: scaleX(1);
+}
+.btn2:hover::before {
+  transform: scaleY(1);
+}
+
 /* SELECT-OBJECT-CAROUSEL-END */
 
 /* CUSTOM-DROPDOWN-START */
@@ -1164,11 +1202,44 @@ input[type='number'] {
 /* FOOTER-END */
 
 /* CUSTOM-DRAG-DROP-START */
-.grid_canvas_main_class {
-  width: 900px;
-  height: 350px;
-  border: 1px solid white;
+.grid_canvas_main_container {
+  width: 90%;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(2px);
+  border-radius: 10px;
+  margin: auto;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  height: 55vh;
+  padding: 1rem;
+}
+.grid_canvas {
+  height: 51vh;
+  width: 1150px;
+  border: 1px solid rgba(255, 255, 255, 0.578);
   position: relative;
   cursor: grab;
+}
+.grid_canvas_object_details {
+  width: 200px;
+}
+.grid_canvas_remove_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  border: 1px solid white;
+  height: 25px;
+  width: 70px;
+  cursor: pointer;
+  text-decoration: none;
+  background: transparent;
+}
+.grid_canvas_remove_btn:hover {
+  text-decoration: underline;
+  backdrop-filter: blur(10px);
 }
 /* CUSTOM-DRAG-DROP-END */

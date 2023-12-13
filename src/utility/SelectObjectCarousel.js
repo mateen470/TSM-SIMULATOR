@@ -20,6 +20,7 @@ const selectEnemyArray = [
       {
         type: 'tank',
         image: tank1,
+        status: 'dangerous',
         name: 'ARJUN',
         details: [
           { title: 'Qty.', value: 2 },
@@ -33,6 +34,7 @@ const selectEnemyArray = [
       {
         type: 'tank',
         image: tank2,
+        status: 'dangerous',
         name: 'PANTHER',
         details: [
           { title: 'Qty.', value: 5 },
@@ -46,6 +48,7 @@ const selectEnemyArray = [
       {
         type: 'tank',
         image: tank1,
+        status: 'dangerous',
         name: 'T-80UD',
         details: [
           { title: 'Qty.', value: 3 },
@@ -67,6 +70,7 @@ const selectEnemyObjectsArray = [
       {
         type: 'car',
         image: car1,
+        status: 'dangerous',
         name: 'WILLYS MB',
         details: [
           { title: 'Qty.', value: 2 },
@@ -80,6 +84,7 @@ const selectEnemyObjectsArray = [
       {
         type: 'car',
         image: car2,
+        status: 'dangerous',
         name: 'PRADO',
         details: [
           { title: 'Qty.', value: 3 },
@@ -93,6 +98,7 @@ const selectEnemyObjectsArray = [
       {
         type: 'car',
         image: car2,
+        status: 'dangerous',
         name: 'LAND CRUISER',
         details: [
           { title: 'Qty.', value: 5 },
@@ -114,6 +120,7 @@ const selectBuildingsArray = [
       {
         type: 'building',
         image: house1,
+        status: 'not-dangerous',
         name: 'DENSE TOWN',
         details: [
           { title: 'Buildings.', value: 6 },
@@ -127,6 +134,7 @@ const selectBuildingsArray = [
       {
         type: 'building',
         image: house2,
+        status: 'not-dangerous',
         name: 'FACTORY',
         details: [
           { title: 'Buildings.', value: 2 },
@@ -140,6 +148,7 @@ const selectBuildingsArray = [
       {
         type: 'building',
         image: house1,
+        status: 'not-dangerous',
         name: 'DENSE TOWN',
         details: [
           { title: 'Buildings.', value: 8 },
@@ -161,6 +170,7 @@ const selectNaturalObjectsArray = [
       {
         type: 'forrest',
         image: forest1,
+        status: 'not-dangerous',
         name: 'RAIN FOREST',
         details: [
           { title: 'Trees.', value: 11 },
@@ -174,6 +184,7 @@ const selectNaturalObjectsArray = [
       {
         type: 'forrest',
         image: forest2,
+        status: 'not-dangerous',
         name: 'GOLF COURSE',
         details: [
           { title: 'Trees.', value: 12 },
@@ -187,6 +198,7 @@ const selectNaturalObjectsArray = [
       {
         type: 'forrest',
         image: forest1,
+        status: 'not-dangerous',
         name: 'DRY FOREST',
         details: [
           { title: 'Trees.', value: 13 },
@@ -195,6 +207,56 @@ const selectNaturalObjectsArray = [
           { title: 'Buildings', value: 'No' },
           { title: 'Roads', value: 'Yes' },
           { title: 'Category', value: 'Natural' },
+        ],
+      },
+    ],
+  },
+];
+
+const selectYourTank = [
+  {
+    title: 'SELECT TANK',
+    objects: [
+      {
+        type: 'myTank',
+        status: 'own-tank',
+        image: tank1,
+        name: 'ARJUN',
+        details: [
+          { title: 'Qty.', value: 2 },
+          { title: 'Weight', value: '51 Ton' },
+          { title: 'Fire Rate', value: '31 / minute' },
+          { title: 'Top Speed', value: '92 / kmh' },
+          { title: 'Strength', value: 'Very High' },
+          { title: 'Endurance', value: 'Very High' },
+        ],
+      },
+      {
+        type: 'myTank',
+        status: 'own-tank',
+        image: tank2,
+        name: 'T-69',
+        details: [
+          { title: 'Qty.', value: 5 },
+          { title: 'Weight', value: '52 Ton' },
+          { title: 'Fire Rate', value: '51 / minute' },
+          { title: 'Top Speed', value: '62 / kmh' },
+          { title: 'Strength', value: 'Very High' },
+          { title: 'Endurance', value: 'Very High' },
+        ],
+      },
+      {
+        type: 'myTank',
+        status: 'own-tank',
+        image: tank1,
+        name: 'T-80UD',
+        details: [
+          { title: 'Qty.', value: 3 },
+          { title: 'Weight', value: '57 Ton' },
+          { title: 'Fire Rate', value: '21 / minute' },
+          { title: 'Top Speed', value: '82 / kmh' },
+          { title: 'Strength', value: 'Very High' },
+          { title: 'Endurance', value: 'Very High' },
         ],
       },
     ],
@@ -238,6 +300,8 @@ export default function SelectObjectCarousel({ carouselObjectType }) {
       ? selectBuildingsArray
       : carouselObjectType === 4
       ? selectNaturalObjectsArray
+      : carouselObjectType === 5
+      ? selectYourTank
       : selectEnemyArray;
 
   const handleDispatchItem = () => {
@@ -257,18 +321,11 @@ export default function SelectObjectCarousel({ carouselObjectType }) {
         onMouseLeave={() => setShown(false)}
       >
         <img src={obj.image} alt={obj.name} />
-        <div onClick={handleDispatchItem}>add</div>
       </animated.div>
     ),
   }));
 
   const selectedObject = chosenArray[0]?.objects[selectedSlide];
-
-  // useEffect(() => {
-  //   if (currentSelectedItem !== null) {
-  //     dispatch(addItem(currentSelectedItem));
-  //   }
-  // }, [currentSelectedItem, dispatch]);
 
   return (
     <div className="select_object_main_class">
@@ -293,7 +350,12 @@ export default function SelectObjectCarousel({ carouselObjectType }) {
             <div className="selected_object_details">
               <animated.div style={detailsProps}>
                 <div className="selected_object_details_object_name">
-                  {selectedObject?.name}
+                  <div>{selectedObject?.name}</div>
+                  <div className="btn_main_container">
+                    <button className="btn btn1" onClick={handleDispatchItem}>
+                      ADD
+                    </button>
+                  </div>
                 </div>
                 <div className="selected_object_details_values_container">
                   {selectedObject?.details.map((detail, detailIndex) => (

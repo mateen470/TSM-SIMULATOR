@@ -41,14 +41,14 @@ export default function CreateMap() {
     if (inputNumber === 1) setApfsds(apfsds + 1);
     else if (inputNumber === 2) setHe(he + 1);
     else if (inputNumber === 3) setHeat(heat + 1);
-    else if (inputNumber === 4) setMg762(mg762 + 1);
+    else if (inputNumber === 4) setMg762(mg762 + 50);
   };
 
   const handleDecrement = (inputNumber) => {
     if (inputNumber === 1) setApfsds(apfsds - 1);
     else if (inputNumber === 2) setHe(he - 1);
     else if (inputNumber === 3) setHeat(heat - 1);
-    else if (inputNumber === 4) setMg762(mg762 - 1);
+    else if (inputNumber === 4) setMg762(mg762 - 50);
   };
 
   const handleInputChange = (index, newValue) => {
@@ -84,10 +84,7 @@ export default function CreateMap() {
       </NavLink>
 
       <div className="create_map_grid_container">
-        <div className="create_map_grid_objects_info"></div>
-        <div className="create_map_grid">
-          <GridCanvas />
-        </div>
+        <GridCanvas />
       </div>
 
       <div className="parameters_create_map_main_container">
@@ -98,10 +95,14 @@ export default function CreateMap() {
             <span>MAP AREA</span>
             <div className="progress_bar_and_value_main_container">
               <div className="progress_bar_container">
-                <div
+                <input
+                  type="range"
+                  min="0"
+                  max="100"
+                  value={mapArea}
                   className="progress_bar"
-                  style={{ width: `${mapArea}%` }}
-                ></div>
+                  onChange={(e) => setMapArea(e.target.value)}
+                />
               </div>
               <div className="progress_bar_value_box">
                 <input
@@ -196,6 +197,9 @@ export default function CreateMap() {
           </div>
           <div className="select_natural_objects">
             <SelectObjectCarousel carouselObjectType={4} />
+          </div>
+          <div className="select_your_tank">
+            <SelectObjectCarousel carouselObjectType={5} />
           </div>
         </div>
       </div>

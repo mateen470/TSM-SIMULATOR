@@ -7,8 +7,12 @@ export const CarouselSelectedItemSlice = createSlice({
     addItem: (state, action) => {
       state.push(action.payload);
     },
+    removeItem: (state, action) => {
+      const index = state.findIndex(({ id }) => id === action.payload.id);
+      state.splice(index, 1);
+    },
   },
 });
-export const { addItem } = CarouselSelectedItemSlice.actions;
 
+export const { addItem, removeItem } = CarouselSelectedItemSlice.actions;
 export default CarouselSelectedItemSlice.reducer;

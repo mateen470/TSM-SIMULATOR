@@ -9,7 +9,7 @@ export default function Weather() {
   const [selectedWeather, setSelectedWeather] = useState(options[0]);
   const [temperature, setTemperature] = useState(60);
   const [windSpeed, setWindSpeed] = useState(40);
-  const [windDirection, setWindDirection] = useState(8);
+  const [windDirection, setWindDirection] = useState(12);
 
   const handleWeather = (option) => {
     setSelectedWeather(option);
@@ -25,10 +25,14 @@ export default function Weather() {
             <span>AMBIENT TEMPERATURE</span>
             <div className="progress_bar_and_value_main_container">
               <div className="progress_bar_container">
-                <div
+                <input
+                  type="range"
+                  min="0"
+                  max="100"
+                  value={temperature}
                   className="progress_bar"
-                  style={{ width: `${temperature}%` }}
-                ></div>
+                  onChange={(e) => setTemperature(e.target.value)}
+                />
               </div>
               <div className="progress_bar_value_box">
                 <input
@@ -44,10 +48,14 @@ export default function Weather() {
             <span>WIND SPEED</span>
             <div className="progress_bar_and_value_main_container">
               <div className="progress_bar_container">
-                <div
+                <input
+                  type="range"
+                  min="0"
+                  max="100"
+                  value={windSpeed}
                   className="progress_bar"
-                  style={{ width: `${windSpeed}%` }}
-                ></div>
+                  onChange={(e) => setWindSpeed(e.target.value)}
+                />
               </div>
               <div className="progress_bar_value_box">
                 <input

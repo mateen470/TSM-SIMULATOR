@@ -13,6 +13,8 @@ module.exports = {
     '@typescript-eslint/no-shadow': 'off',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
+    'no-const-assign': 'off',
+    'no-this-before-super': 'off',
   },
   parserOptions: {
     ecmaVersion: 2022,
