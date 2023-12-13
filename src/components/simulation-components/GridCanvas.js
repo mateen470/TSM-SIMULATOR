@@ -225,9 +225,11 @@ export default function GridCanvas() {
         .map((selectedItem, index) => {
           return {
             id: selectedItem.id || Date.now() + index,
+            name: selectedItem.name,
             x: Math.random() * (getGridWidth() - 50),
             y: Math.random() * (getGridHeight() - 50),
             status: selectedItem.status,
+            details: selectedItem.details,
             src:
               selectedItem.type === 'tank'
                 ? gridTank2
@@ -292,7 +294,7 @@ export default function GridCanvas() {
                   ? 'blue'
                   : item && item.status === 'dangerous'
                   ? 'red'
-                  : 'white';
+                  : '';
 
               return (
                 <path
@@ -343,7 +345,9 @@ export default function GridCanvas() {
                           pan.y) *
                         zoom,
                       transform: `translate(-50%, -50%) scale(${zoom})`,
-                      backgroundImage: `url(${startSign})`,
+                      backgroundImage: `url(${
+                        item.status === 'not-dangerous' ? 'none' : startSign
+                      })`,
                       position: 'absolute',
                       width: '20px',
                       height: '20px',
