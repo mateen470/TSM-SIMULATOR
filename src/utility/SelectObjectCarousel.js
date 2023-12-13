@@ -266,7 +266,6 @@ const selectYourTank = [
 export default function SelectObjectCarousel({ carouselObjectType }) {
   const [selectedSlide, setSelectedSlide] = useState(0);
   const [show, setShown] = useState(false);
-  const [currentSelectedItem, setCurrentSelectedItem] = useState(null);
   const dispatch = useDispatch();
 
   const props3 = useSpring({

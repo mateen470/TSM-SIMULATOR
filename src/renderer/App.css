@@ -594,7 +594,7 @@ input[type='number'] {
 }
 .parameters_create_map_main_container {
   width: 100%;
-  margin-top: 1rem;
+  margin-top: 2rem;
   overflow-y: auto;
 }
 .parameter_create_map_content_section {
@@ -726,6 +726,29 @@ input[type='number'] {
   margin: auto;
   padding: 2rem;
   margin-bottom: 1rem;
+}
+.create_map_save_button {
+  position: absolute;
+  right: 5%;
+}
+.create_map_save_button button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.7rem;
+  border: 1px solid white;
+  height: 50px;
+  width: 150px;
+  cursor: pointer;
+  text-decoration: none;
+  background: none;
+}
+.create_map_save_button button:hover {
+  text-decoration: underline;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.689);
+  backdrop-filter: blur(10px);
 }
 /* CREATE-MAP-END */
 
@@ -1201,9 +1224,8 @@ input[type='number'] {
 }
 /* FOOTER-END */
 
-/* CUSTOM-DRAG-DROP-START */
+/* CUSTOM-DRAG-DROP-GRID-START */
 .grid_canvas_main_container {
-  width: 90%;
   background-color: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(2px);
   border-radius: 10px;
@@ -1213,6 +1235,7 @@ input[type='number'] {
   justify-content: space-between;
   height: 55vh;
   padding: 1rem;
+  transition: width 0.5s ease-in-out;
 }
 .grid_canvas {
   height: 51vh;
@@ -1220,9 +1243,6 @@ input[type='number'] {
   border: 1px solid rgba(255, 255, 255, 0.578);
   position: relative;
   cursor: grab;
-}
-.grid_canvas_object_details {
-  width: 200px;
 }
 .grid_canvas_remove_btn {
   display: flex;
@@ -1242,4 +1262,12 @@ input[type='number'] {
   text-decoration: underline;
   backdrop-filter: blur(10px);
 }
-/* CUSTOM-DRAG-DROP-END */
+.grid_canvas_object_details {
+  transition: opacity 1s ease-in-out;
+}
+.grid_canvas_object_details_stats {
+  color: #ffffff;
+  margin-top: 1rem;
+  font-weight: 600;
+}
+/* CUSTOM-DRAG-DROP-GRID-END */

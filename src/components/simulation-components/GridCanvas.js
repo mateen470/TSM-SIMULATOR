@@ -101,14 +101,11 @@ export default function GridCanvas() {
         const mouseX = (moveEvent.clientX - rect.left) / zoom - pan.x;
         const mouseY = (moveEvent.clientY - rect.top) / zoom - pan.y;
 
-        const newX = Math.min(
-          Math.max(mouseX, getGridLeftBoundary()),
-          getGridRightBoundary() - 50,
-        );
-        const newY = Math.min(
-          Math.max(mouseY, getGridTopBoundary()),
-          getGridBottomBoundary() - 50,
-        );
+        const diffX = (mouseX - startX) * zoom;
+        const diffY = (mouseY - startY) * zoom;
+
+        const newX = item.x + diffX;
+        const newY = item.y + diffY;
 
         setItems((prevItems) =>
           prevItems.map((i) =>
@@ -155,14 +152,11 @@ export default function GridCanvas() {
         const mouseX = (moveEvent.clientX - rect.left) / zoom - pan.x;
         const mouseY = (moveEvent.clientY - rect.top) / zoom - pan.y;
 
-        const newX = Math.min(
-          Math.max(mouseX, getGridLeftBoundary()),
-          getGridRightBoundary() - 50,
-        );
-        const newY = Math.min(
-          Math.max(mouseY, getGridTopBoundary()),
-          getGridBottomBoundary() - 50,
-        );
+        const diffX = (mouseX - startX) * zoom;
+        const diffY = (mouseY - startY) * zoom;
+
+        const newX = item.x + diffX;
+        const newY = item.y + diffY;
 
         setItems((prevItems) =>
           prevItems.map((i) =>
@@ -230,6 +224,7 @@ export default function GridCanvas() {
             y: Math.random() * (getGridHeight() - 50),
             status: selectedItem.status,
             details: selectedItem.details,
+            type: selectedItem.type,
             src:
               selectedItem.type === 'tank'
                 ? gridTank2
@@ -249,7 +244,7 @@ export default function GridCanvas() {
         setItems((prevItems) => [...prevItems, ...newItems]);
       }
     }
-    console.log('objects', objectStartPoints);
+    // console.log('objects', objectStartPoints);
   }, [selectedItems]);
 
   const drawPath = (path) => {
@@ -261,12 +256,42 @@ export default function GridCanvas() {
     return d;
   };
 
+  const hasObjects = items.length > 0;
+
+  const totalEnemies = items.filter(
+    (item) => item.status === 'dangerous',
+  ).length;
+  const enemyTanks = items.filter(
+    (item) => item.status === 'dangerous' && item.type === 'tank',
+  ).length;
+  const enemyAPCs = items.filter(
+    (item) => item.status === 'dangerous' && item.type === 'car',
+  ).length;
+
   return (
-    <div className="grid_canvas_main_container">
-      <div className="grid_canvas_object_details">
-        <button onClick={handleDelete} className="grid_canvas_remove_btn">
-          DELETE
-        </button>
+    <div
+      className="grid_canvas_main_container"
+      style={{ width: hasObjects ? '90%' : '77%' }}
+    >
+      <div
+        className="grid_canvas_object_details"
+        style={{
+          width: hasObjects ? '200px' : '0px',
+          opacity: hasObjects ? 1 : 0,
+        }}
+      >
+        {hasObjects && (
+          <button onClick={handleDelete} className="grid_canvas_remove_btn">
+            DELETE
+          </button>
+        )}
+        {totalEnemies > 0 && (
+          <div className="grid_canvas_object_details_stats">
+            <h3>Total Enemies: {totalEnemies}</h3>
+            <p>Enemy Tanks: {enemyTanks}</p>
+            <p>Enemy APCs: {enemyAPCs}</p>
+          </div>
+        )}
       </div>
       <TransformWrapper>
         {/* <div>

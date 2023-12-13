@@ -45,14 +45,17 @@ export default function CreateMap() {
   };
 
   const handleDecrement = (inputNumber) => {
-    if (inputNumber === 1) setApfsds(apfsds - 1);
-    else if (inputNumber === 2) setHe(he - 1);
-    else if (inputNumber === 3) setHeat(heat - 1);
-    else if (inputNumber === 4) setMg762(mg762 - 50);
+    if (inputNumber === 1 && apfsds > 0) setApfsds(apfsds - 1);
+    else if (inputNumber === 2 && he > 0) setHe(he - 1);
+    else if (inputNumber === 3 && heat > 0) setHeat(heat - 1);
+    else if (inputNumber === 4 && mg762 >= 50) setMg762(mg762 - 50);
   };
 
   const handleInputChange = (index, newValue) => {
     newValue = Number(newValue);
+
+    if (newValue < 0) return;
+
     switch (index) {
       case 1:
         setApfsds(newValue);
@@ -71,6 +74,8 @@ export default function CreateMap() {
     }
   };
 
+  const handleSave = () => {};
+
   return (
     <div
       className="create_map_main_class"
@@ -82,6 +87,10 @@ export default function CreateMap() {
         </span>
         <span id="second_span_navigation_button">CREATE MAP</span>
       </NavLink>
+
+      <div className="create_map_save_button">
+        <button onClick={handleSave}>SAVE</button>
+      </div>
 
       <div className="create_map_grid_container">
         <GridCanvas />
