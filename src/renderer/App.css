@@ -102,7 +102,8 @@ input[type='number'] {
 
 /* SIMULATION-MENU-PAGE-START */
 .simulation_main_class,
-.create_map_main_class {
+.create_map_main_class,
+.select_student_instructor_main_class {
   min-height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
@@ -125,6 +126,16 @@ input[type='number'] {
   width: 150px;
   height: 100px;
   text-decoration: none;
+}
+.navigation_button_with_bigger_width {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 210px;
+  height: 100px;
+  text-decoration: none;
+  position: absolute;
 }
 #first_span_navigation_button {
   font-size: 1.1rem;
@@ -198,7 +209,8 @@ input[type='number'] {
 .select_difficulty_dropdown span,
 .select_weather_dropdown span,
 .select_exercise_time_dropdown span,
-.select_terrain_dropdown span {
+.select_terrain_dropdown span,
+.select_student_instructot_tab_input_container span {
   font-size: 1.8rem;
   font-weight: 600;
   color: #ffffff;
@@ -883,8 +895,73 @@ input[type='number'] {
 .btn2:hover::before {
   transform: scaleY(1);
 }
-
 /* SELECT-OBJECT-CAROUSEL-END */
+
+/* SELECT-STUDENT-INSTRUCTOR-START */
+.select_student_instructor_main_content_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.select_student_instructor_main_content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(2px);
+  border-radius: 10px;
+  height: 65vh;
+  width: 900px;
+}
+.select_student_instructor__tab_content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.select_student_instructor_tabs_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.select_student_instructor_tab_button {
+  font-size: 2rem;
+  color: #ffffff;
+  cursor: pointer;
+  width: 250px;
+  border: 1px solid white;
+  text-align: center;
+}
+.select_student_instructor_tab_button:hover {
+  text-decoration: underline;
+}
+.select_student_instructot_tab_input_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 800px;
+  height: 70px;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(2px);
+  border-radius: 10px;
+  padding: 0rem 4rem;
+}
+.select_student_instructot_tab_input_container input {
+  background-color: #00000088;
+  width: 450px;
+  height: 50px;
+  border-radius: 10px;
+  position: relative;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.5rem;
+  padding: 0rem 1rem;
+}
+/* SELECT-STUDENT-INSTRUCTOR-END */
 
 /* CUSTOM-DROPDOWN-START */
 .custom_drop_down_main_class {

@@ -14,8 +14,8 @@ export default function MainMenu() {
     { name: 'TEST MODE', link: '/' },
     { name: 'TUTORIALS', link: '/' },
     { name: 'START SIMULATION', link: '/simulation' },
-    { name: 'ADD INSTRUCTORS', link: '/' },
-    { name: 'ADD STUDENTS', link: '/' },
+    { name: 'ADD INSTRUCTORS', link: '/select_student_instructor' },
+    { name: 'ADD STUDENTS', link: '/select_student_instructor' },
     { name: 'PAST SIMULATIONS', link: '/' },
   ];
 

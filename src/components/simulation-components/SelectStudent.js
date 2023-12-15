@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import DropDown from '../../utility/DropDown';
 import '../../renderer/App.css';
+import { NavLink } from 'react-router-dom';
 
 export default function SelectStudent() {
   const options = ['Option 1', 'Option 2', 'Option 3'];
@@ -43,8 +44,18 @@ export default function SelectStudent() {
 
       <div className="select_student_instructor_button_group_main_class">
         <div className="select_student_instructor_button_group">
-          <div className="select_student_instructor_button">ADD STUDENT</div>
-          <div className="select_student_instructor_button">ADD INSTRUCTOR</div>
+          <NavLink
+            className="select_student_instructor_button"
+            to="/select_student_instructor"
+          >
+            ADD STUDENT
+          </NavLink>
+          <NavLink
+            className="select_student_instructor_button"
+            to="/select_student_instructor"
+          >
+            ADD INSTRUCTOR
+          </NavLink>
         </div>
       </div>
     </div>
