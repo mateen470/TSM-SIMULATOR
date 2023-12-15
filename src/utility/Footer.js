@@ -1,14 +1,21 @@
+import { NavLink } from 'react-router-dom';
 import '../renderer/App.css';
 
 export default function Footer() {
   return (
     <div className="footer">
       <div className="footer_first_box">
-        <span className="underline">BACK</span>
-        <span className="underline">HELP</span>
+        <NavLink className="underline" to="/">
+          BACK
+        </NavLink>
+        <NavLink className="underline" to="/help">
+          HELP
+        </NavLink>
       </div>
       <div className="footer_second_box">
-        <span className="underline">TUTORIALS</span>
+        <NavLink className="underline" to="/tutorials">
+          TUTORIALS
+        </NavLink>
         <div id="footer_second_box_second_span">
           <span className="underline">CONTINUE</span>
         </div>
