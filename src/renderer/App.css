@@ -104,7 +104,8 @@ input[type='number'] {
 .simulation_main_class,
 .create_map_main_class,
 .select_student_instructor_main_class,
-.past_simulation_main_class {
+.past_simulation_main_class,
+.test_mode_main_class {
   min-height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
@@ -1116,7 +1117,8 @@ input[type='number'] {
 /* BASIC-ADVANCE-END */
 
 /*PAST-SIMULATION-START */
-.past_simulation_main_content_container {
+.past_simulation_main_content_container,
+.test_mode_main_content_container {
   margin: auto;
   width: 90%;
   display: flex;
@@ -1154,7 +1156,8 @@ input[type='number'] {
   color: #9fa4a9;
   font-size: 1.4rem;
 }
-.past_simulation_tab_table {
+.past_simulation_tab_table,
+.test_mode_tab_table {
   margin: 1rem;
   overflow-y: auto;
   margin-top: 5rem;
@@ -1166,7 +1169,8 @@ input[type='number'] {
   gap: 1rem;
 }
 .past_simulation_tab_table_name_heading,
-.past_simulation_tab_table_heading {
+.past_simulation_tab_table_heading,
+.test_mode_tab_table_name_heading {
   font-weight: 600;
   color: #9fa4a9;
   text-transform: uppercase;
@@ -1202,13 +1206,53 @@ input[type='number'] {
 #past_simulation_tab_table_name_data_second_phrase,
 .past_simulation_tab_table_data {
   font-weight: 600;
-  color: #9fa4a9;
   font-size: 1.2rem;
+  color: #9fa4a9;
   width: 25%;
   white-space: nowrap;
   text-transform: uppercase;
 }
 /*PAST-SIMULATION-END */
+
+/* TEST-MODE-START */
+.test_mode_tab_heading__box {
+  width: 90%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #5d666d;
+  padding: 0rem 1rem;
+  height: 50px;
+  position: fixed;
+  gap: 3rem;
+}
+.test_mode_tab_table_heading_container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+}
+.test_mode_tab_table_name_heading {
+  width: 35%;
+}
+.test_mode_tab_table_data_container {
+  margin: 2rem 0rem;
+  border-bottom: 1px solid #5d666d;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+}
+.test_mode_tab_table_data {
+  font-weight: 600;
+  font-size: 1.2rem;
+  white-space: nowrap;
+  text-transform: uppercase;
+  width: 35%;
+  color: #ffffff;
+}
+/* TEST-MODE-END */
 
 /* CUSTOM-DROPDOWN-START */
 .custom_drop_down_main_class {

@@ -40,7 +40,6 @@ export default function PastSimulation() {
     overflow: 'hidden',
     transition: 'opacity 0.5s ease-in-out',
   };
-
   const recentStyle = {
     opacity: active ? 1 : 0,
     height: !active && '0px',
