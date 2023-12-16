@@ -63,6 +63,7 @@ export default function SelectStudentAndInstructor() {
               style={{
                 background: !toggle && 'rgba(255, 255, 255, 0.2)',
                 fontWeight: !toggle ? '700' : '500',
+                transition: 'all 0.3s ease-in-out',
               }}
             >
               STUDENT
@@ -73,6 +74,7 @@ export default function SelectStudentAndInstructor() {
               style={{
                 background: toggle && 'rgba(255, 255, 255, 0.2)',
                 fontWeight: toggle ? '700' : '500',
+                transition: 'all 0.3s ease-in-out',
               }}
             >
               INSTRUCTOR

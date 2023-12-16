@@ -6,6 +6,8 @@ import SelectStudentAndInstructor from '../pages/SelectStudentAndInstructor';
 import Tutorials from '../pages/Tutorials';
 import Help from '../pages/Help';
 import BasicAdvanceTab from '../pages/BasicAdvanceTab';
+import PastSimulation from '../pages/PastSimulation';
+import TestMode from '../pages/TestMode';
 
 export default function App() {
   return (
@@ -20,6 +22,8 @@ export default function App() {
         />
         <Route path="/tutorials" element={<Tutorials />} />
         <Route path="/help" element={<Help />} />
+        <Route path="/past_simulation" element={<PastSimulation />} />
+        <Route path="/test_mode" element={<TestMode />} />
         {/* <Route path="/help" element={<BasicAdvanceTab />} /> */}
       </Routes>
     </Router>

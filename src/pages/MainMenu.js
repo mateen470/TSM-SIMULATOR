@@ -11,12 +11,12 @@ SwiperCore.use([Mousewheel, Pagination]);
 
 export default function MainMenu() {
   const buttonArray = [
-    { name: 'TEST MODE', link: '/' },
+    { name: 'TEST MODE', link: '/test_mode' },
     { name: 'TUTORIALS', link: '/tutorials' },
     { name: 'START SIMULATION', link: '/simulation' },
     { name: 'ADD INSTRUCTORS', link: '/select_student_instructor' },
     { name: 'ADD STUDENTS', link: '/select_student_instructor' },
-    { name: 'PAST SIMULATIONS', link: '/' },
+    { name: 'PAST SIMULATIONS', link: '/past_simulation' },
   ];
 
   const swiperRef = useRef(null);
