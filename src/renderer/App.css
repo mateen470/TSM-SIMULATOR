@@ -105,7 +105,9 @@ input[type='number'] {
 .create_map_main_class,
 .select_student_instructor_main_class,
 .past_simulation_main_class,
-.test_mode_main_class {
+.test_mode_main_class,
+.help_main_class,
+.report_main_class {
   min-height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
@@ -251,7 +253,8 @@ input[type='number'] {
 }
 .select_student_instructor_button,
 .select_map_button,
-.help_button {
+.help_button,
+.report_print_btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -266,7 +269,8 @@ input[type='number'] {
 }
 .select_student_instructor_button:hover,
 .select_map_button:hover,
-.help_button:hover {
+.help_button:hover,
+.report_print_btn:hover {
   text-decoration: underline;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.689);
   backdrop-filter: blur(10px);
@@ -1253,6 +1257,187 @@ input[type='number'] {
   color: #ffffff;
 }
 /* TEST-MODE-END */
+
+/* REPORT-START */
+.report_main_container {
+  overflow-y: auto;
+  height: 70vh;
+  position: absolute;
+  top: 7%;
+  left: 15%;
+  border-radius: 10px;
+}
+.report_print_btn {
+  position: absolute;
+  bottom: 7rem;
+  left: 41%;
+}
+.report_content {
+  background: white;
+  width: 140vh;
+  height: 155vh;
+  border-radius: 10px;
+  padding: 2rem;
+}
+.report_content_main_heading {
+  text-align: center;
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: #000000;
+}
+.report_conetnt_input_fields_container {
+  border: 3px solid black;
+  margin-top: 1rem;
+}
+.report_content_input_field_box_1,
+.report_content_input_field_box_2 {
+  height: 250px;
+  border-bottom: 3px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+.report_conent_input_field_box_1_input_box {
+  display: flex;
+  width: 320px;
+  align-items: center;
+  gap: 0.5rem;
+}
+.report_conent_input_field_box_1_input_box_title {
+  color: #000000;
+  font-weight: 600;
+  font-size: 1.4rem;
+  width: 140px;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+.report_conent_input_field_box_1_input_box_value,
+.report_conent_input_field_box_2_input_box_value_map_info {
+  text-transform: uppercase;
+  color: #000000;
+  font-weight: 700;
+  font-size: 1.3rem;
+  border-bottom: 3px solid black;
+  width: 150px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+}
+.report_conent_input_field_box_2_input_box {
+  display: flex;
+  width: 480px;
+  align-items: center;
+  gap: 0.5rem;
+}
+.report_conent_input_field_box_2_input_box_value {
+  text-transform: uppercase;
+  color: #000000;
+  font-weight: 700;
+  font-size: 1.3rem;
+  width: 180px;
+}
+.report_conent_input_field_box_2_input_box_title {
+  color: #000000;
+  font-weight: 600;
+  font-size: 1.4rem;
+  width: 250px;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+.report_conent_input_field_box_2_input_box_map_info {
+  display: flex;
+  width: 500px;
+  align-items: center;
+  gap: 0.5rem;
+}
+.report_conent_input_field_box_2_input_box_title_map_info {
+  color: #000000;
+  font-weight: 600;
+  font-size: 1.4rem;
+  width: 180px;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+.report_conent_input_field_box_2_input_box_value_map_info {
+  width: 300px;
+}
+.report_content_input_field_box_4 {
+  height: 550px;
+  padding: 1rem;
+}
+.report_content_input_field_box_4_main_heading {
+  color: #000000;
+  text-align: center;
+  font-weight: 700;
+  font-size: 2rem;
+}
+.report_content_input_field_box_4_main_content_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+.report_content_input_field_box_4_main_content_container_box_1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 350px;
+}
+.report_content_input_field_box_4_main_content_container_box_1_value_box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 400px;
+}
+.report_content_input_field_box_4_main_content_container_box_1_value_box_value {
+  color: #000000;
+  font-weight: 600;
+  font-size: 1.4rem;
+  white-space: nowrap;
+}
+.report_total_marks_container {
+  display: flex;
+  width: 400px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 1rem;
+}
+.report_total_marks_title {
+  color: #000000;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+.report_total_marks_value {
+  color: #000000;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.4rem;
+  text-align: start;
+  width: 200px;
+  border-bottom: 3px solid black;
+}
+.report_content_input_field_box_4_main_content_container_box_2 {
+  height: 350px;
+  position: relative;
+}
+.report_content_input_field_box_4_main_content_container_box_2_title {
+  color: #000000;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.7rem;
+  position: absolute;
+  left: -140px;
+  bottom: 150px;
+  rotate: -90deg;
+}
+/* REPORT-END */
 
 /* CUSTOM-DROPDOWN-START */
 .custom_drop_down_main_class {

@@ -7,7 +7,7 @@ import Footer from '../utility/Footer';
 export default function Help() {
   return (
     <div
-      className="select_student_instructor_main_class"
+      className="help_main_class"
       style={{ backgroundImage: `url(${mainMenu})` }}
     >
       <NavLink className="navigation_button" to="/simulation">

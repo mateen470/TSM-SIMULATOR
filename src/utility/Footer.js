@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <div className="footer">
       <div className="footer_first_box">
-        <NavLink className="underline" to="/">
+        <NavLink className="underline" to="/report">
           BACK
         </NavLink>
         <NavLink className="underline" to="/help">
