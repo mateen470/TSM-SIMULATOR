@@ -17,7 +17,9 @@ export default function Footer() {
           TUTORIALS
         </NavLink>
         <div id="footer_second_box_second_span">
-          <span className="underline">CONTINUE</span>
+          <NavLink className="underline" to="/dashboard">
+            CONTINUE
+          </NavLink>
         </div>
       </div>
     </div>

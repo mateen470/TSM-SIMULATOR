@@ -9,6 +9,7 @@ import BasicAdvanceTab from '../pages/BasicAdvanceTab';
 import PastSimulation from '../pages/PastSimulation';
 import TestMode from '../pages/TestMode';
 import Report from '../pages/Report';
+import Dashboard from '../pages/Dashboard';
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
         <Route path="/past_simulation" element={<PastSimulation />} />
         <Route path="/test_mode" element={<TestMode />} />
         <Route path="/report" element={<Report />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         {/* <Route path="/help" element={<BasicAdvanceTab />} /> */}
       </Routes>
     </Router>
