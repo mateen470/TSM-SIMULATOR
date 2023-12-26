@@ -93,7 +93,7 @@ export default function CreateMap() {
       </div>
 
       <div className="create_map_grid_container">
-        <GridCanvas />
+        <GridCanvas stylingBox={1} />
       </div>
 
       <div className="parameters_create_map_main_container">

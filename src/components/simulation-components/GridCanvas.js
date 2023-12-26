@@ -11,7 +11,7 @@ import gridAPV from '../../TSM-img/gridAPV.svg';
 import gridBuilding from '../../TSM-img/gridBuilding.svg';
 import startSign from '../../TSM-img/gridStopSign.svg';
 
-export default function GridCanvas() {
+export default function GridCanvas({ stylingBox }) {
   const gridRef = useRef(null);
   const dispatch = useDispatch();
   const [zoom, setZoom] = useState(1);
@@ -54,7 +54,7 @@ export default function GridCanvas() {
   };
 
   const getGridRightBoundary = () => {
-    return getGridWidth() / zoom;
+    return (getGridWidth() / zoom) * 1.02;
   };
 
   const getGridTopBoundary = () => {
@@ -62,7 +62,7 @@ export default function GridCanvas() {
   };
 
   const getGridBottomBoundary = () => {
-    return getGridHeight() / zoom;
+    return (getGridHeight() / zoom) * 1.1;
   };
 
   const updatePath = (itemId, newX, newY) => {
@@ -82,6 +82,22 @@ export default function GridCanvas() {
 
       return prevPaths;
     });
+  };
+
+  const enforceGridBoundaries = (newX, newY, itemWidth, itemHeight) => {
+    const rightBoundary = getGridRightBoundary() - itemWidth;
+    const bottomBoundary = getGridBottomBoundary() - itemHeight;
+
+    const boundedX = Math.max(
+      getGridLeftBoundary(),
+      Math.min(newX, rightBoundary),
+    );
+    const boundedY = Math.max(
+      getGridTopBoundary(),
+      Math.min(newY, bottomBoundary),
+    );
+
+    return { x: boundedX, y: boundedY };
   };
 
   const handleItemMouseDown = (itemId, e) => {
@@ -104,8 +120,12 @@ export default function GridCanvas() {
         const diffX = (mouseX - startX) * zoom;
         const diffY = (mouseY - startY) * zoom;
 
-        const newX = item.x + diffX;
-        const newY = item.y + diffY;
+        let newX = item.x + diffX;
+        let newY = item.y + diffY;
+
+        const boundedPosition = enforceGridBoundaries(newX, newY, 50, 50);
+        newX = boundedPosition.x;
+        newY = boundedPosition.y;
 
         setItems((prevItems) =>
           prevItems.map((i) =>
@@ -155,8 +175,12 @@ export default function GridCanvas() {
         const diffX = (mouseX - startX) * zoom;
         const diffY = (mouseY - startY) * zoom;
 
-        const newX = item.x + diffX;
-        const newY = item.y + diffY;
+        let newX = item.x + diffX;
+        let newY = item.y + diffY;
+
+        const boundedPosition = enforceGridBoundaries(newX, newY, 50, 50);
+        newX = boundedPosition.x;
+        newY = boundedPosition.y;
 
         setItems((prevItems) =>
           prevItems.map((i) =>
@@ -271,11 +295,21 @@ export default function GridCanvas() {
   return (
     <div
       className="grid_canvas_main_container"
-      style={{ width: hasObjects ? '90%' : '77%' }}
+      style={{
+        width:
+          stylingBox === 1 && hasObjects
+            ? '91%'
+            : stylingBox === 1 && !hasObjects
+            ? '79.8%'
+            : '63.6%',
+        borderRadius: stylingBox === 1 ? '10px' : '0px',
+        position: stylingBox === 2 ? 'absolute' : 'relative',
+      }}
     >
       <div
         className="grid_canvas_object_details"
         style={{
+          display: stylingBox === 2 ? 'none' : '',
           width: hasObjects ? '200px' : '0px',
           opacity: hasObjects ? 1 : 0,
         }}
@@ -338,6 +372,11 @@ export default function GridCanvas() {
             style={{
               background: createGridPattern(),
               backgroundSize: `${30 * zoom}px ${30 * zoom}px`,
+              height: '51vh',
+              width: '1500px',
+              border: '1px solid rgba(255, 255, 255, 0.578)',
+              position: 'relative',
+              cursor: 'grab',
             }}
           >
             {items.map((item) => (

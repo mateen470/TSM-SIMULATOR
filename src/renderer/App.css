@@ -650,7 +650,7 @@ input[type='number'] {
   font-size: 2rem;
   font-weight: 600;
   color: #ffffff;
-  margin-left: 5rem;
+  margin-left: 12rem;
 }
 .map_area_main_class,
 .select_exercise_time_dropdown,
@@ -830,7 +830,7 @@ input[type='number'] {
   backdrop-filter: blur(2px);
   border-radius: 10px;
   width: 60%;
-  height: 34vh;
+  height: 27vh;
   top: 3rem;
   right: -20rem;
   padding: 1rem 2rem;
@@ -1265,17 +1265,17 @@ input[type='number'] {
   height: 70vh;
   position: absolute;
   top: 7%;
-  left: 15%;
+  left: 20.2%;
   border-radius: 10px;
 }
 .report_print_btn {
   position: absolute;
   bottom: 7rem;
-  left: 41%;
+  left: 43%;
 }
 .report_content {
   background: white;
-  width: 140vh;
+  width: 115vh;
   height: 155vh;
   border-radius: 10px;
   padding: 2rem;
@@ -1350,7 +1350,7 @@ input[type='number'] {
 }
 .report_conent_input_field_box_2_input_box_map_info {
   display: flex;
-  width: 500px;
+  width: 800px;
   align-items: center;
   gap: 0.5rem;
 }
@@ -1444,21 +1444,185 @@ input[type='number'] {
 .dashboard_main_class {
   height: 100vh;
 }
+.adjust_simulation_main_container,
+.control_main_container {
+  margin-top: 55vh;
+}
 .dashboard_fire_control_container {
   overflow-y: auto;
   width: 700px;
   background: #ffffff87;
   backdrop-filter: blur(10px);
   padding: 0.5rem;
+  height: 100vh;
+}
+.adjust_simulation_main_class {
+  overflow-y: auto;
+  width: 750px;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(2px);
+  padding: 1rem;
+  height: 45vh;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+.status_main_container {
+  position: absolute;
+  right: 0px;
+  transition: all 0.5s ease-in-out;
+}
+.status_toggle_btn {
+  position: absolute;
+  top: 55%;
+  left: -25px;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+.control_main_class {
+  width: 470px;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(2px);
+  padding: 1rem;
+  height: 45vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.status_main_class {
+  width: 470px;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(2px);
+  padding: 1rem;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+.control_main_content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+.control_main_content_controls {
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  height: 50px;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.4rem;
+  border-radius: 10px;
+  border: 1px solid white;
+  cursor: pointer;
+}
+.adjust_simulation_box,
+.faults_box,
+.ammo_box {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.adjust_simulation_box_content,
+.faults_box_content {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.adjust_simulation_box_content_category,
+.faults_box_content_category {
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  height: 50px;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.4rem;
+  border-radius: 10px;
+  border: 1px solid white;
+  cursor: pointer;
+}
+.ammo_box_content {
+  display: flex;
+  align-items: center;
+  width: 700px;
+  height: 50px;
+  margin-bottom: 3rem;
+}
+.ammo_box_ammo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.4rem;
+  width: 170px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid white;
+  cursor: pointer;
 }
 .dashboard_fire_control_main_content {
-  height: 107vh;
+  height: 100vh;
 }
-.dashboard_fire_control_main_heading {
+.dashboard_fire_control_main_heading,
+.adjust_simulation_box_heading,
+.faults_box_heading,
+.ammo_box_heading,
+.control_main_heading,
+.status_main_heading {
   color: #ffffff;
   font-weight: 700;
   font-size: 1.8rem;
   width: 600px;
+}
+.control_main_heading,
+.status_main_heading {
+  text-align: center;
+  width: 430px;
+}
+.status_main_heading {
+  font-size: 2rem;
+}
+.status_title {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 2rem;
+  text-align: center;
+}
+.status_box {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.4rem;
+  width: 400px;
+  min-height: 220px;
+  background-color: rgba(0, 0, 0, 0.9);
+  border-radius: 15px;
+  padding: 1rem;
+}
+.status_item {
+  width: 400px;
+  margin: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+}
+.status_item strong {
+  font-size: 1.3rem;
+  width: 140px;
+}
+.status_item p {
+  font-weight: 500;
 }
 .dashboard_first_set_lights {
   display: flex;
@@ -2144,11 +2308,10 @@ input[type='number'] {
   width: 110px;
   height: 110px;
 }
-.six {
+.six_clutch {
   position: absolute;
-  width: 100px;
   top: 45%;
-  padding-left: 4.3rem;
+  right: -17px;
 }
 .dashboard_bottom_clutch_title {
   position: absolute;
@@ -2158,6 +2321,9 @@ input[type='number'] {
   bottom: -22%;
   white-space: nowrap;
   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.502);
+}
+.grid_dashboard {
+  margin-top: -1rem;
 }
 /* DASHBORAD-END */
 
@@ -2505,7 +2671,6 @@ input[type='number'] {
 .grid_canvas_main_container {
   background-color: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(2px);
-  border-radius: 10px;
   margin: auto;
   margin-top: 1rem;
   display: flex;
@@ -2513,13 +2678,6 @@ input[type='number'] {
   height: 55vh;
   padding: 1rem;
   transition: width 0.5s ease-in-out;
-}
-.grid_canvas {
-  height: 51vh;
-  width: 1150px;
-  border: 1px solid rgba(255, 255, 255, 0.578);
-  position: relative;
-  cursor: grab;
 }
 .grid_canvas_remove_btn {
   display: flex;
@@ -2540,7 +2698,7 @@ input[type='number'] {
   backdrop-filter: blur(10px);
 }
 .grid_canvas_object_details {
-  transition: opacity 1s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 .grid_canvas_object_details_stats {
   color: #ffffff;
