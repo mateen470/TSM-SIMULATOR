@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import DropDown from '../../utility/DropDown';
 import '../../renderer/App.css';
+import data from '../../data.json';
 
 export default function Difficulty() {
-  const options = ['EASY', 'MEDIUM', 'DIFFICULT'];
+  const options = data.dropDownOptionsOfSelectDifficulty;
 
   const [selectedDifficultyLevel, setSelectedDifficultyLevel] = useState(
     options[0],

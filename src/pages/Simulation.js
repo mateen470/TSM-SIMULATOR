@@ -9,17 +9,12 @@ import SelectMap from '../components/simulation-components/SelectMap';
 import SelectStudent from '../components/simulation-components/SelectStudent';
 import Verify from '../components/simulation-components/Verify';
 import Weather from '../components/simulation-components/Weather';
+import data from '../data.json';
 
 export default function Simulation() {
   const [activeMenuItem, setActiveMenuItem] = useState('SELECT STUDENT');
 
-  const menuItemArray = [
-    { name: 'SELECT STUDENT' },
-    { name: 'SELECT MAP' },
-    { name: 'WEATHER' },
-    { name: 'DIFFICULTY' },
-    { name: 'VERIFY' },
-  ];
+  const menuItemArray = data.simulationMenuItemArray;
 
   const handleMenuItemClick = (name) => {
     setActiveMenuItem(name);

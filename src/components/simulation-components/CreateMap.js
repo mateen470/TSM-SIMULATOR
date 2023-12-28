@@ -7,6 +7,7 @@ import Increment from '../../TSM-img/increment.svg';
 import Decrement from '../../TSM-img/decrement.svg';
 import SelectObjectCarousel from '../../utility/SelectObjectCarousel';
 import GridCanvas from './GridCanvas';
+import data from '../../data.json';
 
 export default function CreateMap() {
   const [mapArea, setMapArea] = useState(50);
@@ -15,18 +16,12 @@ export default function CreateMap() {
   const [heat, setHeat] = useState(0);
   const [mg762, setMg762] = useState(0);
 
-  const options = ['Option 1', 'Option 2', 'Option 3'];
-  const options1 = ['Option 4', 'Option 5', 'Option 6'];
+  const options = data.dropDownOptionsOfExcersieTime;
+  const options1 = data.dropDownOptionsOfSelectTerrain;
   const [exerciseTime, setExerciseTime] = useState(options[0]);
   const [terrain, setTerrain] = useState(options1[0]);
 
-  const initialAmmoTitleArray = [
-    'AMMO TYPE :',
-    'APFSDS',
-    'HE',
-    'HEAT',
-    '7.62 (MG)',
-  ];
+  const initialAmmoTitleArray = data.initialAmmoTitleArray;
 
   const inputArray = ['INITIAL QTY. :', apfsds, he, heat, mg762];
 

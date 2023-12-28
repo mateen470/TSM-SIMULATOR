@@ -4,50 +4,25 @@ import '../renderer/App.css';
 import mainMenu from '../TSM-img/main_menu.svg';
 import backButton from '../TSM-img/back_button.svg';
 import Footer from '../utility/Footer';
+import data from '../data.json';
 
 export default function TestMode() {
   const [active, setActive] = useState(false);
 
-  const trainingArray = [
-    {
-      name: 'Game Engine',
-      status: 'down',
-    },
-    {
-      name: 'Game Engine',
-      status: 'operational',
-    },
-    {
-      name: 'Game Engine',
-      status: 'not connected',
-    },
-  ];
-  const recentArray = [
-    {
-      name: 'Game',
-      status: 'down',
-    },
-    {
-      name: 'Game',
-      status: 'operational',
-    },
-    {
-      name: 'Game',
-      status: 'not connected',
-    },
-  ];
+  const trainingArray = data.trainingArray;
+  const recentArray = data.recentArray;
 
   const trainingStyle = {
     opacity: !active ? 1 : 0,
     height: active && '0px',
     overflow: 'hidden',
-    transition: 'opacity 0.5s ease-in-out',
+    transition: 'opacity 0.4s ease-in-out',
   };
   const recentStyle = {
     opacity: active ? 1 : 0,
     height: !active && '0px',
     overflow: 'hidden',
-    transition: 'opacity 0.5s ease-in-out',
+    transition: 'opacity 0.4s ease-in-out',
   };
 
   return (

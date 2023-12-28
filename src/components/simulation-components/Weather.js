@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import DropDown from '../../utility/DropDown';
 import '../../renderer/App.css';
 import Clock from '../../utility/Clock';
+import data from '../../data.json';
 
 export default function Weather() {
-  const options = ['AUTUMN', 'SPRING', 'WINTER', 'SUMMER'];
+  const options = data.dropDownOptionsOfSelectSeason;
 
   const [selectedWeather, setSelectedWeather] = useState(options[0]);
   const [temperature, setTemperature] = useState(60);
@@ -79,7 +80,7 @@ export default function Weather() {
         </div>
 
         <div className="select_weather_dropdown_main_class">
-          <div className="select_weather_dropdown" style={{ zIndex: 2 }}>
+          <div className="select_weather_dropdown" style={{ zIndex: 10 }}>
             <span>SEASON</span>
             <DropDown
               options={options}

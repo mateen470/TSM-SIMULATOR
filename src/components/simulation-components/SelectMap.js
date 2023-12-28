@@ -7,6 +7,7 @@ import map2 from '../../TSM-img/map_2.svg';
 import map3 from '../../TSM-img/map_3.svg';
 import MapCarousel from './MapCarousel';
 import MapDetailModel from './MapDetailModel';
+import data from '../../data.json';
 
 export default function SelectMap() {
   const [selectedSlide, setSelectedSlide] = useState(0);
@@ -43,11 +44,7 @@ export default function SelectMap() {
     }
   };
 
-  const mapDetail = [
-    { name: 'MUDDY FOREST', area: 2000 },
-    { name: 'SNOWY CAPS', area: 2000 },
-    { name: 'DESSERT MAIN', area: 2000 },
-  ];
+  const mapDetail = data.mapNameAndAreaForSelectMapPage;
 
   const selectedMapDetail = mapDetail[selectedSlide] || mapDetail[0];
 

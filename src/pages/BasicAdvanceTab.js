@@ -4,58 +4,27 @@ import '../renderer/App.css';
 import mainMenu from '../TSM-img/main_menu.svg';
 import backButton from '../TSM-img/back_button.svg';
 import Footer from '../utility/Footer';
+import data from '../data.json';
 
 export default function BasicAdvanceTab() {
   const [toggle, setToggle] = useState(false);
 
-  const basicDetails = [
-    {
-      title: 'Total Battle Practice',
-      detail:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    },
-    {
-      title: 'Practice LRF',
-      detail:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    },
-    {
-      title: 'Practice Aim & Fire',
-      detail:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    },
-  ];
+  const basicDetails = data.basicDetails;
 
-  const advanceDetails = [
-    {
-      title: 'FCS, S-S, LRF Setup',
-      detail:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    },
-    {
-      title: 'Identify Targets',
-      detail:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    },
-    {
-      title: 'Shooting Training',
-      detail:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    },
-  ];
+  const advanceDetails = data.advanceDetails;
 
   const studentTabStyle = {
     opacity: !toggle ? 1 : 0,
     maxHeight: !toggle ? '100%' : '0',
     overflow: 'hidden',
-    transition: 'opacity 0.5s ease-in-out',
+    transition: 'opacity 0.4s ease-in-out',
   };
 
   const instructorTabStyle = {
     opacity: toggle ? 1 : 0,
     maxHeight: toggle ? '100%' : '0',
     overflow: 'hidden',
-    transition: 'opacity 0.5s ease-in-out',
+    transition: 'opacity 0.4s ease-in-out',
   };
 
   return (

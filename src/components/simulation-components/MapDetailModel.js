@@ -3,6 +3,7 @@ import map1 from '../../TSM-img/map_1.svg';
 import map2 from '../../TSM-img/map_2.svg';
 import map3 from '../../TSM-img/map_3.svg';
 import '../../renderer/App.css';
+import data from '../../data.json';
 
 export default function MapDetailModel({ mapName, onClose }) {
   const backdropAnimation = useSpring({
@@ -26,36 +27,9 @@ export default function MapDetailModel({ mapName, onClose }) {
       ? map3
       : map1;
 
-  const muddyForestMapSpecification = [
-    { specName: 'Area', specValue: '2000 sq/m' },
-    { specName: 'Difficulty', specValue: 'Hard' },
-    { specName: 'No. of enemies', specValue: '15 Vehicles' },
-    { specName: 'Windspeed', specValue: '1.5 km/h' },
-    { specName: 'Wind Direction', specValue: '120 O' },
-    { specName: 'Temperature', specValue: '20 Celsius ' },
-    { specName: 'Season', specValue: 'Fall ' },
-    { specName: 'Fire Interval', specValue: '10 seconds ' },
-  ];
-  const snowyCapsMapSpecification = [
-    { specName: 'Area', specValue: '2000 sq/m' },
-    { specName: 'Difficulty', specValue: 'Medium' },
-    { specName: 'No. of enemies', specValue: '35 Vehicles' },
-    { specName: 'Windspeed', specValue: '7.5 km/h' },
-    { specName: 'Wind Direction', specValue: '130 O' },
-    { specName: 'Temperature', specValue: '30 Celsius ' },
-    { specName: 'Season', specValue: 'Winter ' },
-    { specName: 'Fire Interval', specValue: '30 seconds ' },
-  ];
-  const dessertMainMapSpecification = [
-    { specName: 'Area', specValue: '2000 sq/m' },
-    { specName: 'Difficulty', specValue: 'Easy' },
-    { specName: 'No. of enemies', specValue: '25 Vehicles' },
-    { specName: 'Windspeed', specValue: '8.5 km/h' },
-    { specName: 'Wind Direction', specValue: '150 O' },
-    { specName: 'Temperature', specValue: '30 Celsius ' },
-    { specName: 'Season', specValue: 'Summer ' },
-    { specName: 'Fire Interval', specValue: '20 seconds ' },
-  ];
+  const muddyForestMapSpecification = data.muddyForestMapSpecification;
+  const snowyCapsMapSpecification = data.snowyCapsMapSpecification;
+  const dessertMainMapSpecification = data.dessertMainMapSpecification;
 
   const mapSpecification =
     mapName === 'MUDDY FOREST'

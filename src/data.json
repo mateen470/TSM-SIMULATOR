@@ -1,0 +1,456 @@
+{
+  "dropDownOptionsOfSelectStudent": ["Option 1", "Option 2", "Option 3"],
+  "dropDownOptionsOfSelectInstructor": ["Option 4", "Option 5", "Option 6"],
+  "dropDownOptionsOfSelectSeason": ["AUTUMN", "SPRING", "WINTER", "SUMMER"],
+  "dropDownOptionsOfSelectDifficulty": ["EASY", "MEDIUM", "DIFFICULT"],
+  "dropDownOptionsOfExcersieTime": ["Option 1", "Option 2", "Option 3"],
+  "dropDownOptionsOfSelectTerrain": ["Option 4", "Option 5", "Option 6"],
+  "initialAmmoTitleArray": ["AMMO TYPE :", "APFSDS", "HE", "HEAT", "7.62 (MG)"],
+  "mapNameAndAreaForSelectMapPage": [
+    { "name": "MUDDY FOREST", "area": 2000 },
+    { "name": "SNOWY CAPS", "area": 2000 },
+    { "name": "DESSERT MAIN", "area": 2000 }
+  ],
+  "muddyForestMapSpecification": [
+    { "specName": "Area", "specValue": "2000 sq/m" },
+    { "specName": "Difficulty", "specValue": "Hard" },
+    { "specName": "No. of enemies", "specValue": "15 Vehicles" },
+    { "specName": "Windspeed", "specValue": "1.5 km/h" },
+    { "specName": "Wind Direction", "specValue": "120 O" },
+    { "specName": "Temperature", "specValue": "20 Celsius " },
+    { "specName": "Season", "specValue": "Fall " },
+    { "specName": "Fire Interval", "specValue": "10 seconds " }
+  ],
+  "snowyCapsMapSpecification": [
+    { "specName": "Area", "specValue": "2000 sq/m" },
+    { "specName": "Difficulty", "specValue": "Medium" },
+    { "specName": "No. of enemies", "specValue": "35 Vehicles" },
+    { "specName": "Windspeed", "specValue": "7.5 km/h" },
+    { "specName": "Wind Direction", "specValue": "130 O" },
+    { "specName": "Temperature", "specValue": "30 Celsius " },
+    { "specName": "Season", "specValue": "Winter " },
+    { "specName": "Fire Interval", "specValue": "30 seconds " }
+  ],
+  "dessertMainMapSpecification": [
+    { "specName": "Area", "specValue": "2000 sq/m" },
+    { "specName": "Difficulty", "specValue": "Easy" },
+    { "specName": "No. of enemies", "specValue": "25 Vehicles" },
+    { "specName": "Windspeed", "specValue": "8.5 km/h" },
+    { "specName": "Wind Direction", "specValue": "150 O" },
+    { "specName": "Temperature", "specValue": "30 Celsius " },
+    { "specName": "Season", "specValue": "Summer " },
+    { "specName": "Fire Interval", "specValue": "20 seconds " }
+  ],
+  "verifyPageArray": [
+    {
+      "instrcutor": "Imtiaz",
+      "student": "Ali",
+      "mapName": "MUDDY FOREST",
+      "mapSpecs": [
+        { "specName": "Area", "specValue": "2000 sq/m" },
+        { "specName": "Difficulty", "specValue": "Easy" },
+        { "specName": "No. of enemies", "specValue": "25 Vehicles" },
+        { "specName": "Windspeed", "specValue": "8.5 km/h" },
+        { "specName": "Wind Direction", "specValue": "150 O" },
+        { "specName": "Temperature", "specValue": "30 Celsius " },
+        { "specName": "Season", "specValue": "Summer " },
+        { "specName": "Fire Interval", "specValue": "20 seconds " }
+      ]
+    }
+  ],
+  "selectEnemyArray": [
+    {
+      "title": "SELECT ENEMY",
+      "objects": [
+        {
+          "type": "tank",
+          "image": "tank1",
+          "status": "dangerous",
+          "name": "ARJUN",
+          "details": [
+            { "title": "Qty.", "value": 2 },
+            { "title": "Weight", "value": "51 Ton" },
+            { "title": "Fire Rate", "value": "31 / minute" },
+            { "title": "Top Speed", "value": "92 / kmh" },
+            { "title": "Strength", "value": "Very High" },
+            { "title": "Endurance", "value": "Very High" }
+          ]
+        },
+        {
+          "type": "tank",
+          "image": "tank2",
+          "status": "dangerous",
+          "name": "PANTHER",
+          "details": [
+            { "title": "Qty.", "value": 5 },
+            { "title": "Weight", "value": "52 Ton" },
+            { "title": "Fire Rate", "value": "51 / minute" },
+            { "title": "Top Speed", "value": "62 / kmh" },
+            { "title": "Strength", "value": "Very High" },
+            { "title": "Endurance", "value": "Very High" }
+          ]
+        },
+        {
+          "type": "tank",
+          "image": "tank2",
+          "status": "dangerous",
+          "name": "T-80UD",
+          "details": [
+            { "title": "Qty.", "value": 3 },
+            { "title": "Weight", "value": "57 Ton" },
+            { "title": "Fire Rate", "value": "21 / minute" },
+            { "title": "Top Speed", "value": "82 / kmh" },
+            { "title": "Strength", "value": "Very High" },
+            { "title": "Endurance", "value": "Very High" }
+          ]
+        }
+      ]
+    }
+  ],
+  "selectEnemyObjectsArray": [
+    {
+      "title": " ENEMY OBJECTS",
+      "objects": [
+        {
+          "type": "car",
+          "image": "car1",
+          "status": "dangerous",
+          "name": "WILLYS MB",
+          "details": [
+            { "title": "Qty.", "value": 2 },
+            { "title": "Type", "value": "4 x 4" },
+            { "title": "Capacity", "value": "4 Soliders" },
+            { "title": "Top Speed", "value": "62 / kmh" },
+            { "title": "Strength", "value": "Very High" },
+            { "title": "Endurance", "value": "Very High" }
+          ]
+        },
+        {
+          "type": "car",
+          "image": "car2",
+          "status": "dangerous",
+          "name": "PRADO",
+          "details": [
+            { "title": "Qty.", "value": 3 },
+            { "title": "Type", "value": "4 x 4" },
+            { "title": "Capacity", "value": "8 Soliders" },
+            { "title": "Top Speed", "value": "72 / kmh" },
+            { "title": "Strength", "value": "Very High" },
+            { "title": "Endurance", "value": "Very High" }
+          ]
+        },
+        {
+          "type": "car",
+          "image": "car2",
+          "status": "dangerous",
+          "name": "LAND CRUISER",
+          "details": [
+            { "title": "Qty.", "value": 5 },
+            { "title": "Type", "value": "4 x 4" },
+            { "title": "Capacity", "value": "9 Soliders" },
+            { "title": "Top Speed", "value": "92 / kmh" },
+            { "title": "Strength", "value": "Very High" },
+            { "title": "Endurance", "value": "Very High" }
+          ]
+        }
+      ]
+    }
+  ],
+  "selectBuildingsArray": [
+    {
+      "title": " BUILDINGS",
+      "objects": [
+        {
+          "type": "building",
+          "image": "house1",
+          "status": "not-dangerous",
+          "name": "DENSE TOWN",
+          "details": [
+            { "title": "Buildings.", "value": 6 },
+            { "title": "Type", "value": "Urban" },
+            { "title": "Area", "value": "5000 sq / m" },
+            { "title": "Roads", "value": "Yes" },
+            { "title": "Category", "value": "Concrete" },
+            { "title": "Big Buildings", "value": 10 }
+          ]
+        },
+        {
+          "type": "building",
+          "image": "house2",
+          "status": "not-dangerous",
+          "name": "FACTORY",
+          "details": [
+            { "title": "Buildings.", "value": 2 },
+            { "title": "Type", "value": "Rural" },
+            { "title": "Area", "value": "100 sq / m" },
+            { "title": "Roads", "value": "Yes" },
+            { "title": "Category", "value": "Concrete" },
+            { "title": "Big Buildings", "value": 1 }
+          ]
+        },
+        {
+          "type": "building",
+          "image": "house1",
+          "status": "not-dangerous",
+          "name": "DENSE TOWN",
+          "details": [
+            { "title": "Buildings.", "value": 8 },
+            { "title": "Type", "value": "Urban" },
+            { "title": "Area", "value": "2000 sq / m" },
+            { "title": "Roads", "value": "Yes" },
+            { "title": "Category", "value": "Concrete" },
+            { "title": "Big Buildings", "value": 13 }
+          ]
+        }
+      ]
+    }
+  ],
+  "selectNaturalObjectsArray": [
+    {
+      "title": " NATURAL OBJECTS",
+      "objects": [
+        {
+          "type": "forrest",
+          "image": "forest1",
+          "status": "not-dangerous",
+          "name": "RAIN FOREST",
+          "details": [
+            { "title": "Trees.", "value": 11 },
+            { "title": "Area", "value": "5000 sq / m" },
+            { "title": "Landscape", "value": "Minor hilly" },
+            { "title": "Buildings", "value": "No" },
+            { "title": "Roads", "value": "Yes" },
+            { "title": "Category", "value": "Natural" }
+          ]
+        },
+        {
+          "type": "forrest",
+          "image": "forest2",
+          "status": "not-dangerous",
+          "name": "GOLF COURSE",
+          "details": [
+            { "title": "Trees.", "value": 12 },
+            { "title": "Area", "value": "3000 sq / m" },
+            { "title": "Landscape", "value": "Minor hilly" },
+            { "title": "Buildings", "value": "No" },
+            { "title": "Roads", "value": "Yes" },
+            { "title": "Category", "value": "Natural" }
+          ]
+        },
+        {
+          "type": "forrest",
+          "image": "forest1",
+          "status": "not-dangerous",
+          "name": "DRY FOREST",
+          "details": [
+            { "title": "Trees.", "value": 13 },
+            { "title": "Area", "value": "8000 sq / m" },
+            { "title": "Landscape", "value": "Minor hilly" },
+            { "title": "Buildings", "value": "No" },
+            { "title": "Roads", "value": "Yes" },
+            { "title": "Category", "value": "Natural" }
+          ]
+        }
+      ]
+    }
+  ],
+  "selectYourTank": [
+    {
+      "title": "SELECT TANK",
+      "objects": [
+        {
+          "type": "myTank",
+          "status": "own-tank",
+          "image": "tank1",
+          "name": "ARJUN",
+          "details": [
+            { "title": "Qty.", "value": 2 },
+            { "title": "Weight", "value": "51 Ton" },
+            { "title": "Fire Rate", "value": "31 / minute" },
+            { "title": "Top Speed", "value": "92 / kmh" },
+            { "title": "Strength", "value": "Very High" },
+            { "title": "Endurance", "value": "Very High" }
+          ]
+        },
+        {
+          "type": "myTank",
+          "status": "own-tank",
+          "image": "tank2",
+          "name": "T-69",
+          "details": [
+            { "title": "Qty.", "value": 5 },
+            { "title": "Weight", "value": "52 Ton" },
+            { "title": "Fire Rate", "value": "51 / minute" },
+            { "title": "Top Speed", "value": "62 / kmh" },
+            { "title": "Strength", "value": "Very High" },
+            { "title": "Endurance", "value": "Very High" }
+          ]
+        },
+        {
+          "type": "myTank",
+          "status": "own-tank",
+          "image": "tank1",
+          "name": "T-80UD",
+          "details": [
+            { "title": "Qty.", "value": 3 },
+            { "title": "Weight", "value": "57 Ton" },
+            { "title": "Fire Rate", "value": "21 / minute" },
+            { "title": "Top Speed", "value": "82 / kmh" },
+            { "title": "Strength", "value": "Very High" },
+            { "title": "Endurance", "value": "Very High" }
+          ]
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "title": "HOW TO START A SIMULATION?",
+      "url": "https://www.youtube.com/embed/video-id-1"
+    },
+    {
+      "title": "HOW EVALUATION WORKS?",
+      "url": "https://www.youtube.com/embed/video-id-1"
+    },
+    {
+      "title": "ADVANCED BATTLE PRACTICE?",
+      "url": "https://www.youtube.com/embed/video-id-1"
+    },
+    {
+      "title": "TSM II OVERVIEW",
+      "url": "https://www.youtube.com/embed/video-id-1"
+    },
+    {
+      "title": "CREATING A MAP?",
+      "url": "https://www.youtube.com/embed/video-id-1"
+    }
+  ],
+  "simulationMenuItemArray": [
+    { "name": "SELECT STUDENT" },
+    { "name": "SELECT MAP" },
+    { "name": "WEATHER" },
+    { "name": "DIFFICULTY" },
+    { "name": "VERIFY" }
+  ],
+  "basicDetails": [
+    {
+      "title": "Total Battle Practice",
+      "detail": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    },
+    {
+      "title": "Practice LRF",
+      "detail": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    },
+    {
+      "title": "Practice Aim & Fire",
+      "detail": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    }
+  ],
+  "advanceDetails": [
+    {
+      "title": "FCS, S-S, LRF Setup",
+      "detail": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    },
+    {
+      "title": "Identify Targets",
+      "detail": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    },
+    {
+      "title": "Shooting Training",
+      "detail": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    }
+  ],
+  "buttonArray": [
+    { "name": "TEST MODE", "link": "/test_mode" },
+    { "name": "TUTORIALS", "link": "/tutorials" },
+    { "name": "START SIMULATION", "link": "/simulation" },
+    { "name": "ADD INSTRUCTORS", "link": "/select_student_instructor" },
+    { "name": "ADD STUDENTS", "link": "/select_student_instructor" },
+    { "name": "PAST SIMULATIONS", "link": "/past_simulation" }
+  ],
+  "reportData": [
+    {
+      "gunnerName": "ali ahmed khan",
+      "armyNumber": "null",
+      "unit": "null",
+      "groupNumber": "null",
+      "duty": "null",
+      "date": "null",
+      "exerciseTime": "null",
+      "mapInfo": "null",
+      "numberOfEnemeyVehicles": "null",
+      "terrainType": "null",
+      "numberOfEnemeySoliders": "null",
+      "difficultyLevel": "null",
+      "numberOfEnemeyTanks": "null",
+      "numberOfEnemeyAPC": "null",
+      "noOfMalfunctionsDuringSetup": "null",
+      "noOfMalfunctionsDuringMovement": "null",
+      "noOfMalfunctionsDuringShooting": "null",
+      "noOfMalfunctionsDuringFailures": "null",
+      "tanksDestroyed": "null",
+      "APCDestroyed": "null",
+      "damageTaken": "null",
+      "hitsBehindObstacle": "null",
+      "hitsOnMovingObject": "null",
+      "hitsOnStaticObject": "null",
+      "hitOnMovingTanks": 40,
+      "hitOnMovingAPCs": 50,
+      "hitOnStaticAPCs": 30,
+      "hitOnStaticTanks": 70,
+      "hitOnSoliders": 20
+    }
+  ],
+  "trainingArray": [
+    {
+      "trainerName": "ALI MEHMOOD",
+      "terrain": "MUDDY FORREST",
+      "enemyVehicle": {
+        "APC": 24,
+        "TANK": 21
+      },
+      "score": 57,
+      "PNO": 23457
+    }
+  ],
+  "recentArray": [
+    {
+      "trainerName": "IMTIAZ MEHMOOD",
+      "terrain": "DESSERT",
+      "enemyVehicle": {
+        "APC": 14,
+        "TANK": 21
+      },
+      "score": 57,
+      "PNO": 23257
+    }
+  ],
+  "trainingArray": [
+    {
+      "name": "Game Engine",
+      "status": "down"
+    },
+    {
+      "name": "Game Engine",
+      "status": "operational"
+    },
+    {
+      "name": "Game Engine",
+      "status": "not connected"
+    }
+  ],
+  "recentArray": [
+    {
+      "name": "Game",
+      "status": "down"
+    },
+    {
+      "name": "Game",
+      "status": "operational"
+    },
+    {
+      "name": "Game",
+      "status": "not connected"
+    }
+  ]
+}

@@ -6,18 +6,12 @@ import { Mousewheel, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import '../renderer/App.css';
 import mainMenu from '../TSM-img/main_menu.svg';
+import data from '../data.json';
 
 SwiperCore.use([Mousewheel, Pagination]);
 
 export default function MainMenu() {
-  const buttonArray = [
-    { name: 'TEST MODE', link: '/test_mode' },
-    { name: 'TUTORIALS', link: '/tutorials' },
-    { name: 'START SIMULATION', link: '/simulation' },
-    { name: 'ADD INSTRUCTORS', link: '/select_student_instructor' },
-    { name: 'ADD STUDENTS', link: '/select_student_instructor' },
-    { name: 'PAST SIMULATIONS', link: '/past_simulation' },
-  ];
+  const buttonArray = data.buttonArray;
 
   const swiperRef = useRef(null);
 

@@ -12,256 +12,13 @@ import car1 from '../TSM-img/car1.svg';
 import car2 from '../TSM-img/car2.svg';
 import house1 from '../TSM-img/house1.svg';
 import house2 from '../TSM-img/house2.svg';
+import data from '../data.json';
 
-const selectEnemyArray = [
-  {
-    title: 'SELECT ENEMY',
-    objects: [
-      {
-        type: 'tank',
-        image: tank1,
-        status: 'dangerous',
-        name: 'ARJUN',
-        details: [
-          { title: 'Qty.', value: 2 },
-          { title: 'Weight', value: '51 Ton' },
-          { title: 'Fire Rate', value: '31 / minute' },
-          { title: 'Top Speed', value: '92 / kmh' },
-          { title: 'Strength', value: 'Very High' },
-          { title: 'Endurance', value: 'Very High' },
-        ],
-      },
-      {
-        type: 'tank',
-        image: tank2,
-        status: 'dangerous',
-        name: 'PANTHER',
-        details: [
-          { title: 'Qty.', value: 5 },
-          { title: 'Weight', value: '52 Ton' },
-          { title: 'Fire Rate', value: '51 / minute' },
-          { title: 'Top Speed', value: '62 / kmh' },
-          { title: 'Strength', value: 'Very High' },
-          { title: 'Endurance', value: 'Very High' },
-        ],
-      },
-      {
-        type: 'tank',
-        image: tank1,
-        status: 'dangerous',
-        name: 'T-80UD',
-        details: [
-          { title: 'Qty.', value: 3 },
-          { title: 'Weight', value: '57 Ton' },
-          { title: 'Fire Rate', value: '21 / minute' },
-          { title: 'Top Speed', value: '82 / kmh' },
-          { title: 'Strength', value: 'Very High' },
-          { title: 'Endurance', value: 'Very High' },
-        ],
-      },
-    ],
-  },
-];
-
-const selectEnemyObjectsArray = [
-  {
-    title: ' ENEMY OBJECTS',
-    objects: [
-      {
-        type: 'car',
-        image: car1,
-        status: 'dangerous',
-        name: 'WILLYS MB',
-        details: [
-          { title: 'Qty.', value: 2 },
-          { title: 'Type', value: '4 x 4' },
-          { title: 'Capacity', value: '4 Soliders' },
-          { title: 'Top Speed', value: '62 / kmh' },
-          { title: 'Strength', value: 'Very High' },
-          { title: 'Endurance', value: 'Very High' },
-        ],
-      },
-      {
-        type: 'car',
-        image: car2,
-        status: 'dangerous',
-        name: 'PRADO',
-        details: [
-          { title: 'Qty.', value: 3 },
-          { title: 'Type', value: '4 x 4' },
-          { title: 'Capacity', value: '8 Soliders' },
-          { title: 'Top Speed', value: '72 / kmh' },
-          { title: 'Strength', value: 'Very High' },
-          { title: 'Endurance', value: 'Very High' },
-        ],
-      },
-      {
-        type: 'car',
-        image: car2,
-        status: 'dangerous',
-        name: 'LAND CRUISER',
-        details: [
-          { title: 'Qty.', value: 5 },
-          { title: 'Type', value: '4 x 4' },
-          { title: 'Capacity', value: '9 Soliders' },
-          { title: 'Top Speed', value: '92 / kmh' },
-          { title: 'Strength', value: 'Very High' },
-          { title: 'Endurance', value: 'Very High' },
-        ],
-      },
-    ],
-  },
-];
-
-const selectBuildingsArray = [
-  {
-    title: ' BUILDINGS',
-    objects: [
-      {
-        type: 'building',
-        image: house1,
-        status: 'not-dangerous',
-        name: 'DENSE TOWN',
-        details: [
-          { title: 'Buildings.', value: 6 },
-          { title: 'Type', value: 'Urban' },
-          { title: 'Area', value: '5000 sq / m' },
-          { title: 'Roads', value: 'Yes' },
-          { title: 'Category', value: 'Concrete' },
-          { title: 'Big Buildings', value: 10 },
-        ],
-      },
-      {
-        type: 'building',
-        image: house2,
-        status: 'not-dangerous',
-        name: 'FACTORY',
-        details: [
-          { title: 'Buildings.', value: 2 },
-          { title: 'Type', value: 'Rural' },
-          { title: 'Area', value: '100 sq / m' },
-          { title: 'Roads', value: 'Yes' },
-          { title: 'Category', value: 'Concrete' },
-          { title: 'Big Buildings', value: 1 },
-        ],
-      },
-      {
-        type: 'building',
-        image: house1,
-        status: 'not-dangerous',
-        name: 'DENSE TOWN',
-        details: [
-          { title: 'Buildings.', value: 8 },
-          { title: 'Type', value: 'Urban' },
-          { title: 'Area', value: '2000 sq / m' },
-          { title: 'Roads', value: 'Yes' },
-          { title: 'Category', value: 'Concrete' },
-          { title: 'Big Buildings', value: 13 },
-        ],
-      },
-    ],
-  },
-];
-
-const selectNaturalObjectsArray = [
-  {
-    title: ' NATURAL OBJECTS',
-    objects: [
-      {
-        type: 'forrest',
-        image: forest1,
-        status: 'not-dangerous',
-        name: 'RAIN FOREST',
-        details: [
-          { title: 'Trees.', value: 11 },
-          { title: 'Area', value: '5000 sq / m' },
-          { title: 'Landscape', value: 'Minor hilly' },
-          { title: 'Buildings', value: 'No' },
-          { title: 'Roads', value: 'Yes' },
-          { title: 'Category', value: 'Natural' },
-        ],
-      },
-      {
-        type: 'forrest',
-        image: forest2,
-        status: 'not-dangerous',
-        name: 'GOLF COURSE',
-        details: [
-          { title: 'Trees.', value: 12 },
-          { title: 'Area', value: '3000 sq / m' },
-          { title: 'Landscape', value: 'Minor hilly' },
-          { title: 'Buildings', value: 'No' },
-          { title: 'Roads', value: 'Yes' },
-          { title: 'Category', value: 'Natural' },
-        ],
-      },
-      {
-        type: 'forrest',
-        image: forest1,
-        status: 'not-dangerous',
-        name: 'DRY FOREST',
-        details: [
-          { title: 'Trees.', value: 13 },
-          { title: 'Area', value: '8000 sq / m' },
-          { title: 'Landscape', value: 'Minor hilly' },
-          { title: 'Buildings', value: 'No' },
-          { title: 'Roads', value: 'Yes' },
-          { title: 'Category', value: 'Natural' },
-        ],
-      },
-    ],
-  },
-];
-
-const selectYourTank = [
-  {
-    title: 'SELECT TANK',
-    objects: [
-      {
-        type: 'myTank',
-        status: 'own-tank',
-        image: tank1,
-        name: 'ARJUN',
-        details: [
-          { title: 'Qty.', value: 2 },
-          { title: 'Weight', value: '51 Ton' },
-          { title: 'Fire Rate', value: '31 / minute' },
-          { title: 'Top Speed', value: '92 / kmh' },
-          { title: 'Strength', value: 'Very High' },
-          { title: 'Endurance', value: 'Very High' },
-        ],
-      },
-      {
-        type: 'myTank',
-        status: 'own-tank',
-        image: tank2,
-        name: 'T-69',
-        details: [
-          { title: 'Qty.', value: 5 },
-          { title: 'Weight', value: '52 Ton' },
-          { title: 'Fire Rate', value: '51 / minute' },
-          { title: 'Top Speed', value: '62 / kmh' },
-          { title: 'Strength', value: 'Very High' },
-          { title: 'Endurance', value: 'Very High' },
-        ],
-      },
-      {
-        type: 'myTank',
-        status: 'own-tank',
-        image: tank1,
-        name: 'T-80UD',
-        details: [
-          { title: 'Qty.', value: 3 },
-          { title: 'Weight', value: '57 Ton' },
-          { title: 'Fire Rate', value: '21 / minute' },
-          { title: 'Top Speed', value: '82 / kmh' },
-          { title: 'Strength', value: 'Very High' },
-          { title: 'Endurance', value: 'Very High' },
-        ],
-      },
-    ],
-  },
-];
+const selectEnemyArray = data.selectEnemyArray;
+const selectEnemyObjectsArray = data.selectEnemyObjectsArray;
+const selectBuildingsArray = data.selectBuildingsArray;
+const selectNaturalObjectsArray = data.selectNaturalObjectsArray;
+const selectYourTank = data.selectYourTank;
 
 export default function SelectObjectCarousel({ carouselObjectType }) {
   const [selectedSlide, setSelectedSlide] = useState(0);
@@ -303,6 +60,19 @@ export default function SelectObjectCarousel({ carouselObjectType }) {
       ? selectYourTank
       : selectEnemyArray;
 
+  const imageMap = {
+    tank1: tank1,
+    tank2: tank2,
+    car1: car1,
+    car2: car2,
+    house1: house1,
+    house2: house2,
+    forest1: forest1,
+    forest2: forest2,
+  };
+
+  const getImage = (imageName) => imageMap[imageName];
+
   const handleDispatchItem = () => {
     const selectedItem = chosenArray[0]?.objects[selectedSlide];
     if (selectedItem) {
@@ -319,7 +89,7 @@ export default function SelectObjectCarousel({ carouselObjectType }) {
         onMouseEnter={() => setShown(true)}
         onMouseLeave={() => setShown(false)}
       >
-        <img src={obj.image} alt={obj.name} />
+        <img src={getImage(obj.image)} alt={obj.name} />
       </animated.div>
     ),
   }));

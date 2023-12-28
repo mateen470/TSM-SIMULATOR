@@ -32,14 +32,14 @@ export default function SelectStudentAndInstructor() {
     opacity: !toggle ? 1 : 0,
     maxHeight: !toggle ? '100%' : '0',
     overflow: 'hidden',
-    transition: 'opacity 0.5s ease-in-out',
+    transition: 'opacity 0.4s ease-in-out',
   };
 
   const instructorTabStyle = {
     opacity: toggle ? 1 : 0,
     maxHeight: toggle ? '100%' : '0',
     overflow: 'hidden',
-    transition: 'opacity 0.5s ease-in-out',
+    transition: 'opacity 0.4s ease-in-out',
   };
 
   return (

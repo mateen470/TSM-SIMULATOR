@@ -5,46 +5,25 @@ import mainMenu from '../TSM-img/main_menu.svg';
 import backButton from '../TSM-img/back_button.svg';
 import reset from '../TSM-img/reset.svg';
 import Footer from '../utility/Footer';
+import data from '../data.json';
 
 export default function PastSimulation() {
   const [active, setActive] = useState(false);
 
-  const trainingArray = [
-    {
-      trainerName: 'ALI MEHMOOD',
-      terrain: 'MUDDY FORREST',
-      enemyVehicle: {
-        APC: 24,
-        TANK: 21,
-      },
-      score: 57,
-      PNO: 23457,
-    },
-  ];
-  const recentArray = [
-    {
-      trainerName: 'IMTIAZ MEHMOOD',
-      terrain: 'DESSERT',
-      enemyVehicle: {
-        APC: 14,
-        TANK: 21,
-      },
-      score: 57,
-      PNO: 23257,
-    },
-  ];
+  const trainingArray = data.trainingArray;
+  const recentArray = data.recentArray;
 
   const trainingStyle = {
     opacity: !active ? 1 : 0,
     height: active && '0px',
     overflow: 'hidden',
-    transition: 'opacity 0.5s ease-in-out',
+    transition: 'opacity 0.4s ease-in-out',
   };
   const recentStyle = {
     opacity: active ? 1 : 0,
     height: !active && '0px',
     overflow: 'hidden',
-    transition: 'opacity 0.5s ease-in-out',
+    transition: 'opacity 0.4s ease-in-out',
   };
 
   return (

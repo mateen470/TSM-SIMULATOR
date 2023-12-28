@@ -7,33 +7,13 @@ import Footer from '../utility/Footer';
 import Modal from '../utility/Modal';
 import playButton from '../TSM-img/playVideoButton.svg';
 import tutorialBackground from '../TSM-img/tutorialBackground.svg';
+import data from '../data.json';
 
 export default function Tutorials() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState(null);
 
-  const videos = [
-    {
-      title: 'HOW TO START A SIMULATION?',
-      url: 'https://www.youtube.com/embed/video-id-1',
-    },
-    {
-      title: 'HOW EVALUATION WORKS?',
-      url: 'https://www.youtube.com/embed/video-id-1',
-    },
-    {
-      title: 'ADVANCED BATTLE PRACTICE?',
-      url: 'https://www.youtube.com/embed/video-id-1',
-    },
-    {
-      title: 'TSM II OVERVIEW',
-      url: 'https://www.youtube.com/embed/video-id-1',
-    },
-    {
-      title: 'CREATING A MAP?',
-      url: 'https://www.youtube.com/embed/video-id-1',
-    },
-  ];
+  const videos = data.videos;
 
   const openModal = (video) => {
     setSelectedVideo(video);

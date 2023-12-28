@@ -4,41 +4,10 @@ import mainMenu from '../TSM-img/main_menu.svg';
 import backButton from '../TSM-img/back_button.svg';
 import Footer from '../utility/Footer';
 import ReportGraph from '../utility/ReportGraph';
+import data from '../data.json';
 
 export default function Report() {
-  const reportData = [
-    {
-      gunnerName: 'ali ahmed khan',
-      armyNumber: 'null',
-      unit: 'null',
-      groupNumber: 'null',
-      duty: 'null',
-      date: 'null',
-      exerciseTime: 'null',
-      mapInfo: 'null',
-      numberOfEnemeyVehicles: 'null',
-      terrainType: 'null',
-      numberOfEnemeySoliders: 'null',
-      difficultyLevel: 'null',
-      numberOfEnemeyTanks: 'null',
-      numberOfEnemeyAPC: 'null',
-      noOfMalfunctionsDuringSetup: 'null',
-      noOfMalfunctionsDuringMovement: 'null',
-      noOfMalfunctionsDuringShooting: 'null',
-      noOfMalfunctionsDuringFailures: 'null',
-      tanksDestroyed: 'null',
-      APCDestroyed: 'null',
-      damageTaken: 'null',
-      hitsBehindObstacle: 'null',
-      hitsOnMovingObject: 'null',
-      hitsOnStaticObject: 'null',
-      hitOnMovingTanks: 40,
-      hitOnMovingAPCs: 50,
-      hitOnStaticAPCs: 30,
-      hitOnStaticTanks: 70,
-      hitOnSoliders: 20,
-    },
-  ];
+  const reportData = data.reportData;
 
   return (
     <div

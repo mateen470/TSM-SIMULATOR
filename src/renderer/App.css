@@ -49,7 +49,7 @@ input[type='number'] {
   flex-direction: column;
 }
 .content_first_half_main_heading span {
-  font-size: 5.2rem;
+  font-size: 6rem;
   font-weight: 700;
   color: #ffffff;
   white-space: nowrap;
@@ -201,7 +201,7 @@ input[type='number'] {
 .select_weather_main_heading,
 .select_map_main_heading {
   font-size: 2.1rem;
-  font-weight: 500;
+  font-weight: 700;
   color: #ffffff;
   padding: 1.5rem;
 }
@@ -211,9 +211,12 @@ input[type='number'] {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 40vh;
+  height: 30vh;
   gap: 2rem;
-  margin-top: 2rem;
+  margin-top: 8%;
+}
+.select_difficulty_dropdown_main_class {
+  margin-top: 15%;
 }
 .select_student_dropdown,
 .select_difficulty_dropdown,
@@ -279,11 +282,8 @@ input[type='number'] {
 /* SIMULATION-SELECT-STUDENT-COMPONENT-END */
 
 /* WEATHER-COMPONENT-START */
-.select_weather_main_class {
-  overflow: hidden;
-}
 .select_weather_main_content_container {
-  margin-top: -1.5rem;
+  margin-top: 4rem;
 }
 .select_weather_dropdown_main_class,
 .temperature_wind_speed_main_class {
@@ -398,7 +398,6 @@ input[type='number'] {
 
 /* SELECT-MAP-COMPONENT-START */
 .select_map_main_heading {
-  font-size: 2rem;
   margin-bottom: 1rem;
 }
 .map_slider {
@@ -533,17 +532,15 @@ input[type='number'] {
 }
 .verify_main_content_container {
   background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(2px);
   border-radius: 10px;
-  width: 80%;
+  width: 62.3%;
   height: 80vh;
   overflow-y: auto;
-  scroll-behavior: smooth;
   padding: 3rem;
 }
 .verify_main_heading {
   text-align: center;
-  font-size: 2rem;
+  font-size: 2.1rem;
   font-weight: 700;
   color: #ffffff;
 }
@@ -563,7 +560,7 @@ input[type='number'] {
 }
 .verify_simulation_instructor_student_heading,
 .verify_paramters_heading {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 700;
   color: #ffffff;
   width: 100px;
@@ -593,7 +590,7 @@ input[type='number'] {
   background-color: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(2px);
   border-radius: 10px;
-  height: 60vh;
+  height: 50vh;
   margin-top: 1rem;
   padding: 0rem 2rem;
 }
@@ -739,17 +736,18 @@ input[type='number'] {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: -0.15rem;
 }
 .buttons_increment_decrement button {
   cursor: pointer;
   border: none;
   outline: none;
   background-color: transparent;
-  height: 12px;
+  height: 18px;
 }
 .buttons_increment_decrement img {
-  height: 15px;
-  width: 15px;
+  height: 20px;
+  width: 20px;
 }
 .select_objects_main_container {
   margin-bottom: 5rem;
@@ -942,7 +940,7 @@ input[type='number'] {
   background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(2px);
   border-radius: 10px;
-  height: 65vh;
+  height: 50vh;
   width: 900px;
 }
 .select_student_instructor__tab_content,
@@ -1084,7 +1082,7 @@ input[type='number'] {
   background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(2px);
   border-radius: 10px;
-  height: 75vh;
+  height: 65vh;
   width: 900px;
 }
 .basic_advance_tab_content_box {
