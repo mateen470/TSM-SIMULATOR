@@ -9,6 +9,9 @@ import {
   updateTotalOwnTanks,
   updateTotalEnemyTanks,
   updateTotalEnemyAPCs,
+  deleteEnemy,
+  deleteOwnTank,
+  deleteForrestOrBuilding,
 } from '../../redux/DataArray';
 import { removeItem } from '../../redux/CarouselSelectedItemSlice';
 import gridTank from '../../TSM-img/gridTank.svg';
@@ -229,7 +232,16 @@ export default function GridCanvas({ stylingBox }) {
     if (selectedObjectId) {
       const updatedItems = items.filter((item) => item.id !== selectedObjectId);
       setItems(updatedItems);
-
+      const itemToDelete = items.find((item) => item.id === selectedObjectId);
+      if (itemToDelete) {
+        if (itemToDelete.status === 'dangerous') {
+          dispatch(deleteEnemy(selectedObjectId));
+        } else if (itemToDelete.status === 'own-tank') {
+          dispatch(deleteOwnTank(selectedObjectId));
+        } else if (itemToDelete.status === 'not-dangerous') {
+          dispatch(deleteForrestOrBuilding(selectedObjectId));
+        }
+      }
       const updatedObjectStartPoints = objectStartPoints.filter(
         (point) => point.id !== selectedObjectId,
       );
@@ -362,7 +374,7 @@ export default function GridCanvas({ stylingBox }) {
             : stylingBox === 1 && !hasObjects
             ? '79.8%'
             : '63.6%',
-        borderRadius: stylingBox === 1 ? '10px' : '0px',
+        borderRadius: stylingBox === 1 ? '5px' : '0px',
         position: stylingBox === 2 ? 'absolute' : 'relative',
       }}
     >

@@ -145,6 +145,25 @@ export const DataArraySlice = createSlice({
     updateTotalEnemyAPCs: (state, action) => {
       state.mapData.totalEnemyAPCs = action.payload;
     },
+    deleteEnemy: (state, action) => {
+      const unitId = action.payload;
+      state.mapData.enemies = state.mapData.enemies.filter(
+        (enemy) => !enemy.paths[unitId],
+      );
+    },
+    deleteOwnTank: (state, action) => {
+      const unitId = action.payload;
+      state.mapData.ownTanks = state.mapData.ownTanks.filter(
+        (tank) => !tank.paths[unitId],
+      );
+    },
+    deleteForrestOrBuilding: (state, action) => {
+      const unitId = action.payload;
+      state.mapData.forrestAndBuildings =
+        state.mapData.forrestAndBuildings.filter(
+          (object) => !object.paths[unitId],
+        );
+    },
   },
 });
 
@@ -170,6 +189,9 @@ export const {
   updateTotalOwnTanks,
   updateTotalEnemyTanks,
   updateTotalEnemyAPCs,
+  deleteEnemy,
+  deleteOwnTank,
+  deleteForrestOrBuilding,
 } = DataArraySlice.actions;
 
 export default DataArraySlice.reducer;
