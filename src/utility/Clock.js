@@ -1,7 +1,10 @@
 import React, { useCallback, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setWindDirection } from '../redux/DataArray';
 import '../renderer/App.css';
 
 export default function Clock() {
+  const dispatch = useDispatch();
   const [needleValue, setNeedleValue] = useState(0);
   const clockRef = useRef(null);
   const smallTicks = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23];
@@ -22,6 +25,7 @@ export default function Clock() {
     const angle = getAngle(clientX, clientY);
     const value = Math.round(angle / 15) % 24;
     setNeedleValue(value);
+    dispatch(setWindDirection(value / 2));
   };
 
   const handleMouseDown = useCallback(() => {

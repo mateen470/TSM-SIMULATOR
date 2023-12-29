@@ -3,10 +3,12 @@ import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import App from './App';
 import SelectedItemReducer from '../redux/CarouselSelectedItemSlice';
+import DataArrayReducer from '../redux/DataArray';
 
 const store = configureStore({
   reducer: {
     selectedItem: SelectedItemReducer,
+    dataArray: DataArrayReducer,
   },
 });
 
@@ -18,9 +20,7 @@ root.render(
   </Provider>,
 );
 
-// calling IPC exposed from preload script
 window.electron.ipcRenderer.once('ipc-example', (arg) => {
-  // eslint-disable-next-line no-console
   console.log(arg);
 });
 window.electron.ipcRenderer.sendMessage('ipc-example', ['ping']);

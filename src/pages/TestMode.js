@@ -9,8 +9,8 @@ import data from '../data.json';
 export default function TestMode() {
   const [active, setActive] = useState(false);
 
-  const trainingArray = data.trainingArray;
-  const recentArray = data.recentArray;
+  const trainingArray = data.softwareArray;
+  const recentArray = data.hardwareArray;
 
   const trainingStyle = {
     opacity: !active ? 1 : 0,

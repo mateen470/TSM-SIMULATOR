@@ -1,6 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
+import {
+  addEnemy,
+  addOwnTank,
+  addForrestsAndBuildings,
+  updateTotalEnemies,
+  updateTotalOwnTanks,
+  updateTotalEnemyTanks,
+  updateTotalEnemyAPCs,
+} from '../../redux/DataArray';
 import { removeItem } from '../../redux/CarouselSelectedItemSlice';
 import gridTank from '../../TSM-img/gridTank.svg';
 import gridTank2 from '../../TSM-img/gridTank2.svg';
@@ -268,7 +277,7 @@ export default function GridCanvas({ stylingBox }) {
         setItems((prevItems) => [...prevItems, ...newItems]);
       }
     }
-    // console.log('objects', objectStartPoints);
+    console.log('object', objectStartPoints);
   }, [selectedItems]);
 
   const drawPath = (path) => {
@@ -291,6 +300,57 @@ export default function GridCanvas({ stylingBox }) {
   const enemyAPCs = items.filter(
     (item) => item.status === 'dangerous' && item.type === 'car',
   ).length;
+
+  useEffect(() => {
+    dispatch(
+      updateTotalEnemies(
+        items.filter((item) => item.status === 'dangerous').length,
+      ),
+    );
+    dispatch(
+      updateTotalOwnTanks(
+        items.filter((item) => item.status === 'own-tank').length,
+      ),
+    );
+    dispatch(
+      updateTotalEnemyTanks(
+        items.filter((item) => item.type === 'tank').length,
+      ),
+    );
+    dispatch(
+      updateTotalEnemyAPCs(items.filter((item) => item.type === 'car').length),
+    );
+    objectStartPoints.forEach((point) => {
+      if (point.item.status === 'dangerous') {
+        dispatch(
+          addEnemy({
+            unitId: point.id,
+            enemyName: point.item.name,
+            details: point.item.details,
+            path: point.path,
+          }),
+        );
+      } else if (point.item.status === 'own-tank') {
+        dispatch(
+          addOwnTank({
+            unitId: point.id,
+            tankName: point.item.name,
+            details: point.item.details,
+            path: point.path,
+          }),
+        );
+      } else if (point.item.status === 'not-dangerous') {
+        dispatch(
+          addForrestsAndBuildings({
+            unitId: point.id,
+            objectName: point.item.name,
+            details: point.item.details,
+            path: point.path,
+          }),
+        );
+      }
+    });
+  }, [objectStartPoints, items, dispatch]);
 
   return (
     <div

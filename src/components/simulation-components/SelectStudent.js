@@ -1,10 +1,13 @@
 import { NavLink } from 'react-router-dom';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setStudent, setInstructor } from '../../redux/DataArray';
 import DropDown from '../../utility/DropDown';
 import '../../renderer/App.css';
 import data from '../../data.json';
 
 export default function SelectStudent() {
+  const dispatch = useDispatch();
   const options = data.dropDownOptionsOfSelectStudent;
   const options2 = data.dropDownOptionsOfSelectInstructor;
 
@@ -13,10 +16,12 @@ export default function SelectStudent() {
 
   const handleStudentSelect = (option) => {
     setSelectedStudent(option);
+    dispatch(setStudent(option));
   };
 
   const handleInstructorSelect = (option) => {
     setSelectedInstructor(option);
+    dispatch(setInstructor(option));
   };
 
   return (

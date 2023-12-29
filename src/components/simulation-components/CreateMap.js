@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import {
+  setMapArea,
+  setExerciseTime,
+  setTerrain,
+  setApfsds,
+  setHe,
+  setHeat,
+  setMg762,
+} from '../../redux/DataArray';
 import mainMenu from '../../TSM-img/main_menu.svg';
 import backButton from '../../TSM-img/back_button.svg';
 import DropDown from '../../utility/DropDown';
@@ -10,40 +20,79 @@ import GridCanvas from './GridCanvas';
 import data from '../../data.json';
 
 export default function CreateMap() {
-  const [mapArea, setMapArea] = useState(50);
-  const [apfsds, setApfsds] = useState(0);
-  const [he, setHe] = useState(0);
-  const [heat, setHeat] = useState(0);
-  const [mg762, setMg762] = useState(0);
+  const dispatch = useDispatch();
+  const [mapArea, setMapAreas] = useState(50);
+  const [apfsds, setApfsdsAmmo] = useState(0);
+  const [he, setHeAmmo] = useState(0);
+  const [heat, setHeatAmmo] = useState(0);
+  const [mg762, setMg762Ammo] = useState(0);
 
   const options = data.dropDownOptionsOfExcersieTime;
   const options1 = data.dropDownOptionsOfSelectTerrain;
-  const [exerciseTime, setExerciseTime] = useState(options[0]);
-  const [terrain, setTerrain] = useState(options1[0]);
+  const initialAmmosTitleArray = data.initialAmmoTitleArray;
 
-  const initialAmmoTitleArray = data.initialAmmoTitleArray;
+  const [exerciseTime, setExerciseTimes] = useState(options[0]);
+  const [terrain, setTerain] = useState(options1[0]);
 
   const inputArray = ['INITIAL QTY. :', apfsds, he, heat, mg762];
 
+  const parameters = useSelector((state) => state.dataArray.parameters);
+  const initialAmmo = useSelector((state) => state.dataArray.initialAmmo);
+  const mapData = useSelector((state) => state.dataArray.mapData);
+
+  const handleMapAreaChange = (event) => {
+    const value = Number(event.target.value);
+    setMapAreas(value);
+    dispatch(setMapArea(value));
+  };
+
   const handleExerciseTime = (option) => {
-    setExerciseTime(option);
+    setExerciseTimes(option);
+    dispatch(setExerciseTime(option));
   };
   const handleTerrain = (option) => {
-    setTerrain(option);
+    setTerain(option);
+    dispatch(setTerrain(option));
   };
 
   const handleIncrement = (inputNumber) => {
-    if (inputNumber === 1) setApfsds(apfsds + 1);
-    else if (inputNumber === 2) setHe(he + 1);
-    else if (inputNumber === 3) setHeat(heat + 1);
-    else if (inputNumber === 4) setMg762(mg762 + 50);
+    if (inputNumber === 1) {
+      const newValue = apfsds + 1;
+      setApfsdsAmmo(newValue);
+      dispatch(setApfsds(newValue));
+    } else if (inputNumber === 2) {
+      const newValue = he + 1;
+      setHeAmmo(newValue);
+      dispatch(setHe(newValue));
+    } else if (inputNumber === 3) {
+      const newValue = heat + 1;
+      setHeatAmmo(newValue);
+      dispatch(setHeat(newValue));
+    } else if (inputNumber === 4) {
+      const newValue = mg762 + 50;
+      setMg762Ammo(newValue);
+      dispatch(setMg762(newValue));
+    }
   };
 
   const handleDecrement = (inputNumber) => {
-    if (inputNumber === 1 && apfsds > 0) setApfsds(apfsds - 1);
-    else if (inputNumber === 2 && he > 0) setHe(he - 1);
-    else if (inputNumber === 3 && heat > 0) setHeat(heat - 1);
-    else if (inputNumber === 4 && mg762 >= 50) setMg762(mg762 - 50);
+    if (inputNumber === 1 && apfsds > 0) {
+      const newValue = apfsds - 1;
+      setApfsdsAmmo(newValue);
+      dispatch(setApfsds(newValue));
+    } else if (inputNumber === 2 && he > 0) {
+      const newValue = he - 1;
+      setHeAmmo(newValue);
+      dispatch(setHe(newValue));
+    } else if (inputNumber === 3 && heat > 0) {
+      const newValue = heat - 1;
+      setHeatAmmo(newValue);
+      dispatch(setHeat(newValue));
+    } else if (inputNumber === 4 && mg762 >= 50) {
+      const newValue = mg762 - 50;
+      setMg762Ammo(newValue);
+      dispatch(setMg762(newValue));
+    }
   };
 
   const handleInputChange = (index, newValue) => {
@@ -53,23 +102,31 @@ export default function CreateMap() {
 
     switch (index) {
       case 1:
-        setApfsds(newValue);
+        setApfsdsAmmo(newValue);
+        dispatch(setApfsds(newValue));
         break;
       case 2:
-        setHe(newValue);
+        setHeAmmo(newValue);
+        dispatch(setHe(newValue));
         break;
       case 3:
-        setHeat(newValue);
+        setHeatAmmo(newValue);
+        dispatch(setHeat(newValue));
         break;
       case 4:
-        setMg762(newValue);
+        setMg762Ammo(newValue);
+        dispatch(setMg762(newValue));
         break;
       default:
         break;
     }
   };
 
-  const handleSave = () => {};
+  const handleSave = () => {
+    console.log('Parameters: ', parameters);
+    console.log('Initial Ammo: ', initialAmmo);
+    console.log('Map Data: ', mapData);
+  };
 
   return (
     <div
@@ -105,14 +162,14 @@ export default function CreateMap() {
                   max="100"
                   value={mapArea}
                   className="progress_bar"
-                  onChange={(e) => setMapArea(e.target.value)}
+                  onChange={handleMapAreaChange}
                 />
               </div>
               <div className="progress_bar_value_box">
                 <input
                   type="number"
                   value={mapArea}
-                  onChange={(e) => setMapArea(e.target.value)}
+                  onChange={handleMapAreaChange}
                 />
                 sq/m
               </div>
@@ -140,7 +197,7 @@ export default function CreateMap() {
             <div className="initial_ammo_heading">INITIAL AMMO</div>
             <div className="initial_ammo_main_content_container">
               <div className="initial_ammo_title">
-                {initialAmmoTitleArray.map((value, index) => {
+                {initialAmmosTitleArray.map((value, index) => {
                   return (
                     <div
                       key={index}

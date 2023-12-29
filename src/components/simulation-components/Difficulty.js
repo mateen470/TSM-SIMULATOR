@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setDifficulty } from '../../redux/DataArray';
 import DropDown from '../../utility/DropDown';
 import '../../renderer/App.css';
 import data from '../../data.json';
 
 export default function Difficulty() {
   const options = data.dropDownOptionsOfSelectDifficulty;
+  const dispatch = useDispatch();
 
   const [selectedDifficultyLevel, setSelectedDifficultyLevel] = useState(
     options[0],
@@ -12,6 +15,7 @@ export default function Difficulty() {
 
   const handleDifficultyLevel = (option) => {
     setSelectedDifficultyLevel(option);
+    dispatch(setDifficulty(option));
   };
 
   return (

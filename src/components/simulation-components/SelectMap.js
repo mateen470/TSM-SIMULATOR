@@ -5,6 +5,7 @@ import '../../renderer/App.css';
 import map1 from '../../TSM-img/map_1.svg';
 import map2 from '../../TSM-img/map_2.svg';
 import map3 from '../../TSM-img/map_3.svg';
+import car1 from '../../TSM-img/car1.svg';
 import MapCarousel from './MapCarousel';
 import MapDetailModel from './MapDetailModel';
 import data from '../../data.json';

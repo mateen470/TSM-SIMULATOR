@@ -794,7 +794,7 @@ input[type='number'] {
 /* SELECT-OBJECT-CAROUSEL-START */
 .select_object_main_class {
   width: 100%;
-  height: auto;
+  height: 400px;
   position: relative;
 }
 .select_object_main_container {
