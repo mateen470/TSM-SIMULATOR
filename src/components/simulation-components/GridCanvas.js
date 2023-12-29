@@ -433,7 +433,7 @@ export default function GridCanvas({ stylingBox }) {
                   d={drawPath(object.path)}
                   stroke={pathColor}
                   fill="none"
-                  strokeWidth={2}
+                  strokeWidth={4}
                 />
               );
             })}

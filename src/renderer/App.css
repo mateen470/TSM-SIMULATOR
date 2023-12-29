@@ -2325,6 +2325,47 @@ input[type='number'] {
 }
 /* DASHBORAD-END */
 
+/* TOPBAR-START */
+.top_bar_main_container {
+  position: absolute;
+  z-index: 100;
+  left: 0px;
+  transition: all 0.5s ease-in-out;
+}
+.topBar_main_class {
+  width: 1450px;
+  background-color: #000000e8;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.topBar_btn {
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  height: 50px;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.4rem;
+  border-radius: 10px;
+  border: 1px solid white;
+  cursor: pointer;
+}
+.topBar_btn a {
+  text-decoration: none;
+  color: #ffffff;
+  height: 50px;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* TOPBAR-END */
+
 /* CUSTOM-DROPDOWN-START */
 .custom_drop_down_main_class {
   background-color: #00000088;

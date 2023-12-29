@@ -7,6 +7,7 @@ import GridCanvas from '../components/simulation-components/GridCanvas';
 import '../renderer/App.css';
 import mainMenu from '../TSM-img/main_menu.svg';
 import dropDown from '../TSM-img/dropDown.svg';
+import TopBar from '../components/dashboard/TopBar';
 
 export default function Dashboard() {
   const [toggleStatus, setToggleStatus] = useState(false);
@@ -16,9 +17,14 @@ export default function Dashboard() {
       className="dashboard_main_class"
       style={{ backgroundImage: `url(${mainMenu})` }}
     >
-      <div>
-        <FireControl />
+      <div
+        className="top_bar_main_container"
+        style={{ top: toggleStatus ? '0px' : '-80px' }}
+      >
+        <TopBar />
       </div>
+
+      <FireControl />
 
       <div className="grid_dashboard">
         <GridCanvas stylingBox={2} />
