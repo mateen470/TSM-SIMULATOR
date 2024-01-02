@@ -1,7 +1,42 @@
 import { NavLink } from 'react-router-dom';
 import '../renderer/App.css';
+import { useSelector } from 'react-redux';
+const { ipcRenderer } = require('electron');
+import React, { useEffect } from 'react';
+// const { dialog } = require('electron').remote;
+
+// const { ipcRenderer } = require('electron');
+
+
 
 export default function Footer() {
+
+  const dataArrayState = useSelector(state => state.dataArray);
+  // Function to save the state to a JSON file
+  const saveStateToJsonFile = () => {
+    // Send the data to the main process
+    console.log("Workings");
+    ipcRenderer.send('save-json', { data: dataArrayState, filename: 'tsm.json' });
+  };
+
+  useEffect(() => {
+    const handleSaveResponse = (event, response) => {
+        if (response.success) {
+            console.log('File saved successfully:', response.message);
+        } else {
+            console.error('File save error:', response.message);
+        }
+    };
+
+    ipcRenderer.on('save-json-response', handleSaveResponse);
+
+    // Clean up
+    return () => {
+        ipcRenderer.removeListener('save-json-response', handleSaveResponse);
+    };
+}, []);
+
+
   return (
     <div className="footer">
       <div className="footer_first_box">
@@ -17,9 +52,12 @@ export default function Footer() {
           TUTORIALS
         </NavLink>
         <div id="footer_second_box_second_span">
-          <NavLink className="underline" to="/dashboard">
+          {/* <NavLink className="underline" to="/dashboard">
             CONTINUE
-          </NavLink>
+          </NavLink> */}
+          <button className="underline" onClick={saveStateToJsonFile}>
+          CONTINUE
+        </button>
         </div>
       </div>
     </div>

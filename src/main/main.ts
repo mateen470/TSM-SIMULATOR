@@ -14,6 +14,7 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
+const fs = require('fs');
 
 class AppUpdater {
   constructor() {
@@ -29,6 +30,23 @@ ipcMain.on('ipc-example', async (event, arg) => {
   const msgTemplate = (pingPong: string) => `IPC test: ${pingPong}`;
   console.log(msgTemplate(arg));
   event.reply('ipc-example', msgTemplate('pong'));
+});
+ipcMain.on('save-json', (event, args) => {
+  const { data, filename } = args;
+  
+  const filePath = path.join(app.getPath('documents'), filename);
+  console.log("filename: ",filePath);
+  fs.writeFile(filePath, JSON.stringify(data, null, 2), 'utf-8', (err) => {
+    if (err) {
+      // Send error back to renderer process
+      console.log("Failed: ",err);
+      event.reply('save-json-response', { success: false, message: err.message });
+    } else {
+      // Send success message back to renderer process
+      console.log("SAved");
+      event.reply('save-json-response', { success: true, message: 'File saved successfully.' });
+    }
+  });
 });
 
 if (process.env.NODE_ENV === 'production') {
@@ -75,9 +93,11 @@ const createWindow = async () => {
     height: 728,
     icon: getAssetPath('icon.png'),
     webPreferences: {
-      preload: app.isPackaged
-        ? path.join(__dirname, 'preload.js')
-        : path.join(__dirname, '../../.erb/dll/preload.js'),
+      contextIsolation: false,
+      nodeIntegration: true,
+      // preload: app.isPackaged
+      //   ? path.join(__dirname, 'preload.js')
+      //   : path.join(__dirname, '../../.erb/dll/preload.js'),
     },
   });
 
