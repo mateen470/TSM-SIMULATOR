@@ -6,6 +6,7 @@ export const DataArraySlice = createSlice({
     student: '',
     instructor: '',
     difficulty: '',
+    onlyOneOwnTank: false,
     WeatherConditions: {
       weather: '',
       temperature: 0,
@@ -17,23 +18,23 @@ export const DataArraySlice = createSlice({
       exerciseTime: '',
       terrain: '',
     },
-    initialAmmo: {
-      apfsds: 0,
-      he: 0,
-      heat: 0,
-      mg762: 0,
-    },
     mapData: {
       totalOwnTanks: 0,
       totalEnemies: 0,
       totalEnemyTanks: 0,
       totalEnemyAPCs: 0,
       ownTanks: [],
-      enemies: [],
-      forrestAndBuildings: [],
+      Enemy: [],
+      Items: {
+        Warehouse: [],
+        tree: [],
+      },
     },
   },
   reducers: {
+    setOnlyOneOwnTank: (state, action) => {
+      state.onlyOneOwnTank = action.payload;
+    },
     setStudent: (state, action) => {
       state.student = action.payload;
     },
@@ -64,74 +65,168 @@ export const DataArraySlice = createSlice({
     setTerrain: (state, action) => {
       state.parameters.terrain = action.payload;
     },
-    setApfsds: (state, action) => {
-      state.initialAmmo.apfsds = action.payload;
-    },
-    setHe: (state, action) => {
-      state.initialAmmo.he = action.payload;
-    },
-    setHeat: (state, action) => {
-      state.initialAmmo.heat = action.payload;
-    },
-    setMg762: (state, action) => {
-      state.initialAmmo.mg762 = action.payload;
-    },
     addEnemy: (state, action) => {
-      const { enemyName, details, path, unitId } = action.payload;
-      let existingEnemy = state.mapData.enemies.find(
-        (e) => e.name === enemyName,
-      );
+      const { enemyName, path, unitId, initialAmmo, spawning_point } =
+        action.payload;
+      let existingEnemy = state.mapData.Enemy.find((e) => e.name === enemyName);
+
       if (!existingEnemy) {
         existingEnemy = {
           name: enemyName,
-          details: details || {},
-          paths: {},
+          [unitId]: {
+            ammo: initialAmmo,
+            path: path.map((point) => ({
+              pointx: point.x,
+              pointy: point.y,
+            })),
+            spawning_point: {
+              pointx: spawning_point.x,
+              pointy: spawning_point.y,
+            },
+          },
         };
-        state.mapData.enemies.push(existingEnemy);
+        state.mapData.Enemy.push(existingEnemy);
+      } else {
+        existingEnemy[unitId] = {
+          ammo: initialAmmo,
+          path: path.map((point) => ({
+            pointx: point.x,
+            pointy: point.y,
+          })),
+          spawning_point: {
+            pointx: spawning_point.x,
+            pointy: spawning_point.y,
+          },
+        };
       }
-      existingEnemy.details = details || {};
-      if (!existingEnemy.paths[unitId]) {
-        existingEnemy.paths[unitId] = [];
+    },
+    addEnemyCar: (state, action) => {
+      const { enemyName, path, unitId, spawning_point } = action.payload;
+      let existingEnemy = state.mapData.Enemy.find((e) => e.name === enemyName);
+
+      if (!existingEnemy) {
+        existingEnemy = {
+          name: enemyName,
+          [unitId]: {
+            path: path.map((point) => ({
+              pointx: point.x,
+              pointy: point.y,
+            })),
+            spawning_point: {
+              pointx: spawning_point.x,
+              pointy: spawning_point.y,
+            },
+          },
+        };
+        state.mapData.Enemy.push(existingEnemy);
+      } else {
+        existingEnemy[unitId] = {
+          path: path.map((point) => ({
+            pointx: point.x,
+            pointy: point.y,
+          })),
+          spawning_point: {
+            pointx: spawning_point.x,
+            pointy: spawning_point.y,
+          },
+        };
       }
-      existingEnemy.paths[unitId] = path;
     },
     addOwnTank: (state, action) => {
-      const { tankName, details, path, unitId } = action.payload;
+      const { tankName, path, unitId, initialAmmo, spawning_point } =
+        action.payload;
       let existingOwnTanks = state.mapData.ownTanks.find(
         (e) => e.name === tankName,
       );
+
       if (!existingOwnTanks) {
         existingOwnTanks = {
           name: tankName,
-          details: details || {},
           paths: {},
+          initialAmmo: {},
+          spawning_point: {
+            pointx: spawning_point.x,
+            pointy: spawning_point.y,
+          },
         };
         state.mapData.ownTanks.push(existingOwnTanks);
       }
-      existingOwnTanks.details = details || {};
       if (!existingOwnTanks.paths[unitId]) {
         existingOwnTanks.paths[unitId] = [];
       }
-      existingOwnTanks.paths[unitId] = path;
+      existingOwnTanks.paths[unitId] = path.map((point) => ({
+        pointx: point.x,
+        pointy: point.y,
+      }));
+      existingOwnTanks.initialAmmo[unitId] = initialAmmo;
     },
-    addForrestsAndBuildings: (state, action) => {
-      const { objectName, details, path, unitId } = action.payload;
-      let existingObject = state.mapData.forrestAndBuildings.find(
+    addBuildings: (state, action) => {
+      const { objectName, path, unitId, spawning_point } = action.payload;
+      let existingObject = state.mapData.Items.Warehouse.find(
         (e) => e.name === objectName,
       );
+
       if (!existingObject) {
         existingObject = {
           name: objectName,
-          details: details || {},
-          paths: {},
+          [unitId]: {
+            path: path.map((point) => ({
+              pointx: point.x,
+              pointy: point.y,
+            })),
+            spawning_point: {
+              pointx: spawning_point.x,
+              pointy: spawning_point.y,
+            },
+          },
         };
-        state.mapData.forrestAndBuildings.push(existingObject);
+        state.mapData.Items.Warehouse.push(existingObject);
+      } else {
+        existingObject[unitId] = {
+          path: path.map((point) => ({
+            pointx: point.x,
+            pointy: point.y,
+          })),
+          spawning_point: {
+            pointx: spawning_point.x,
+            pointy: spawning_point.y,
+          },
+        };
       }
-      existingObject.details = details || {};
-      if (!existingObject.paths[unitId]) {
-        existingObject.paths[unitId] = [];
+    },
+    addForrest: (state, action) => {
+      const { objectName, path, unitId, spawning_point } = action.payload;
+      let existingObject = state.mapData.Items.tree.find(
+        (e) => e.name === objectName,
+      );
+
+      if (!existingObject) {
+        existingObject = {
+          name: objectName,
+          [unitId]: {
+            path: path.map((point) => ({
+              pointx: point.x,
+              pointy: point.y,
+            })),
+            spawning_point: {
+              pointx: spawning_point.x,
+              pointy: spawning_point.y,
+            },
+          },
+        };
+        state.mapData.Items.tree.push(existingObject);
+      } else {
+        existingObject[unitId] = {
+          path: path.map((point) => ({
+            pointx: point.x,
+            pointy: point.y,
+          })),
+          spawning_point: {
+            pointx: spawning_point.x,
+            pointy: spawning_point.y,
+          },
+        };
       }
-      existingObject.paths[unitId] = path;
     },
     updateTotalEnemies: (state, action) => {
       state.mapData.totalEnemies = action.payload;
@@ -147,27 +242,55 @@ export const DataArraySlice = createSlice({
     },
     deleteEnemy: (state, action) => {
       const unitId = action.payload;
-      state.mapData.enemies = state.mapData.enemies.filter(
-        (enemy) => !enemy.paths[unitId],
-      );
+
+      state.mapData.Enemy.forEach((enemy) => {
+        if (enemy.units) {
+          delete enemy.units[unitId];
+        }
+      });
+
+      state.mapData.Enemy = state.mapData.Enemy.filter((enemy) => {
+        return enemy.units && Object.keys(enemy.units).length !== 0;
+      });
     },
+
     deleteOwnTank: (state, action) => {
       const unitId = action.payload;
       state.mapData.ownTanks = state.mapData.ownTanks.filter(
         (tank) => !tank.paths[unitId],
       );
     },
-    deleteForrestOrBuilding: (state, action) => {
+    deleteBuilding: (state, action) => {
       const unitId = action.payload;
-      state.mapData.forrestAndBuildings =
-        state.mapData.forrestAndBuildings.filter(
-          (object) => !object.paths[unitId],
-        );
+      state.mapData.Items.Warehouse.forEach((object) => {
+        if (object.units) {
+          delete object.units[unitId];
+        }
+      });
+
+      state.mapData.Items.Warehouse = state.mapData.Items.Warehouse.filter(
+        (object) => {
+          return object.units && Object.keys(object.units).length !== 0;
+        },
+      );
+    },
+    deleteForrest: (state, action) => {
+      const unitId = action.payload;
+      state.mapData.Items.tree.forEach((object) => {
+        if (object.units) {
+          delete object.units[unitId];
+        }
+      });
+
+      state.mapData.Items.tree = state.mapData.Items.tree.filter((object) => {
+        return object.units && Object.keys(object.units).length !== 0;
+      });
     },
   },
 });
 
 export const {
+  setOnlyOneOwnTank,
   setStudent,
   setInstructor,
   setWeather,
@@ -178,12 +301,10 @@ export const {
   setMapArea,
   setExerciseTime,
   setTerrain,
-  setApfsds,
-  setHe,
-  setHeat,
-  setMg762,
   addEnemy,
-  addForrestsAndBuildings,
+  addEnemyCar,
+  addBuildings,
+  addForrest,
   addOwnTank,
   updateTotalEnemies,
   updateTotalOwnTanks,
@@ -191,7 +312,8 @@ export const {
   updateTotalEnemyAPCs,
   deleteEnemy,
   deleteOwnTank,
-  deleteForrestOrBuilding,
+  deleteBuilding,
+  deleteForrest,
 } = DataArraySlice.actions;
 
 export default DataArraySlice.reducer;

@@ -664,14 +664,13 @@ input[type='number'] {
   color: #ffffff;
   background-color: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(2px);
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
   width: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 50px;
   margin: auto;
+  cursor: pointer;
 }
 .initial_ammo_main_content_container {
   background-color: rgba(255, 255, 255, 0.15);

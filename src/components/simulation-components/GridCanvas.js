@@ -1,17 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
+import data from '../../data.json';
 import {
   addEnemy,
   addOwnTank,
-  addForrestsAndBuildings,
+  addBuildings,
   updateTotalEnemies,
   updateTotalOwnTanks,
   updateTotalEnemyTanks,
   updateTotalEnemyAPCs,
   deleteEnemy,
   deleteOwnTank,
-  deleteForrestOrBuilding,
+  deleteBuilding,
+  addEnemyCar,
+  setOnlyOneOwnTank,
+  deleteForrest,
+  addForrest,
 } from '../../redux/DataArray';
 import { removeItem } from '../../redux/CarouselSelectedItemSlice';
 import gridTank from '../../TSM-img/gridTank.svg';
@@ -22,6 +27,8 @@ import gridForrest from '../../TSM-img/gridForrest.svg';
 import gridAPV from '../../TSM-img/gridAPV.svg';
 import gridBuilding from '../../TSM-img/gridBuilding.svg';
 import startSign from '../../TSM-img/gridStopSign.svg';
+import Increment from '../../TSM-img/increment.svg';
+import Decrement from '../../TSM-img/decrement.svg';
 
 export default function GridCanvas({ stylingBox }) {
   const gridRef = useRef(null);
@@ -34,6 +41,98 @@ export default function GridCanvas({ stylingBox }) {
   const [objectStartPoints, setObjectStartPoints] = useState([]);
   const selectedItems = useSelector((state) => state.selectedItem);
   const [selectedObjectId, setSelectedObjectId] = useState(null);
+  const [latestTankId, setLatestTankId] = useState(null);
+  const [tankAmmos, setTankAmmos] = useState({});
+  const isTankPresent = () =>
+    items.some((item) => item.type === 'tank' || item.type === 'myTank');
+
+  const [showInitialAmmo, setShowInitialAmmo] = useState(isTankPresent());
+
+  const initialAmmosTitleArray = data.initialAmmoTitleArray;
+
+  const [apfsds, setApfsdsAmmo] = useState(0);
+  const [he, setHeAmmo] = useState(0);
+  const [heat, setHeatAmmo] = useState(0);
+  const [mg762, setMg762Ammo] = useState(0);
+
+  const handleAmmoChange = (tankId, ammoType, value) => {
+    setTankAmmos((prevAmmos) => ({
+      ...prevAmmos,
+      [tankId]: {
+        ...prevAmmos[tankId],
+        [ammoType]: value,
+      },
+    }));
+  };
+
+  const handleInputChange = (index, newValue) => {
+    newValue = Number(newValue);
+
+    if (newValue < 0) return;
+
+    switch (index) {
+      case 1:
+        setApfsdsAmmo(newValue);
+        handleAmmoChange(selectedObjectId, 'apfsds', newValue);
+        break;
+      case 2:
+        setHeAmmo(newValue);
+        handleAmmoChange(selectedObjectId, 'he', newValue);
+        break;
+      case 3:
+        setHeatAmmo(newValue);
+        handleAmmoChange(selectedObjectId, 'heat', newValue);
+        break;
+      case 4:
+        setMg762Ammo(newValue);
+        handleAmmoChange(selectedObjectId, 'mg762', newValue);
+        break;
+      default:
+        break;
+    }
+  };
+
+  const handleIncrement = (inputNumber) => {
+    if (inputNumber === 1) {
+      const newValue = apfsds + 1;
+      setApfsdsAmmo(newValue);
+      handleAmmoChange(selectedObjectId, 'apfsds', newValue);
+    } else if (inputNumber === 2) {
+      const newValue = he + 1;
+      setHeAmmo(newValue);
+      handleAmmoChange(selectedObjectId, 'he', newValue);
+    } else if (inputNumber === 3) {
+      const newValue = heat + 1;
+      setHeatAmmo(newValue);
+      handleAmmoChange(selectedObjectId, 'heat', newValue);
+    } else if (inputNumber === 4) {
+      const newValue = mg762 + 50;
+      setMg762Ammo(newValue);
+      handleAmmoChange(selectedObjectId, 'mg762', newValue);
+    }
+  };
+
+  const handleDecrement = (inputNumber) => {
+    if (inputNumber === 1 && apfsds > 0) {
+      const newValue = apfsds - 1;
+      setApfsdsAmmo(newValue);
+      handleAmmoChange(selectedObjectId, 'apfsds', newValue);
+    } else if (inputNumber === 2 && he > 0) {
+      const newValue = he - 1;
+      setHeAmmo(newValue);
+      handleAmmoChange(selectedObjectId, 'he', newValue);
+    } else if (inputNumber === 3 && heat > 0) {
+      const newValue = heat - 1;
+      setHeatAmmo(newValue);
+      handleAmmoChange(selectedObjectId, 'heat', newValue);
+    } else if (inputNumber === 4 && mg762 >= 50) {
+      const newValue = mg762 - 50;
+      setMg762Ammo(newValue);
+      handleAmmoChange(selectedObjectId, 'mg762', newValue);
+    }
+  };
+
+  const inputArray = ['INITIAL QTY. :', apfsds, he, heat, mg762];
 
   const createGridPattern = () => {
     const gridSize = 10000;
@@ -238,8 +337,11 @@ export default function GridCanvas({ stylingBox }) {
           dispatch(deleteEnemy(selectedObjectId));
         } else if (itemToDelete.status === 'own-tank') {
           dispatch(deleteOwnTank(selectedObjectId));
-        } else if (itemToDelete.status === 'not-dangerous') {
-          dispatch(deleteForrestOrBuilding(selectedObjectId));
+          dispatch(setOnlyOneOwnTank(true));
+        } else if (itemToDelete.type === 'building') {
+          dispatch(deleteBuilding(selectedObjectId));
+        } else if (itemToDelete.type === 'forrest') {
+          dispatch(deleteForrest(selectedObjectId));
         }
       }
       const updatedObjectStartPoints = objectStartPoints.filter(
@@ -254,6 +356,14 @@ export default function GridCanvas({ stylingBox }) {
 
       dispatch(removeItem({ id: selectedObjectId }));
       setSelectedObjectId(null);
+    }
+    if (latestTankId === selectedObjectId) {
+      const remainingTanks = items.filter(
+        (item) =>
+          (item.type === 'tank' || item.type === 'myTank') &&
+          item.id !== selectedObjectId,
+      );
+      setLatestTankId(remainingTanks.length > 0 ? remainingTanks[0].id : null);
     }
   };
 
@@ -313,6 +423,14 @@ export default function GridCanvas({ stylingBox }) {
     (item) => item.status === 'dangerous' && item.type === 'car',
   ).length;
 
+  const closeInitialAmmo = () => {
+    setShowInitialAmmo(false);
+    setApfsdsAmmo(0);
+    setHeAmmo(0);
+    setHeatAmmo(0);
+    setMg762Ammo(0);
+  };
+
   useEffect(() => {
     dispatch(
       updateTotalEnemies(
@@ -333,169 +451,282 @@ export default function GridCanvas({ stylingBox }) {
       updateTotalEnemyAPCs(items.filter((item) => item.type === 'car').length),
     );
     objectStartPoints.forEach((point) => {
+      const ammoForThisTank = tankAmmos[point.id] || {
+        apfsds: 0,
+        he: 0,
+        heat: 0,
+        mg762: 0,
+      };
       if (point.item.status === 'dangerous') {
-        dispatch(
-          addEnemy({
-            unitId: point.id,
-            enemyName: point.item.name,
-            details: point.item.details,
-            path: point.path,
-          }),
-        );
+        if (point.item.type === 'tank') {
+          dispatch(
+            addEnemy({
+              unitId: point.id,
+              enemyName: point.item.name,
+              path: point.path,
+              initialAmmo: ammoForThisTank,
+              spawning_point: point.startPoint,
+            }),
+          );
+        } else if (point.item.type === 'car') {
+          dispatch(
+            addEnemyCar({
+              unitId: point.id,
+              enemyName: point.item.name,
+              path: point.path,
+              spawning_point: point.startPoint,
+            }),
+          );
+        }
       } else if (point.item.status === 'own-tank') {
         dispatch(
           addOwnTank({
             unitId: point.id,
             tankName: point.item.name,
-            details: point.item.details,
             path: point.path,
+            initialAmmo: ammoForThisTank,
+            spawning_point: point.startPoint,
           }),
         );
-      } else if (point.item.status === 'not-dangerous') {
+      } else if (point.item.type === 'building') {
         dispatch(
-          addForrestsAndBuildings({
+          addBuildings({
             unitId: point.id,
             objectName: point.item.name,
-            details: point.item.details,
             path: point.path,
+            spawning_point: point.startPoint,
+          }),
+        );
+      } else if (point.item.type === 'forrest') {
+        dispatch(
+          addForrest({
+            unitId: point.id,
+            objectName: point.item.name,
+            path: point.path,
+            spawning_point: point.startPoint,
           }),
         );
       }
     });
-  }, [objectStartPoints, items, dispatch]);
+  }, [objectStartPoints, items, dispatch, tankAmmos]);
+
+  useEffect(() => {
+    const latestItem = selectedItems[selectedItems.length - 1];
+    if (
+      (latestItem && latestItem.type === 'tank') ||
+      (latestItem && latestItem.type === 'myTank')
+    ) {
+      setLatestTankId(latestItem.id);
+    }
+  }, [selectedItems]);
+
+  useEffect(() => {
+    setShowInitialAmmo(isTankPresent());
+  }, [items]);
 
   return (
-    <div
-      className="grid_canvas_main_container"
-      style={{
-        width:
-          stylingBox === 1 && hasObjects
-            ? '91%'
-            : stylingBox === 1 && !hasObjects
-            ? '79.8%'
-            : '63.6%',
-        borderRadius: stylingBox === 1 ? '5px' : '0px',
-        position: stylingBox === 2 ? 'absolute' : 'relative',
-      }}
-    >
+    <div>
       <div
-        className="grid_canvas_object_details"
+        className="grid_canvas_main_container"
         style={{
-          display: stylingBox === 2 ? 'none' : '',
-          width: hasObjects ? '200px' : '0px',
-          opacity: hasObjects ? 1 : 0,
+          width:
+            stylingBox === 1 && hasObjects
+              ? '91%'
+              : stylingBox === 1 && !hasObjects
+              ? '79.8%'
+              : '63.6%',
+          borderRadius: stylingBox === 1 ? '5px' : '0px',
+          position: stylingBox === 2 ? 'absolute' : 'relative',
         }}
       >
-        {hasObjects && (
-          <button onClick={handleDelete} className="grid_canvas_remove_btn">
-            DELETE
-          </button>
-        )}
-        {totalEnemies > 0 && (
-          <div className="grid_canvas_object_details_stats">
-            <h3>Total Enemies: {totalEnemies}</h3>
-            <p>Enemy Tanks: {enemyTanks}</p>
-            <p>Enemy APCs: {enemyAPCs}</p>
-          </div>
-        )}
-      </div>
-      <TransformWrapper>
-        {/* <div>
+        <div
+          className="grid_canvas_object_details"
+          style={{
+            display: stylingBox === 2 ? 'none' : '',
+            width: hasObjects ? '200px' : '0px',
+            opacity: hasObjects ? 1 : 0,
+          }}
+        >
+          {hasObjects && (
+            <button onClick={handleDelete} className="grid_canvas_remove_btn">
+              DELETE
+            </button>
+          )}
+          {totalEnemies > 0 && (
+            <div className="grid_canvas_object_details_stats">
+              <h3>Total Enemies: {totalEnemies}</h3>
+              <p>Enemy Tanks: {enemyTanks}</p>
+              <p>Enemy APCs: {enemyAPCs}</p>
+            </div>
+          )}
+        </div>
+        <TransformWrapper>
+          {/* <div>
           Item Position:
           {draggingItem
             ? `(${draggingItem.x.toFixed(2)}, ${draggingItem.y.toFixed(2)})`
             : 'None'}
         </div> */}
-        <TransformComponent>
-          <svg
-            className="path-overlay"
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              pointerEvents: 'none',
-            }}
-          >
-            {objectStartPoints.map((object) => {
-              const item = items.find((i) => i.id === object.id);
-              const pathColor =
-                item && item.status === 'own-tank'
-                  ? 'blue'
-                  : item && item.status === 'dangerous'
-                  ? 'red'
-                  : '';
+          <TransformComponent>
+            <svg
+              className="path-overlay"
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                pointerEvents: 'none',
+              }}
+            >
+              {objectStartPoints.map((object) => {
+                const item = items.find((i) => i.id === object.id);
+                const pathColor =
+                  item && item.status === 'own-tank'
+                    ? 'blue'
+                    : item && item.status === 'dangerous'
+                    ? 'red'
+                    : '';
 
-              return (
-                <path
-                  key={object.id}
-                  d={drawPath(object.path)}
-                  stroke={pathColor}
-                  fill="none"
-                  strokeWidth={4}
-                />
-              );
-            })}
-          </svg>
-          <div
-            ref={gridRef}
-            className="grid_canvas"
-            style={{
-              background: createGridPattern(),
-              backgroundSize: `${30 * zoom}px ${30 * zoom}px`,
-              height: '51vh',
-              width: '1500px',
-              border: '1px solid rgba(255, 255, 255, 0.578)',
-              position: 'relative',
-              cursor: 'grab',
-            }}
-          >
-            {items.map((item) => (
-              <React.Fragment key={item.id}>
-                <div
-                  onMouseDown={(e) => handleItemMouseDown(item.id, e)}
-                  style={{
-                    left: (item.x + pan.x) * zoom,
-                    top: (item.y + pan.y) * zoom,
-                    transform: `translate(-50%, -50%) scale(${zoom})`,
-                    backgroundImage: `url(${item.src})`,
-                    position: 'absolute',
-                    width: '50px',
-                    height: '50px',
-                    cursor: 'pointer',
-                    backgroundSize: 'cover',
-                  }}
-                />
-                {objectStartPoints.find((point) => point.id === item.id) && (
+                return (
+                  <path
+                    key={object.id}
+                    d={drawPath(object.path)}
+                    stroke={pathColor}
+                    fill="none"
+                    strokeWidth={4}
+                  />
+                );
+              })}
+            </svg>
+            <div
+              ref={gridRef}
+              className="grid_canvas"
+              style={{
+                background: createGridPattern(),
+                backgroundSize: `${30 * zoom}px ${30 * zoom}px`,
+                height: '51.7vh',
+                width: '1500px',
+                border: '1px solid rgba(255, 255, 255, 0.578)',
+                position: 'relative',
+                cursor: 'grab',
+              }}
+            >
+              {items.map((item) => (
+                <React.Fragment key={item.id}>
                   <div
+                    onMouseDown={(e) => handleItemMouseDown(item.id, e)}
                     style={{
-                      left:
-                        (objectStartPoints.find((point) => point.id === item.id)
-                          .startPoint.x +
-                          pan.x) *
-                        zoom,
-                      top:
-                        (objectStartPoints.find((point) => point.id === item.id)
-                          .startPoint.y +
-                          pan.y) *
-                        zoom,
+                      left: (item.x + pan.x) * zoom,
+                      top: (item.y + pan.y) * zoom,
                       transform: `translate(-50%, -50%) scale(${zoom})`,
-                      backgroundImage: `url(${
-                        item.status === 'not-dangerous' ? 'none' : startSign
-                      })`,
+                      backgroundImage: `url(${item.src})`,
                       position: 'absolute',
-                      width: '20px',
-                      height: '20px',
+                      width: '50px',
+                      height: '50px',
+                      cursor: 'pointer',
                       backgroundSize: 'cover',
                     }}
                   />
-                )}
-              </React.Fragment>
-            ))}
+                  {objectStartPoints.find((point) => point.id === item.id) && (
+                    <div
+                      style={{
+                        left:
+                          (objectStartPoints.find(
+                            (point) => point.id === item.id,
+                          ).startPoint.x +
+                            pan.x) *
+                          zoom,
+                        top:
+                          (objectStartPoints.find(
+                            (point) => point.id === item.id,
+                          ).startPoint.y +
+                            pan.y) *
+                          zoom,
+                        transform: `translate(-50%, -50%) scale(${zoom})`,
+                        backgroundImage: `url(${
+                          item.status === 'not-dangerous' ? 'none' : startSign
+                        })`,
+                        position: 'absolute',
+                        width: '20px',
+                        height: '20px',
+                        backgroundSize: 'cover',
+                      }}
+                    />
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
+          </TransformComponent>
+        </TransformWrapper>
+      </div>
+      {stylingBox === 1 && (
+        <div
+          className="initial_ammo_grid_canvas"
+          style={{
+            height: showInitialAmmo ? '250px' : '0px',
+            opacity: showInitialAmmo ? 1 : 0,
+            transition: 'all 0.3s ease-in-out',
+          }}
+        >
+          <div className="initial_ammo_main_class">
+            <div className="initial_ammo_main_container">
+              <div className="initial_ammo_heading" onClick={closeInitialAmmo}>
+                INITIAL AMMO
+              </div>
+              <div className="initial_ammo_main_content_container">
+                <div className="initial_ammo_title">
+                  {initialAmmosTitleArray.map((value, index) => {
+                    return (
+                      <div
+                        key={index}
+                        style={{ fontWeight: index === 0 ? 700 : 600 }}
+                      >
+                        {value}
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="initial_ammo_values">
+                  {inputArray.map((value, index) =>
+                    index === 0 ? (
+                      <div
+                        key={index}
+                        className="initial_ammo_value_first_heading"
+                      >
+                        {value}
+                      </div>
+                    ) : (
+                      <div
+                        key={index}
+                        className="initial_ammo_decrement_increment"
+                      >
+                        <div className="initia_ammo_increment_decrement_content">
+                          <input
+                            type="number"
+                            value={value}
+                            onChange={(e) =>
+                              handleInputChange(index, e.target.value)
+                            }
+                          />
+                          <div className="buttons_increment_decrement">
+                            <button onClick={() => handleIncrement(index)}>
+                              <img alt="decrement" src={Decrement} />
+                            </button>
+                            <button onClick={() => handleDecrement(index)}>
+                              <img alt="increment" src={Increment} />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    ),
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
-        </TransformComponent>
-      </TransformWrapper>
+        </div>
+      )}
     </div>
   );
 }

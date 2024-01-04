@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSpring, animated } from 'react-spring';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from '../redux/CarouselSelectedItemSlice';
 import MapCarousel from '../components/simulation-components/MapCarousel';
 import '../renderer/App.css';
@@ -13,6 +13,7 @@ import car2 from '../TSM-img/car2.svg';
 import house1 from '../TSM-img/house1.svg';
 import house2 from '../TSM-img/house2.svg';
 import data from '../data.json';
+import { setOnlyOneOwnTank } from '../redux/DataArray';
 
 const selectEnemyArray = data.selectEnemyArray;
 const selectEnemyObjectsArray = data.selectEnemyObjectsArray;
@@ -23,7 +24,14 @@ const selectYourTank = data.selectYourTank;
 export default function SelectObjectCarousel({ carouselObjectType }) {
   const [selectedSlide, setSelectedSlide] = useState(0);
   const [show, setShown] = useState(false);
+  const [existingOwnTank, setExistingOwnTank] = useState(false);
   const dispatch = useDispatch();
+
+  const onlyOneOwnTank = useSelector((state) => state.dataArray.onlyOneOwnTank);
+
+  const ownTanksArray = useSelector(
+    (state) => state.dataArray.mapData.ownTanks,
+  );
 
   const props3 = useSpring({
     transform: show ? 'scale(1.03)' : 'scale(1)',
@@ -73,9 +81,20 @@ export default function SelectObjectCarousel({ carouselObjectType }) {
 
   const getImage = (imageName) => imageMap[imageName];
 
+  const ownTanksCount = ownTanksArray.length;
+
   const handleDispatchItem = () => {
     const selectedItem = chosenArray[0]?.objects[selectedSlide];
-    if (selectedItem) {
+
+    if (selectedItem?.type === 'myTank') {
+      if (ownTanksCount === 0) {
+        dispatch(addItem(selectedItem));
+        setExistingOwnTank(true);
+        dispatch(setOnlyOneOwnTank(false));
+      } else {
+        console.log('THERE CAN ONLY BE ONE OWN TANK!!');
+      }
+    } else if (selectedItem) {
       dispatch(addItem(selectedItem));
     }
   };
@@ -95,6 +114,12 @@ export default function SelectObjectCarousel({ carouselObjectType }) {
   }));
 
   const selectedObject = chosenArray[0]?.objects[selectedSlide];
+
+  useEffect(() => {
+    if (onlyOneOwnTank) {
+      setExistingOwnTank(false);
+    }
+  }, [onlyOneOwnTank, existingOwnTank]);
 
   return (
     <div className="select_object_main_class">
@@ -121,7 +146,16 @@ export default function SelectObjectCarousel({ carouselObjectType }) {
                 <div className="selected_object_details_object_name">
                   <div>{selectedObject?.name}</div>
                   <div className="btn_main_container">
-                    <button className="btn btn1" onClick={handleDispatchItem}>
+                    <button
+                      className="btn btn1"
+                      onClick={handleDispatchItem}
+                      style={{
+                        pointerEvents:
+                          selectedObject?.type === 'myTank' && existingOwnTank
+                            ? 'none'
+                            : 'all',
+                      }}
+                    >
                       ADD
                     </button>
                   </div>
