@@ -33,8 +33,10 @@ ipcMain.on('ipc-example', async (event, arg) => {
 });
 ipcMain.on('save-json', (event, args) => {
   const { data, filename } = args;
-  
-  const filePath = path.join(app.getPath('documents'), filename);
+  const baseDirectory = 'C:\\Users\\ESFORGE-01\\Desktop\\TSM_II_Product\\Content\\JSON_Files';
+  const filePath = path.join(baseDirectory, filename);
+    
+  // const filePath = path.join(app.getPath('documents'), filename);
   console.log("filename: ",filePath);
   fs.writeFile(filePath, JSON.stringify(data, null, 2), 'utf-8', (err) => {
     if (err) {
