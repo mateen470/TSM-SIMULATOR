@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { ipcRenderer } from 'electron';
 import { useDispatch } from 'react-redux';
 import { setStudent, setInstructor } from '../../redux/DataArray';
 import DropDown from '../../utility/DropDown';
@@ -8,8 +9,9 @@ import data from '../../data.json';
 
 export default function SelectStudent() {
   const dispatch = useDispatch();
-  const options = data.dropDownOptionsOfSelectStudent;
-  const options2 = data.dropDownOptionsOfSelectInstructor;
+  const [options, setOptions] = useState([]);
+  const [options2, setOptions2] = useState([]);
+  
 
   const [selectedStudent, setSelectedStudent] = useState(options[0]);
   const [selectedInstructor, setSelectedInstructor] = useState(options2[0]);
@@ -23,6 +25,33 @@ export default function SelectStudent() {
     setSelectedInstructor(option);
     dispatch(setInstructor(option));
   };
+  useEffect(() => {
+    ipcRenderer.send('fetch-students');
+    ipcRenderer.send('fetch-instructors');
+
+    ipcRenderer.on('fetch-students-response', (event, response) => {
+      if (response.success) {
+        setOptions(response.data);
+      } else {
+        console.error(response.message);
+      }
+    });
+
+    ipcRenderer.on('fetch-instructors-response', (event, response) => {
+      if (response.success) {
+        setOptions2(response.data);
+      } else {
+        console.error(response.message);
+      }
+    });
+
+    // Cleanup listeners
+    return () => {
+      ipcRenderer.removeAllListeners('fetch-students-response');
+      ipcRenderer.removeAllListeners('fetch-instructors-response');
+    };
+  }, []);
+
 
   return (
     <div className="select_student_main_class">

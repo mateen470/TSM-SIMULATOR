@@ -1,24 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import '../renderer/App.css';
 import mainMenu from '../TSM-img/main_menu.svg';
 import backButton from '../TSM-img/back_button.svg';
 import Footer from '../utility/Footer';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+const { ipcRenderer } = window.require('electron');
 
 export default function SelectStudentAndInstructor() {
   const [toggle, setToggle] = useState(false);
   const [studentDetails, setStudentDetails] = useState({
-    student: '',
-    pNo: '',
+    PANo: '',
     rank: '',
+    student: '',
     unit: '',
   });
   const [instructorDetails, setInstructorDetails] = useState({
-    instructor: '',
-    pNo: '',
+    PANo: '',
     rank: '',
+    instructor: '',
     unit: '',
   });
+
+  const notify = (text) => toast(text);
 
   const handleInputChange = (field, value, isStudent) => {
     if (isStudent) {
@@ -27,6 +32,51 @@ export default function SelectStudentAndInstructor() {
       setInstructorDetails((prev) => ({ ...prev, [field]: value }));
     }
   };
+
+  useEffect(() => {
+    ipcRenderer.on('add-student-response', (event, response) => {
+      if (response.success) {
+        notify(response.message);
+        // Additional logic on success (e.g., showing a success message)
+      } else {
+        notify(response.message);
+        // Handle error (e.g., showing an error message)
+      }
+    });
+  
+    // Cleanup the listener
+    return () => {
+      ipcRenderer.removeAllListeners('add-student-response');
+    };
+  }, []);
+
+  useEffect(() => {
+    ipcRenderer.on('add-instructor-response', (event, response) => {
+      if (response.success) {
+        notify(response.message);
+        // Additional logic on success (e.g., showing a success message)
+      } else {
+        notify(response.message);
+        // Handle error (e.g., showing an error message)
+      }
+    });
+  
+    // Cleanup the listener
+    return () => {
+      ipcRenderer.removeAllListeners('add-instructor-response');
+    };
+  }, []);
+  
+
+  const handleSubmitStudent = () => {
+    ipcRenderer.send('add-student', studentDetails);
+    // Reset form or provide user feedback here
+  };
+  const handleSubmitInstructor = () => {
+    ipcRenderer.send('add-instructor', instructorDetails);
+    // Reset form or provide user feedback here
+  };
+
 
   const studentTabStyle = {
     opacity: !toggle ? 1 : 0,
@@ -92,11 +142,13 @@ export default function SelectStudentAndInstructor() {
               >
                 <span>{key.toUpperCase()}</span>
                 <input
+                  className='select_student_instructot_tab_input_container_input'
                   value={studentDetails[key]}
                   onChange={(e) => handleInputChange(key, e.target.value, true)}
                 />
               </div>
             ))}
+            <button onClick={handleSubmitStudent}>Submit</button>
           </div>
 
           <div
@@ -117,10 +169,11 @@ export default function SelectStudentAndInstructor() {
                 />
               </div>
             ))}
+            <button onClick={handleSubmitInstructor}>Submit</button>
           </div>
         </div>
       </div>
-
+      <ToastContainer />
       <Footer />
     </div>
   );

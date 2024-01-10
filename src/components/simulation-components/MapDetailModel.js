@@ -4,6 +4,8 @@ import map2 from '../../TSM-img/map_2.svg';
 import map3 from '../../TSM-img/map_3.svg';
 import '../../renderer/App.css';
 import data from '../../data.json';
+import React, { useEffect, useState } from 'react';
+import { ipcRenderer } from 'electron';
 
 export default function MapDetailModel({ mapName, onClose }) {
   const backdropAnimation = useSpring({
@@ -17,13 +19,30 @@ export default function MapDetailModel({ mapName, onClose }) {
     to: { opacity: 1, transform: 'translateY(0px)' },
     config: { duration: 300 },
   });
+  const [mapDetails, setMapDetails] = useState(null);
+
+  useEffect(() => {
+    ipcRenderer.send('get-map-details', mapName);
+    ipcRenderer.on('get-map-details-response', (event, response) => {
+      if (response.success) {
+        setMapDetails(response.data);
+      } else {
+        console.error(response.message);
+      }
+    });
+
+    return () => {
+      ipcRenderer.removeAllListeners('get-map-details-response');
+    };
+  }, [mapName]);
+  
 
   const mapImage =
-    mapName === 'MUDDY FOREST'
+    mapName === 'Desert'
       ? map1
-      : mapName === 'SNOWY CAPS'
+      : mapName === 'Hilly Area'
       ? map2
-      : mapName === 'DESSERT MAIN'
+      : mapName === 'Plateau'
       ? map3
       : map1;
 
@@ -62,7 +81,7 @@ export default function MapDetailModel({ mapName, onClose }) {
         <div className="map_details_main_container">
           <div className="map_detail_modal_heading">SPECIFICATIONS</div>
           <div className="map_detail_modal_specs">
-            {mapSpecification.map((spec, index) => {
+            {/* {mapSpecification.map((spec, index) => {
               return (
                 <div className="specification_detail" key={index}>
                   <div className="sepcification_detail_name">
@@ -73,7 +92,51 @@ export default function MapDetailModel({ mapName, onClose }) {
                   </div>
                 </div>
               );
-            })}
+            })} */}
+            
+            <div className="map_detail_modal_specs">
+                        {mapDetails && (
+                          <>
+                            <div className="specification_detail">
+                              <div className="sepcification_detail_name">Name</div>
+                              <div className="sepcification_detail_value">{mapDetails.Name}</div>
+                            </div>
+                            <div className="specification_detail">
+                              <div className="sepcification_detail_name">Area</div>
+                              <div className="sepcification_detail_value">{mapDetails.Area} SQ/M</div>
+                            </div>
+                            {/* Add more fields as needed */}
+                          <div className="specification_detail">
+                            <div className="sepcification_detail_name">
+                              Exercise Time
+                            </div>
+                            <div className="sepcification_detail_value">
+                            {mapDetails.time}
+                            </div>
+                          </div>
+                          <div className="specification_detail">
+                            <div className="sepcification_detail_name">
+                              No of Enemies
+                            </div>
+                            <div className="sepcification_detail_value">
+                            {mapDetails.NoOfenemy}
+                            </div>
+                          </div>
+                          <div className="specification_detail">
+                            <div className="sepcification_detail_name">
+                              Terrain
+                            </div>
+                            <div className="sepcification_detail_value">
+                            {mapDetails.Terrain}
+                            </div>
+                          </div>
+                          </>
+                        )}
+                      </div>
+                
+               
+                
+
           </div>
         </div>
       </animated.div>

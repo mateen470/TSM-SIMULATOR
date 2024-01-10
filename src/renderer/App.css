@@ -1001,6 +1001,20 @@ input[type='number'] {
   font-size: 1.5rem;
   padding: 0rem 1rem;
 }
+
+.select_student_instructot_tab_input_container_input {
+  background-color: #00000088;
+  width: 450px;
+  height: 50px;
+  border-radius: 10px;
+  position: relative;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.5rem;
+  padding: 0rem 1rem;
+}
 /* SELECT-STUDENT-INSTRUCTOR-END */
 
 /* TUTORIALS-START */

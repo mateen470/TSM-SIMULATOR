@@ -1,0 +1,32 @@
+CREATE TABLE IF NOT EXISTS students (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    PA_No TEXT NOT NULL,
+    rank TEXT,
+    Name TEXT
+);
+
+CREATE TABLE IF NOT EXISTS instructors (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    PA_No TEXT NOT NULL,
+    rank TEXT,
+    Name TEXT
+);
+
+CREATE TABLE IF NOT EXISTS Maps (
+    Location TEXT NOT NULL,
+    id INTEGER PRIMARY KEY AUTOINCREMENT
+);
+
+CREATE TABLE IF NOT EXISTS simulations (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    path TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS past_simulations (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    student INTEGER NOT NULL,
+    instructor INTEGER NOT NULL,
+    recording_path TEXT NOT NULL,
+    FOREIGN KEY (student) REFERENCES students(id),
+    FOREIGN KEY (instructor) REFERENCES instructors(id)
+);

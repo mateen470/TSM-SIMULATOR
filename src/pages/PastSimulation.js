@@ -75,7 +75,7 @@ export default function PastSimulation() {
         <div className="past_simulation_tab_table">
           <div className="past_simulation_tab_table_heading_container">
             <div className="past_simulation_tab_table_name_heading">NAME</div>
-            <div className="past_simulation_tab_table_heading">P. NO</div>
+            <div className="past_simulation_tab_table_heading">PA. NO</div>
             <div className="past_simulation_tab_table_heading">SCORE</div>
           </div>
 

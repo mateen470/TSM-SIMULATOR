@@ -2,24 +2,38 @@ import React, { useEffect, useState } from 'react';
 import { useSpring, animated } from 'react-spring';
 import { NavLink } from 'react-router-dom';
 import '../../renderer/App.css';
-import map1 from '../../TSM-img/map_1.svg';
-import map2 from '../../TSM-img/map_2.svg';
-import map3 from '../../TSM-img/map_3.svg';
+import sandy from '../../TSM-img/map_1.svg';
+import green from '../../TSM-img/map_2.svg';
+import hilly from '../../TSM-img/map_3.svg';
 import car1 from '../../TSM-img/car1.svg';
 import MapCarousel from './MapCarousel';
 import MapDetailModel from './MapDetailModel';
 import data from '../../data.json';
+import { ipcRenderer } from 'electron';
 
 export default function SelectMap() {
   const [selectedSlide, setSelectedSlide] = useState(0);
   const [show, setShown] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [mapsData, setMapsData] = useState([]);
+  const [images, setImages] = useState([]);
 
   const props3 = useSpring({
     transform: show ? 'scale(1.03)' : 'scale(1)',
   });
+  const fillImagesArray = (numOfMaps) => {
+    const images = [sandy, green, hilly];
+    const filledArray = [];
+  
+    for (let i = 0; i < numOfMaps; i++) {
+      filledArray.push(images[i % images.length]);
+    }
+  
+    return filledArray;
+  };
+  
 
-  const maps = [map1, map2, map3].map((imagen, index) => ({
+  const maps = images.map((imagen, index) => ({
     key: index,
     content: (
       <animated.div
@@ -32,6 +46,49 @@ export default function SelectMap() {
       </animated.div>
     ),
   }));
+
+  useEffect(() => {
+    ipcRenderer.send('get-maps');
+    ipcRenderer.on('get-maps-response', (event, response) => {
+      if (response.success) {
+        setMapsData(response.data);
+  
+        // Create an array of images
+        const imagesArray = fillImagesArray(response.data.length);
+        setImages(imagesArray);
+        // Use imagesArray as needed
+      } else {
+        console.error(response.message);
+      }
+    });
+  
+    return () => {
+      ipcRenderer.removeAllListeners('get-maps-response');
+    };
+  }, []);
+
+    const handleDeleteMap = (mapName) => {
+      ipcRenderer.send('delete-map', mapName);
+    };
+
+    useEffect(() => {
+      ipcRenderer.on('delete-map-response', (event, response) => {
+        if (response.success) {
+          console.log(response.message);
+          // Refresh the maps list or show a success message
+          ipcRenderer.send('get-maps'); // Fetch updated list
+          // window.location.reload();
+        } else {
+          console.error(response.message);
+          // Show error message
+        }
+      });
+    
+      return () => {
+        ipcRenderer.removeAllListeners('delete-map-response');
+      };
+    }, []);
+  
 
   const handleSlideChange = (newIndex) => {
     setSelectedSlide(newIndex);
@@ -47,7 +104,7 @@ export default function SelectMap() {
 
   const mapDetail = data.mapNameAndAreaForSelectMapPage;
 
-  const selectedMapDetail = mapDetail[selectedSlide] || mapDetail[0];
+  const selectedMapDetail = mapsData[selectedSlide] || mapsData[0];
 
   useEffect(() => {
     if (openModal) {
@@ -61,14 +118,22 @@ export default function SelectMap() {
     };
   }, [openModal]);
 
+  if (images.length === 0) {
+    return <div>Loading...</div>; // Or any other loading indicator you prefer
+  }
+
   return (
     <div className="select_map_main_class">
       <div className="select_map_main_heading">SELECT MAP</div>
       <div className="map_slider">
         <div className="map_name_details">
-          <div className="map_name">{selectedMapDetail.name}</div>
-          <div className="map_details">{selectedMapDetail.area} SQ/M</div>
+          <div className="map_name">{selectedMapDetail?.Name}</div>
+          <div className="map_details">{selectedMapDetail?.Area} SQ/M</div>
         </div>
+        <div className="map-actions">
+        <NavLink style={{backgroundColor:'transparent', border:'solid 1px white', padding:'5px',color:'white',marginRight:'20px'}} to={`/edit_map/${selectedMapDetail?.Name}`} className="edit-map-button">Edit</NavLink>
+        <button style={{backgroundColor:'transparent', border:'solid 1px white', padding:'5px',color:'white',cursor:'pointer'}} onClick={() => handleDeleteMap(selectedMapDetail?.Name)} className="delete-map-button">Delete</button>
+      </div>
         <div className="map_main_container">
           <MapCarousel
             cards={maps}
@@ -97,7 +162,7 @@ export default function SelectMap() {
       </div>
       {openModal && (
         <MapDetailModel
-          mapName={selectedMapDetail.name}
+          mapName={selectedMapDetail.Name}
           onClose={() => setOpenModal(false)}
         />
       )}

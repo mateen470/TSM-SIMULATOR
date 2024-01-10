@@ -3,8 +3,8 @@
   "dropDownOptionsOfSelectInstructor": ["Option 4", "Option 5", "Option 6"],
   "dropDownOptionsOfSelectSeason": ["AUTUMN", "SPRING", "WINTER", "SUMMER"],
   "dropDownOptionsOfSelectDifficulty": ["EASY", "MEDIUM", "DIFFICULT"],
-  "dropDownOptionsOfExcersieTime": ["Option 1", "Option 2", "Option 3"],
-  "dropDownOptionsOfSelectTerrain": ["Option 4", "Option 5", "Option 6"],
+  "dropDownOptionsOfExcersieTime": ["1 minute", "2 minute", "3 minute","4 minute", "5 minute", "10 minute", "20 minute", "30 minute"],
+  "dropDownOptionsOfSelectTerrain": ["sandy", "hilly", "plain"],
   "initialAmmoTitleArray": ["AMMO TYPE :", "APFSDS", "HE", "HEAT", "7.62 (MG)"],
   "mapNameAndAreaForSelectMapPage": [
     { "name": "MUDDY FOREST", "area": 2000 },
@@ -306,23 +306,23 @@
   "videos": [
     {
       "title": "HOW TO START A SIMULATION?",
-      "url": "https://www.youtube.com/embed/video-id-1"
+      "url": "https://www.youtube.com/embed/I3VMWG829XE?si=39DbYvPI-8sAc5Q8"
     },
     {
       "title": "HOW EVALUATION WORKS?",
-      "url": "https://www.youtube.com/embed/video-id-1"
+      "url": "https://www.youtube.com/embed/I3VMWG829XE?si=39DbYvPI-8sAc5Q8"
     },
     {
       "title": "ADVANCED BATTLE PRACTICE?",
-      "url": "https://www.youtube.com/embed/video-id-1"
+      "url": "https://www.youtube.com/embed/I3VMWG829XE?si=39DbYvPI-8sAc5Q8"
     },
     {
       "title": "TSM II OVERVIEW",
-      "url": "https://www.youtube.com/embed/video-id-1"
+      "url": "https://www.youtube.com/embed/I3VMWG829XE?si=39DbYvPI-8sAc5Q8"
     },
     {
       "title": "CREATING A MAP?",
-      "url": "https://www.youtube.com/embed/video-id-1"
+      "url": "https://www.youtube.com/embed/I3VMWG829XE?si=39DbYvPI-8sAc5Q8"
     }
   ],
   "simulationMenuItemArray": [
@@ -431,26 +431,62 @@
       "status": "down"
     },
     {
-      "name": "Game Engine",
+      "name": "Assets Connectivity",
       "status": "operational"
     },
     {
-      "name": "Game Engine",
-      "status": "not connected"
+      "name": "Network",
+      "status": "operational"
+    },
+    {
+      "name": "Communication",
+      "status": "down"
+    },
+    {
+      "name": "Gunner Output",
+      "status": "down"
+    },
+    {
+      "name": "Instructor View",
+      "status": "operational"
+    },
+    {
+      "name": "Gunner Output",
+      "status": "down"
     }
   ],
   "hardwareArray": [
     {
-      "name": "Game",
+      "name": "Electrical Power Diagnostics",
       "status": "down"
     },
     {
-      "name": "Game",
+      "name": "I/O Devices",
       "status": "operational"
     },
     {
-      "name": "Game",
+      "name": "Memory Devices",
+      "status": "operational"
+    },
+    {
+      "name": "Secondary Memory ",
+      "status": "operational"
+    },
+    {
+      "name": "Cpu Throttle",
+      "status": "down"
+    },
+    {
+      "name": "Joystick",
       "status": "not connected"
+    },
+    {
+      "name": "Optical Sight / Night Sight Screens",
+      "status": "down"
+    },
+    {
+      "name": "1 DoF Motion Platform",
+      "status": "down"
     }
   ]
 }

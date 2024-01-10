@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { setMapArea, setExerciseTime, setTerrain } from '../../redux/DataArray';
@@ -8,10 +8,12 @@ import DropDown from '../../utility/DropDown';
 import SelectObjectCarousel from '../../utility/SelectObjectCarousel';
 import GridCanvas from './GridCanvas';
 import data from '../../data.json';
+import { ipcRenderer } from 'electron';
 
 export default function CreateMap() {
   const dispatch = useDispatch();
   const [mapArea, setMapAreas] = useState(50);
+  const [name, setName] = useState('');
 
   const options = data.dropDownOptionsOfExcersieTime;
   const options1 = data.dropDownOptionsOfSelectTerrain;
@@ -26,6 +28,10 @@ export default function CreateMap() {
     setMapAreas(value);
     dispatch(setMapArea(value));
   };
+  const handleNameChange = (value) => {
+   
+    setName(value);
+  };
 
   const handleExerciseTime = (option) => {
     setExerciseTimes(option);
@@ -37,8 +43,33 @@ export default function CreateMap() {
   };
 
   const handleSave = () => {
-    console.log('Save is clicked!', enemy);
+    const mapData = {
+      name,
+      mapArea,
+      exerciseTime,
+      terrain,
+      enemy, // Include the entire enemy object
+      // Add other data if needed
+    };
+  
+    ipcRenderer.send('save-map-data', mapData);
   };
+
+  useEffect(() => {
+    ipcRenderer.on('save-map-data-response', (event, response) => {
+      if (response.success) {
+        console.log(response.message);
+        // Handle success (e.g., show success message)
+      } else {
+        console.error(response.message);
+        // Handle error (e.g., show error message)
+      }
+    });
+  
+    return () => {
+      ipcRenderer.removeAllListeners('save-map-data-response');
+    };
+  }, []);
 
   return (
     <div
@@ -63,6 +94,16 @@ export default function CreateMap() {
       <div className="parameters_create_map_main_container">
         <div className="parameter_create_map_content_section">
           <div className="parameter_heading_create_map">PARAMETERS</div>
+
+              <div
+                className="map_area_main_class"
+              >
+                <span>NAME</span>
+                <input
+                className='select_student_instructot_tab_input_container_input'
+                  onChange={(e) => handleNameChange( e.target.value, true)}
+                />
+              </div>
 
           <div className="map_area_main_class">
             <span>MAP AREA</span>
