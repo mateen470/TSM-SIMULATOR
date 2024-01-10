@@ -66,7 +66,7 @@
           "type": "tank",
           "image": "tank1",
           "status": "dangerous",
-          "name": "ARJUN",
+          "name": "T72",
           "details": [
             { "title": "Qty.", "value": 2 },
             { "title": "Weight", "value": "51 Ton" },
@@ -80,7 +80,7 @@
           "type": "tank",
           "image": "tank2",
           "status": "dangerous",
-          "name": "PANTHER",
+          "name": "AlKhalid",
           "details": [
             { "title": "Qty.", "value": 5 },
             { "title": "Weight", "value": "52 Ton" },
@@ -94,12 +94,12 @@
           "type": "tank",
           "image": "tank2",
           "status": "dangerous",
-          "name": "T-80UD",
+          "name": "AlKhalid",
           "details": [
-            { "title": "Qty.", "value": 3 },
-            { "title": "Weight", "value": "57 Ton" },
-            { "title": "Fire Rate", "value": "21 / minute" },
-            { "title": "Top Speed", "value": "82 / kmh" },
+            { "title": "Qty.", "value": 5 },
+            { "title": "Weight", "value": "52 Ton" },
+            { "title": "Fire Rate", "value": "51 / minute" },
+            { "title": "Top Speed", "value": "62 / kmh" },
             { "title": "Strength", "value": "Very High" },
             { "title": "Endurance", "value": "Very High" }
           ]
@@ -161,10 +161,10 @@
       "title": " BUILDINGS",
       "objects": [
         {
-          "type": "building",
-          "image": "house1",
+          "type": "jhompri",
+          "image": "jhompri",
           "status": "not-dangerous",
-          "name": "DENSE TOWN",
+          "name": "Jhompri",
           "details": [
             { "title": "Buildings.", "value": 6 },
             { "title": "Type", "value": "Urban" },
@@ -175,10 +175,10 @@
           ]
         },
         {
-          "type": "building",
-          "image": "house2",
+          "type": "house",
+          "image": "house",
           "status": "not-dangerous",
-          "name": "FACTORY",
+          "name": "House",
           "details": [
             { "title": "Buildings.", "value": 2 },
             { "title": "Type", "value": "Rural" },
@@ -189,10 +189,122 @@
           ]
         },
         {
-          "type": "building",
-          "image": "house1",
+          "type": "hospital",
+          "image": "hospital",
           "status": "not-dangerous",
-          "name": "DENSE TOWN",
+          "name": "Hospital",
+          "details": [
+            { "title": "Buildings.", "value": 8 },
+            { "title": "Type", "value": "Urban" },
+            { "title": "Area", "value": "2000 sq / m" },
+            { "title": "Roads", "value": "Yes" },
+            { "title": "Category", "value": "Concrete" },
+            { "title": "Big Buildings", "value": 13 }
+          ]
+        },
+        {
+          "type": "railwayStation",
+          "image": "railwayStation",
+          "status": "not-dangerous",
+          "name": "Railway Station",
+          "details": [
+            { "title": "Buildings.", "value": 8 },
+            { "title": "Type", "value": "Urban" },
+            { "title": "Area", "value": "2000 sq / m" },
+            { "title": "Roads", "value": "Yes" },
+            { "title": "Category", "value": "Concrete" },
+            { "title": "Big Buildings", "value": 13 }
+          ]
+        },
+        {
+          "type": "shack",
+          "image": "shack",
+          "status": "not-dangerous",
+          "name": "Shack",
+          "details": [
+            { "title": "Buildings.", "value": 8 },
+            { "title": "Type", "value": "Urban" },
+            { "title": "Area", "value": "2000 sq / m" },
+            { "title": "Roads", "value": "Yes" },
+            { "title": "Category", "value": "Concrete" },
+            { "title": "Big Buildings", "value": 13 }
+          ]
+        },
+        {
+          "type": "shop",
+          "image": "shop",
+          "status": "not-dangerous",
+          "name": "Shop",
+          "details": [
+            { "title": "Buildings.", "value": 8 },
+            { "title": "Type", "value": "Urban" },
+            { "title": "Area", "value": "2000 sq / m" },
+            { "title": "Roads", "value": "Yes" },
+            { "title": "Category", "value": "Concrete" },
+            { "title": "Big Buildings", "value": 13 }
+          ]
+        },
+        {
+          "type": "smallHouse",
+          "image": "smallHouse",
+          "status": "not-dangerous",
+          "name": "Small House",
+          "details": [
+            { "title": "Buildings.", "value": 8 },
+            { "title": "Type", "value": "Urban" },
+            { "title": "Area", "value": "2000 sq / m" },
+            { "title": "Roads", "value": "Yes" },
+            { "title": "Category", "value": "Concrete" },
+            { "title": "Big Buildings", "value": 13 }
+          ]
+        },
+        {
+          "type": "store",
+          "image": "store",
+          "status": "not-dangerous",
+          "name": "Store",
+          "details": [
+            { "title": "Buildings.", "value": 8 },
+            { "title": "Type", "value": "Urban" },
+            { "title": "Area", "value": "2000 sq / m" },
+            { "title": "Roads", "value": "Yes" },
+            { "title": "Category", "value": "Concrete" },
+            { "title": "Big Buildings", "value": 13 }
+          ]
+        },
+        {
+          "type": "villageHut",
+          "image": "villageHut",
+          "status": "not-dangerous",
+          "name": "Village Hut",
+          "details": [
+            { "title": "Buildings.", "value": 8 },
+            { "title": "Type", "value": "Urban" },
+            { "title": "Area", "value": "2000 sq / m" },
+            { "title": "Roads", "value": "Yes" },
+            { "title": "Category", "value": "Concrete" },
+            { "title": "Big Buildings", "value": 13 }
+          ]
+        },
+        {
+          "type": "wareHouse",
+          "image": "wareHouse",
+          "status": "not-dangerous",
+          "name": "WareHouse",
+          "details": [
+            { "title": "Buildings.", "value": 8 },
+            { "title": "Type", "value": "Urban" },
+            { "title": "Area", "value": "2000 sq / m" },
+            { "title": "Roads", "value": "Yes" },
+            { "title": "Category", "value": "Concrete" },
+            { "title": "Big Buildings", "value": 13 }
+          ]
+        },
+        {
+          "type": "waterTankTower",
+          "image": "waterTankTower",
+          "status": "not-dangerous",
+          "name": "Water Tank Tower",
           "details": [
             { "title": "Buildings.", "value": 8 },
             { "title": "Type", "value": "Urban" },
@@ -213,7 +325,7 @@
           "type": "forrest",
           "image": "forest1",
           "status": "not-dangerous",
-          "name": "RAIN FOREST",
+          "name": "TREES",
           "details": [
             { "title": "Trees.", "value": 11 },
             { "title": "Area", "value": "5000 sq / m" },
@@ -224,10 +336,10 @@
           ]
         },
         {
-          "type": "forrest",
-          "image": "forest2",
+          "type": "rocks",
+          "image": "rocks",
           "status": "not-dangerous",
-          "name": "GOLF COURSE",
+          "name": "ROCKS",
           "details": [
             { "title": "Trees.", "value": 12 },
             { "title": "Area", "value": "3000 sq / m" },
@@ -241,7 +353,7 @@
           "type": "forrest",
           "image": "forest1",
           "status": "not-dangerous",
-          "name": "DRY FOREST",
+          "name": "TREES",
           "details": [
             { "title": "Trees.", "value": 13 },
             { "title": "Area", "value": "8000 sq / m" },

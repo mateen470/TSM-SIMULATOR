@@ -5,18 +5,40 @@ import data from '../../data.json';
 import {
   addEnemy,
   addOwnTank,
-  addBuildings,
   updateTotalEnemies,
   updateTotalOwnTanks,
   updateTotalEnemyTanks,
   updateTotalEnemyAPCs,
   deleteEnemy,
   deleteOwnTank,
-  deleteBuilding,
   addEnemyCar,
   setOnlyOneOwnTank,
-  deleteForrest,
-  addForrest,
+  addHouse,
+  addTrees,
+  addShop,
+  addShack,
+  addSmallHouse,
+  addVillageHut,
+  addWareHouse,
+  addWaterTankTower,
+  addHospital,
+  addStore,
+  addJhompri,
+  addRailwayStation,
+  addRocks,
+  deleteHouse,
+  deleteTrees,
+  deleteShop,
+  deleteShack,
+  deleteSmallHouse,
+  deleteVillageHut,
+  deleteWareHouse,
+  deleteWaterTankTower,
+  deleteHospital,
+  deleteStore,
+  deleteRailwayStation,
+  deleteJhompri,
+  deleteRocks,
 } from '../../redux/DataArray';
 import { removeItem } from '../../redux/CarouselSelectedItemSlice';
 import gridTank from '../../TSM-img/gridTank.svg';
@@ -25,11 +47,22 @@ import gridTank3 from '../../TSM-img/gridTank3.svg';
 import gridTruck from '../../TSM-img/gridTruck.svg';
 import gridForrest from '../../TSM-img/gridForrest.svg';
 import gridAPV from '../../TSM-img/gridAPV.svg';
-import gridBuilding from '../../TSM-img/gridBuilding.svg';
 import startSign from '../../TSM-img/gridStopSign.svg';
 import Increment from '../../TSM-img/increment.svg';
 import Decrement from '../../TSM-img/decrement.svg';
 import close from '../../TSM-img/close.svg';
+import rocks from '../../TSM-img/rocks.png';
+import jhompri from '../../TSM-img/Jhompri.png';
+import house from '../../TSM-img/House.png';
+import hospital from '../../TSM-img/Hospital.png';
+import railwayStation from '../../TSM-img/RailwayStation.png';
+import shack from '../../TSM-img/Shack.png';
+import shop from '../../TSM-img/Shop.png';
+import smallHouse from '../../TSM-img/SmallHouse.png';
+import store from '../../TSM-img/Store.png';
+import villageHut from '../../TSM-img/VillageHut.png';
+import wareHouse from '../../TSM-img/WareHouse.png';
+import waterTankTower from '../../TSM-img/WaterTankTower.png';
 
 export default function GridCanvas({ stylingBox }) {
   const gridRef = useRef(null);
@@ -44,12 +77,10 @@ export default function GridCanvas({ stylingBox }) {
   const [selectedObjectId, setSelectedObjectId] = useState(null);
   const [latestTankId, setLatestTankId] = useState(null);
   const [tankAmmos, setTankAmmos] = useState({});
-  const isTankPresent = () =>
-    items.some((item) => item.type === 'tank' || item.type === 'myTank');
 
   const [manuallyClosed, setManuallyClosed] = useState(false);
 
-  const [showInitialAmmo, setShowInitialAmmo] = useState(isTankPresent());
+  const [showInitialAmmo, setShowInitialAmmo] = useState(false);
 
   const initialAmmosTitleArray = data.initialAmmoTitleArray;
 
@@ -341,12 +372,35 @@ export default function GridCanvas({ stylingBox }) {
         } else if (itemToDelete.status === 'own-tank') {
           dispatch(deleteOwnTank(selectedObjectId));
           dispatch(setOnlyOneOwnTank(true));
-        } else if (itemToDelete.type === 'building') {
-          dispatch(deleteBuilding(selectedObjectId));
+        } else if (itemToDelete.type === 'house') {
+          dispatch(deleteHouse(selectedObjectId));
+        } else if (itemToDelete.type === 'jhompri') {
+          dispatch(deleteJhompri(selectedObjectId));
+        } else if (itemToDelete.type === 'hospital') {
+          dispatch(deleteHospital(selectedObjectId));
+        } else if (itemToDelete.type === 'railwayStation') {
+          dispatch(deleteRailwayStation(selectedObjectId));
+        } else if (itemToDelete.type === 'shack') {
+          dispatch(deleteShack(selectedObjectId));
+        } else if (itemToDelete.type === 'shop') {
+          dispatch(deleteShop(selectedObjectId));
+        } else if (itemToDelete.type === 'smallHouse') {
+          dispatch(deleteSmallHouse(selectedObjectId));
+        } else if (itemToDelete.type === 'store') {
+          dispatch(deleteStore(selectedObjectId));
+        } else if (itemToDelete.type === 'villageHut') {
+          dispatch(deleteVillageHut(selectedObjectId));
+        } else if (itemToDelete.type === 'wareHouse') {
+          dispatch(deleteWareHouse(selectedObjectId));
+        } else if (itemToDelete.type === 'waterTankTower') {
+          dispatch(deleteWaterTankTower(selectedObjectId));
         } else if (itemToDelete.type === 'forrest') {
-          dispatch(deleteForrest(selectedObjectId));
+          dispatch(deleteTrees(selectedObjectId));
+        } else if (itemToDelete.type === 'rocks') {
+          dispatch(deleteRocks(selectedObjectId));
         }
       }
+
       const updatedObjectStartPoints = objectStartPoints.filter(
         (point) => point.id !== selectedObjectId,
       );
@@ -393,13 +447,35 @@ export default function GridCanvas({ stylingBox }) {
                 ? gridTank2
                 : selectedItem.type === 'car'
                 ? gridAPV
-                : selectedItem.type === 'building'
-                ? gridBuilding
+                : selectedItem.type === 'jhompri'
+                ? jhompri
                 : selectedItem.type === 'forrest'
                 ? gridForrest
                 : selectedItem.type === 'myTank'
                 ? gridTank3
-                : gridTruck,
+                : selectedItem.type === 'house'
+                ? house
+                : selectedItem.type === 'hospital'
+                ? hospital
+                : selectedItem.type === 'railwayStation'
+                ? railwayStation
+                : selectedItem.type === 'shack'
+                ? shack
+                : selectedItem.type === 'shop'
+                ? shop
+                : selectedItem.type === 'smallHouse'
+                ? smallHouse
+                : selectedItem.type === 'store'
+                ? store
+                : selectedItem.type === 'villageHut'
+                ? villageHut
+                : selectedItem.type === 'wareHouse'
+                ? wareHouse
+                : selectedItem.type === 'waterTankTower'
+                ? waterTankTower
+                : selectedItem.type === 'rocks'
+                ? rocks
+                : waterTankTower,
           };
         });
 
@@ -500,21 +576,94 @@ export default function GridCanvas({ stylingBox }) {
             spawning_point: point.startPoint,
           }),
         );
-      } else if (point.item.type === 'building') {
+      } else if (point.item.type === 'house') {
         dispatch(
-          addBuildings({
+          addHouse({
             unitId: point.id,
-            objectName: point.item.name,
-            path: point.path,
+            spawning_point: point.startPoint,
+          }),
+        );
+      } else if (point.item.type === 'jhompri') {
+        dispatch(
+          addJhompri({
+            unitId: point.id,
+            spawning_point: point.startPoint,
+          }),
+        );
+      } else if (point.item.type === 'hospital') {
+        dispatch(
+          addHospital({
+            unitId: point.id,
+            spawning_point: point.startPoint,
+          }),
+        );
+      } else if (point.item.type === 'railwayStation') {
+        dispatch(
+          addRailwayStation({
+            unitId: point.id,
+            spawning_point: point.startPoint,
+          }),
+        );
+      } else if (point.item.type === 'shack') {
+        dispatch(
+          addShack({
+            unitId: point.id,
+            spawning_point: point.startPoint,
+          }),
+        );
+      } else if (point.item.type === 'shop') {
+        dispatch(
+          addShop({
+            unitId: point.id,
+            spawning_point: point.startPoint,
+          }),
+        );
+      } else if (point.item.type === 'smallHouse') {
+        dispatch(
+          addSmallHouse({
+            unitId: point.id,
+            spawning_point: point.startPoint,
+          }),
+        );
+      } else if (point.item.type === 'store') {
+        dispatch(
+          addStore({
+            unitId: point.id,
+            spawning_point: point.startPoint,
+          }),
+        );
+      } else if (point.item.type === 'villageHut') {
+        dispatch(
+          addVillageHut({
+            unitId: point.id,
+            spawning_point: point.startPoint,
+          }),
+        );
+      } else if (point.item.type === 'wareHouse') {
+        dispatch(
+          addWareHouse({
+            unitId: point.id,
+            spawning_point: point.startPoint,
+          }),
+        );
+      } else if (point.item.type === 'waterTankTower') {
+        dispatch(
+          addWaterTankTower({
+            unitId: point.id,
+            spawning_point: point.startPoint,
+          }),
+        );
+      } else if (point.item.type === 'rocks') {
+        dispatch(
+          addRocks({
+            unitId: point.id,
             spawning_point: point.startPoint,
           }),
         );
       } else if (point.item.type === 'forrest') {
         dispatch(
-          addForrest({
+          addTrees({
             unitId: point.id,
-            objectName: point.item.name,
-            path: point.path,
             spawning_point: point.startPoint,
           }),
         );
@@ -640,7 +789,8 @@ export default function GridCanvas({ stylingBox }) {
                       width: '50px',
                       height: '50px',
                       cursor: 'pointer',
-                      backgroundSize: 'cover',
+                      backgroundSize: 'contain',
+                      backgroundRepeat: 'no-repeat',
                     }}
                   />
                   {objectStartPoints.find((point) => point.id === item.id) && (

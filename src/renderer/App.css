@@ -831,6 +831,11 @@ input[type='number'] {
   width: 400px;
   height: 100%;
 }
+.carousel_image_building img {
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+}
 .selected_object_details {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.9);
@@ -838,7 +843,7 @@ input[type='number'] {
   border-radius: 10px;
   width: 60%;
   height: 27vh;
-  top: 3rem;
+  top: 5rem;
   right: -20rem;
   padding: 1rem 2rem;
   overflow: hidden;

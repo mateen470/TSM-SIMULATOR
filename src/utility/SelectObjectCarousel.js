@@ -7,11 +7,20 @@ import '../renderer/App.css';
 import tank1 from '../TSM-img/tank1.svg';
 import tank2 from '../TSM-img/tank2.svg';
 import forest1 from '../TSM-img/forest1.svg';
-import forest2 from '../TSM-img/forest2.svg';
+import rocks from '../TSM-img/rocks.png';
 import car1 from '../TSM-img/car1.svg';
 import car2 from '../TSM-img/car2.svg';
-import house1 from '../TSM-img/house1.svg';
-import house2 from '../TSM-img/house2.svg';
+import jhompri from '../TSM-img/Jhompri.png';
+import house from '../TSM-img/House.png';
+import hospital from '../TSM-img/Hospital.png';
+import railwayStation from '../TSM-img/RailwayStation.png';
+import shack from '../TSM-img/Shack.png';
+import shop from '../TSM-img/Shop.png';
+import smallHouse from '../TSM-img/SmallHouse.png';
+import store from '../TSM-img/Store.png';
+import villageHut from '../TSM-img/VillageHut.png';
+import wareHouse from '../TSM-img/WareHouse.png';
+import waterTankTower from '../TSM-img/WaterTankTower.png';
 import data from '../data.json';
 import { setOnlyOneOwnTank } from '../redux/DataArray';
 
@@ -71,10 +80,19 @@ export default function SelectObjectCarousel({ carouselObjectType }) {
     tank2: tank2,
     car1: car1,
     car2: car2,
-    house1: house1,
-    house2: house2,
     forest1: forest1,
-    forest2: forest2,
+    rocks: rocks,
+    jhompri: jhompri,
+    house: house,
+    hospital: hospital,
+    railwayStation: railwayStation,
+    shack: shack,
+    shop: shop,
+    smallHouse: smallHouse,
+    store: store,
+    villageHut: villageHut,
+    wareHouse: wareHouse,
+    waterTankTower: waterTankTower,
   };
 
   const getImage = (imageName) => imageMap[imageName];
@@ -101,7 +119,11 @@ export default function SelectObjectCarousel({ carouselObjectType }) {
     key: index,
     content: (
       <animated.div
-        className="carousel_image"
+        className={
+          carouselObjectType === 3
+            ? 'carousel_image_building'
+            : 'carousel_image'
+        }
         style={props3}
         onMouseEnter={() => setShown(true)}
         onMouseLeave={() => setShown(false)}
