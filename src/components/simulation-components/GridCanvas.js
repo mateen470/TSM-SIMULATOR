@@ -29,6 +29,7 @@ import gridBuilding from '../../TSM-img/gridBuilding.svg';
 import startSign from '../../TSM-img/gridStopSign.svg';
 import Increment from '../../TSM-img/increment.svg';
 import Decrement from '../../TSM-img/decrement.svg';
+import close from '../../TSM-img/close.svg';
 
 export default function GridCanvas({ stylingBox }) {
   const gridRef = useRef(null);
@@ -45,6 +46,8 @@ export default function GridCanvas({ stylingBox }) {
   const [tankAmmos, setTankAmmos] = useState({});
   const isTankPresent = () =>
     items.some((item) => item.type === 'tank' || item.type === 'myTank');
+
+  const [manuallyClosed, setManuallyClosed] = useState(false);
 
   const [showInitialAmmo, setShowInitialAmmo] = useState(isTankPresent());
 
@@ -369,9 +372,14 @@ export default function GridCanvas({ stylingBox }) {
 
   useEffect(() => {
     if (selectedItems.length > items.length) {
+      let addedTank = false;
+
       const newItems = selectedItems
         .slice(items.length)
         .map((selectedItem, index) => {
+          if (selectedItem.type === 'tank' || selectedItem.type === 'myTank') {
+            addedTank = true;
+          }
           return {
             id: selectedItem.id || Date.now() + index,
             name: selectedItem.name,
@@ -398,8 +406,11 @@ export default function GridCanvas({ stylingBox }) {
       if (newItems.length > 0) {
         setItems((prevItems) => [...prevItems, ...newItems]);
       }
+      if (addedTank) {
+        setManuallyClosed(false);
+      }
+      console.log('object', objectStartPoints);
     }
-    console.log('object', objectStartPoints);
   }, [selectedItems]);
 
   const drawPath = (path) => {
@@ -423,13 +434,14 @@ export default function GridCanvas({ stylingBox }) {
     (item) => item.status === 'dangerous' && item.type === 'car',
   ).length;
 
-  // const closeInitialAmmo = () => {
-  //   setShowInitialAmmo(false);
-  //   setApfsdsAmmo(0);
-  //   setHeAmmo(0);
-  //   setHeatAmmo(0);
-  //   setMg762Ammo(0);
-  // };
+  const closeInitialAmmo = () => {
+    setShowInitialAmmo(false);
+    setManuallyClosed(true);
+    setApfsdsAmmo(0);
+    setHeAmmo(0);
+    setHeatAmmo(0);
+    setMg762Ammo(0);
+  };
 
   useEffect(() => {
     dispatch(
@@ -521,8 +533,11 @@ export default function GridCanvas({ stylingBox }) {
   }, [selectedItems]);
 
   useEffect(() => {
-    setShowInitialAmmo(isTankPresent());
-  }, [items]);
+    const hasTanks = items.some(
+      (item) => item.type === 'tank' || item.type === 'myTank',
+    );
+    setShowInitialAmmo(hasTanks && !manuallyClosed);
+  }, [items, manuallyClosed]);
 
   return (
     <div>
@@ -673,6 +688,13 @@ export default function GridCanvas({ stylingBox }) {
             <div className="initial_ammo_main_container">
               <div className="initial_ammo_heading">INITIAL AMMO</div>
               <div className="initial_ammo_main_content_container">
+                <div
+                  className="initial_ammo_close_button"
+                  onClick={closeInitialAmmo}
+                >
+                  <img src={close} alt="close" />
+                </div>
+
                 <div className="initial_ammo_title">
                   {initialAmmosTitleArray.map((value, index) => {
                     return (

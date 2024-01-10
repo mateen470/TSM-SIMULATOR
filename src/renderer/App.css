@@ -536,7 +536,7 @@ input[type='number'] {
   width: 62.3%;
   height: 80vh;
   overflow-y: auto;
-  padding: 3rem;
+  padding: 3rem 3rem 1rem 3rem;
 }
 .verify_main_heading {
   text-align: center;
@@ -595,12 +595,12 @@ input[type='number'] {
   padding: 0rem 2rem;
 }
 .verify_note {
-  height: 100px;
+  height: 80px;
   background-color: #e2d6ce;
   border-left: 15px solid #fa703f;
   border-radius: 10px;
-  margin: 2rem;
-  padding: 0.5rem 1rem;
+  margin: 2rem 0rem;
+  padding: 0.2rem 1rem;
 }
 .note_heading {
   font-size: 2rem;
@@ -686,6 +686,16 @@ input[type='number'] {
   align-items: center;
   justify-content: space-evenly;
   margin-bottom: 1rem;
+}
+.initial_ammo_close_button {
+  cursor: pointer;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+}
+.initial_ammo_close_button img {
+  height: 32px;
+  width: 32px;
 }
 .initial_ammo_title > div {
   width: 170px;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { setMapArea, setExerciseTime, setTerrain } from '../../redux/DataArray';
 import mainMenu from '../../TSM-img/main_menu.svg';
@@ -15,6 +15,8 @@ export default function CreateMap() {
 
   const options = data.dropDownOptionsOfExcersieTime;
   const options1 = data.dropDownOptionsOfSelectTerrain;
+
+  const enemy = useSelector((state) => state.dataArray.Enemy);
 
   const [exerciseTime, setExerciseTimes] = useState(options[0]);
   const [terrain, setTerain] = useState(options1[0]);
@@ -35,7 +37,7 @@ export default function CreateMap() {
   };
 
   const handleSave = () => {
-    console.log('Save is clicked!');
+    console.log('Save is clicked!', enemy);
   };
 
   return (
