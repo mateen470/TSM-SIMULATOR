@@ -29,9 +29,7 @@ export default function SelectObjectCarousel({ carouselObjectType }) {
 
   const onlyOneOwnTank = useSelector((state) => state.dataArray.onlyOneOwnTank);
 
-  const ownTanksArray = useSelector(
-    (state) => state.dataArray.mapData.ownTanks,
-  );
+  const ownTanksArray = useSelector((state) => state.dataArray.Player);
 
   const props3 = useSpring({
     transform: show ? 'scale(1.03)' : 'scale(1)',
@@ -81,7 +79,7 @@ export default function SelectObjectCarousel({ carouselObjectType }) {
 
   const getImage = (imageName) => imageMap[imageName];
 
-  const ownTanksCount = ownTanksArray.length;
+  const ownTanksCount = Object.keys(ownTanksArray).length;
 
   const handleDispatchItem = () => {
     const selectedItem = chosenArray[0]?.objects[selectedSlide];

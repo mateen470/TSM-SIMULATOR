@@ -423,13 +423,13 @@ export default function GridCanvas({ stylingBox }) {
     (item) => item.status === 'dangerous' && item.type === 'car',
   ).length;
 
-  const closeInitialAmmo = () => {
-    setShowInitialAmmo(false);
-    setApfsdsAmmo(0);
-    setHeAmmo(0);
-    setHeatAmmo(0);
-    setMg762Ammo(0);
-  };
+  // const closeInitialAmmo = () => {
+  //   setShowInitialAmmo(false);
+  //   setApfsdsAmmo(0);
+  //   setHeAmmo(0);
+  //   setHeatAmmo(0);
+  //   setMg762Ammo(0);
+  // };
 
   useEffect(() => {
     dispatch(
@@ -671,9 +671,7 @@ export default function GridCanvas({ stylingBox }) {
         >
           <div className="initial_ammo_main_class">
             <div className="initial_ammo_main_container">
-              <div className="initial_ammo_heading" onClick={closeInitialAmmo}>
-                INITIAL AMMO
-              </div>
+              <div className="initial_ammo_heading">INITIAL AMMO</div>
               <div className="initial_ammo_main_content_container">
                 <div className="initial_ammo_title">
                   {initialAmmosTitleArray.map((value, index) => {

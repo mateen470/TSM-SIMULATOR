@@ -3,32 +3,30 @@ import { createSlice } from '@reduxjs/toolkit';
 export const DataArraySlice = createSlice({
   name: 'dataArray',
   initialState: {
-    student: '',
-    instructor: '',
-    difficulty: '',
     onlyOneOwnTank: false,
+    ExerciseInfo: {
+      mapArea: 0,
+      exerciseTime: '',
+      terrain: '',
+      totalEnemyTanks: 0,
+      totalEnemyAPCs: 0,
+      student: '',
+      instructor: '',
+      difficulty: '',
+    },
     WeatherConditions: {
       weather: '',
       temperature: 0,
-      windSpeed: 0,
-      windDirection: 0,
+      WindSpeed: 0,
+      WindDirection: 0,
     },
-    parameters: {
-      mapArea: 50,
-      exerciseTime: '',
-      terrain: '',
-    },
-    mapData: {
-      totalOwnTanks: 0,
-      totalEnemies: 0,
-      totalEnemyTanks: 0,
-      totalEnemyAPCs: 0,
-      ownTanks: [],
-      Enemy: [],
-      Items: {
-        Warehouse: [],
-        tree: [],
-      },
+    totalOwnTanks: 0,
+    totalEnemies: 0,
+    Player: {},
+    Enemy: {},
+    Items: {
+      House: {},
+      Tree: {},
     },
   },
   reducers: {
@@ -36,10 +34,10 @@ export const DataArraySlice = createSlice({
       state.onlyOneOwnTank = action.payload;
     },
     setStudent: (state, action) => {
-      state.student = action.payload;
+      state.ExerciseInfo.student = action.payload;
     },
     setInstructor: (state, action) => {
-      state.instructor = action.payload;
+      state.ExerciseInfo.instructor = action.payload;
     },
     setWeather: (state, action) => {
       state.WeatherConditions.weather = action.payload;
@@ -48,242 +46,263 @@ export const DataArraySlice = createSlice({
       state.WeatherConditions.temperature = action.payload;
     },
     setWindSpeed: (state, action) => {
-      state.WeatherConditions.windSpeed = action.payload;
+      state.WeatherConditions.WindSpeed = action.payload;
     },
     setWindDirection: (state, action) => {
-      state.WeatherConditions.windDirection = action.payload;
+      state.WeatherConditions.WindDirection = action.payload;
     },
     setDifficulty: (state, action) => {
-      state.difficulty = action.payload;
+      state.ExerciseInfo.difficulty = action.payload;
     },
     setMapArea: (state, action) => {
-      state.parameters.mapArea = action.payload;
+      state.ExerciseInfo.mapArea = action.payload;
     },
     setExerciseTime: (state, action) => {
-      state.parameters.exerciseTime = action.payload;
+      state.ExerciseInfo.exerciseTime = action.payload;
     },
     setTerrain: (state, action) => {
-      state.parameters.terrain = action.payload;
+      state.ExerciseInfo.terrain = action.payload;
     },
     addEnemy: (state, action) => {
       const { enemyName, path, unitId, initialAmmo, spawning_point } =
         action.payload;
-      let existingEnemy = state.mapData.Enemy.find((e) => e.name === enemyName);
 
-      if (!existingEnemy) {
-        existingEnemy = {
-          name: enemyName,
-          [unitId]: {
-            ammo: initialAmmo,
-            path: path.map((point) => ({
-              pointx: point.x,
-              pointy: point.y,
-            })),
-            spawning_point: {
-              pointx: spawning_point.x,
-              pointy: spawning_point.y,
-            },
-          },
+      if (!state.Enemy[enemyName]) {
+        state.Enemy[enemyName] = [];
+      }
+
+      const enemyIndex = state.Enemy[enemyName].findIndex(
+        (enemy) => enemy.unitId === unitId,
+      );
+
+      if (enemyIndex !== -1) {
+        state.Enemy[enemyName][enemyIndex].Path = path.map((point) => ({
+          pointx: point.x,
+          pointy: point.y,
+        }));
+        state.Enemy[enemyName][enemyIndex].Ammo = {
+          Heat: initialAmmo.heat,
+          APFSDS: initialAmmo.apfsds,
+          HE: initialAmmo.he,
+          MG: initialAmmo.mg762,
         };
-        state.mapData.Enemy.push(existingEnemy);
       } else {
-        existingEnemy[unitId] = {
-          ammo: initialAmmo,
-          path: path.map((point) => ({
-            pointx: point.x,
-            pointy: point.y,
-          })),
-          spawning_point: {
+        const newEnemy = {
+          unitId: unitId,
+          Ammo: {
+            Heat: initialAmmo.heat,
+            APFSDS: initialAmmo.apfsds,
+            HE: initialAmmo.he,
+            MG: initialAmmo.mg762,
+          },
+          SpawnLocation: {
             pointx: spawning_point.x,
             pointy: spawning_point.y,
           },
+          Path: path.map((point) => ({
+            pointx: point.x,
+            pointy: point.y,
+          })),
         };
+
+        state.Enemy[enemyName].push(newEnemy);
       }
     },
     addEnemyCar: (state, action) => {
       const { enemyName, path, unitId, spawning_point } = action.payload;
-      let existingEnemy = state.mapData.Enemy.find((e) => e.name === enemyName);
 
-      if (!existingEnemy) {
-        existingEnemy = {
-          name: enemyName,
-          [unitId]: {
-            path: path.map((point) => ({
-              pointx: point.x,
-              pointy: point.y,
-            })),
-            spawning_point: {
-              pointx: spawning_point.x,
-              pointy: spawning_point.y,
-            },
-          },
-        };
-        state.mapData.Enemy.push(existingEnemy);
+      if (!state.Enemy[enemyName]) {
+        state.Enemy[enemyName] = [];
+      }
+
+      const enemyIndex = state.Enemy[enemyName].findIndex(
+        (enemy) => enemy.unitId === unitId,
+      );
+
+      if (enemyIndex !== -1) {
+        state.Enemy[enemyName][enemyIndex].Path = path.map((point) => ({
+          pointx: point.x,
+          pointy: point.y,
+        }));
       } else {
-        existingEnemy[unitId] = {
-          path: path.map((point) => ({
-            pointx: point.x,
-            pointy: point.y,
-          })),
-          spawning_point: {
+        const newEnemy = {
+          unitId: unitId,
+          SpawnLocation: {
             pointx: spawning_point.x,
             pointy: spawning_point.y,
           },
+          Path: path.map((point) => ({
+            pointx: point.x,
+            pointy: point.y,
+          })),
         };
+
+        state.Enemy[enemyName].push(newEnemy);
       }
     },
     addOwnTank: (state, action) => {
       const { tankName, path, unitId, initialAmmo, spawning_point } =
         action.payload;
-      let existingOwnTanks = state.mapData.ownTanks.find(
-        (e) => e.name === tankName,
+
+      if (!state.Player[tankName]) {
+        state.Player[tankName] = [];
+      }
+
+      const tankIndex = state.Player[tankName].findIndex(
+        (tank) => tank.unitId === unitId,
       );
 
-      if (!existingOwnTanks) {
-        existingOwnTanks = {
-          name: tankName,
-          paths: {},
-          initialAmmo: {},
-          spawning_point: {
+      if (tankIndex !== -1) {
+        state.Player[tankName][tankIndex].Path = path.map((point) => ({
+          pointx: point.x,
+          pointy: point.y,
+        }));
+        state.Player[tankName][tankIndex].Ammo = {
+          Heat: initialAmmo.heat,
+          APFSDS: initialAmmo.apfsds,
+          HE: initialAmmo.he,
+          MG: initialAmmo.mg762,
+        };
+      } else {
+        const newTank = {
+          unitId: unitId,
+          Ammo: {
+            Heat: initialAmmo.heat,
+            APFSDS: initialAmmo.apfsds,
+            HE: initialAmmo.he,
+            MG: initialAmmo.mg762,
+          },
+          SpawnLocation: {
             pointx: spawning_point.x,
             pointy: spawning_point.y,
           },
-        };
-        state.mapData.ownTanks.push(existingOwnTanks);
-      }
-      if (!existingOwnTanks.paths[unitId]) {
-        existingOwnTanks.paths[unitId] = [];
-      }
-      existingOwnTanks.paths[unitId] = path.map((point) => ({
-        pointx: point.x,
-        pointy: point.y,
-      }));
-      existingOwnTanks.initialAmmo[unitId] = initialAmmo;
-    },
-    addBuildings: (state, action) => {
-      const { objectName, path, unitId, spawning_point } = action.payload;
-      let existingObject = state.mapData.Items.Warehouse.find(
-        (e) => e.name === objectName,
-      );
-
-      if (!existingObject) {
-        existingObject = {
-          name: objectName,
-          [unitId]: {
-            path: path.map((point) => ({
-              pointx: point.x,
-              pointy: point.y,
-            })),
-            spawning_point: {
-              pointx: spawning_point.x,
-              pointy: spawning_point.y,
-            },
-          },
-        };
-        state.mapData.Items.Warehouse.push(existingObject);
-      } else {
-        existingObject[unitId] = {
-          path: path.map((point) => ({
+          Path: path.map((point) => ({
             pointx: point.x,
             pointy: point.y,
           })),
-          spawning_point: {
+        };
+
+        state.Player[tankName].push(newTank);
+      }
+    },
+    addBuildings: (state, action) => {
+      const { objectName, path, unitId, spawning_point } = action.payload;
+
+      if (!state.Items.House[objectName]) {
+        state.Items.House[objectName] = [];
+      }
+
+      const houseIndex = state.Items.House[objectName].findIndex(
+        (house) => house.unitId === unitId,
+      );
+
+      if (houseIndex !== -1) {
+        state.Items.House[objectName][houseIndex].Path = path.map((point) => ({
+          pointx: point.x,
+          pointy: point.y,
+        }));
+      } else {
+        const newHouse = {
+          unitId: unitId,
+          SpawnLocation: {
             pointx: spawning_point.x,
             pointy: spawning_point.y,
           },
+          Path: path.map((point) => ({
+            pointx: point.x,
+            pointy: point.y,
+          })),
         };
+
+        state.Items.House[objectName].push(newHouse);
       }
     },
     addForrest: (state, action) => {
       const { objectName, path, unitId, spawning_point } = action.payload;
-      let existingObject = state.mapData.Items.tree.find(
-        (e) => e.name === objectName,
+
+      if (!state.Items.Tree[objectName]) {
+        state.Items.Tree[objectName] = [];
+      }
+
+      const treeIndex = state.Items.Tree[objectName].findIndex(
+        (tree) => tree.unitId === unitId,
       );
 
-      if (!existingObject) {
-        existingObject = {
-          name: objectName,
-          [unitId]: {
-            path: path.map((point) => ({
-              pointx: point.x,
-              pointy: point.y,
-            })),
-            spawning_point: {
-              pointx: spawning_point.x,
-              pointy: spawning_point.y,
-            },
-          },
-        };
-        state.mapData.Items.tree.push(existingObject);
+      if (treeIndex !== -1) {
+        state.Items.Tree[objectName][treeIndex].Path = path.map((point) => ({
+          pointx: point.x,
+          pointy: point.y,
+        }));
       } else {
-        existingObject[unitId] = {
-          path: path.map((point) => ({
-            pointx: point.x,
-            pointy: point.y,
-          })),
-          spawning_point: {
+        const newTree = {
+          unitId: unitId,
+          SpawnLocation: {
             pointx: spawning_point.x,
             pointy: spawning_point.y,
           },
+          Path: path.map((point) => ({
+            pointx: point.x,
+            pointy: point.y,
+          })),
         };
+
+        state.Items.Tree[objectName].push(newTree);
       }
     },
     updateTotalEnemies: (state, action) => {
-      state.mapData.totalEnemies = action.payload;
+      state.totalEnemies = action.payload;
     },
     updateTotalOwnTanks: (state, action) => {
-      state.mapData.totalOwnTanks = action.payload;
+      state.totalOwnTanks = action.payload;
     },
     updateTotalEnemyTanks: (state, action) => {
-      state.mapData.totalEnemyTanks = action.payload;
+      state.ExerciseInfo.totalEnemyTanks = action.payload;
     },
     updateTotalEnemyAPCs: (state, action) => {
-      state.mapData.totalEnemyAPCs = action.payload;
+      state.ExerciseInfo.totalEnemyAPCs = action.payload;
     },
     deleteEnemy: (state, action) => {
       const unitId = action.payload;
-
-      state.mapData.Enemy.forEach((enemy) => {
-        if (enemy.units) {
-          delete enemy.units[unitId];
+      Object.keys(state.Enemy).forEach((enemyName) => {
+        state.Enemy[enemyName] = state.Enemy[enemyName].filter(
+          (enemy) => enemy.unitId !== unitId,
+        );
+        if (state.Enemy[enemyName].length === 0) {
+          delete state.Enemy[enemyName];
         }
       });
-
-      state.mapData.Enemy = state.mapData.Enemy.filter((enemy) => {
-        return enemy.units && Object.keys(enemy.units).length !== 0;
-      });
     },
-
     deleteOwnTank: (state, action) => {
       const unitId = action.payload;
-      state.mapData.ownTanks = state.mapData.ownTanks.filter(
-        (tank) => !tank.paths[unitId],
-      );
+      Object.keys(state.Player).forEach((tankName) => {
+        state.Player[tankName] = state.Player[tankName].filter(
+          (tank) => tank.unitId !== unitId,
+        );
+        if (state.Player[tankName].length === 0) {
+          delete state.Player[tankName];
+        }
+      });
     },
     deleteBuilding: (state, action) => {
       const unitId = action.payload;
-      state.mapData.Items.Warehouse.forEach((object) => {
-        if (object.units) {
-          delete object.units[unitId];
+      Object.keys(state.Items.House).forEach((objectName) => {
+        state.Items.House[objectName] = state.Items.House[objectName].filter(
+          (object) => object.unitId !== unitId,
+        );
+        if (state.Items.House[objectName].length === 0) {
+          delete state.Items.House[objectName];
         }
       });
-
-      state.mapData.Items.Warehouse = state.mapData.Items.Warehouse.filter(
-        (object) => {
-          return object.units && Object.keys(object.units).length !== 0;
-        },
-      );
     },
     deleteForrest: (state, action) => {
       const unitId = action.payload;
-      state.mapData.Items.tree.forEach((object) => {
-        if (object.units) {
-          delete object.units[unitId];
+      Object.keys(state.Items.Tree).forEach((objectName) => {
+        state.Items.Tree[objectName] = state.Items.Tree[objectName].filter(
+          (object) => object.unitId !== unitId,
+        );
+        if (state.Items.Tree[objectName].length === 0) {
+          delete state.Items.Tree[objectName];
         }
-      });
-
-      state.mapData.Items.tree = state.mapData.Items.tree.filter((object) => {
-        return object.units && Object.keys(object.units).length !== 0;
       });
     },
   },

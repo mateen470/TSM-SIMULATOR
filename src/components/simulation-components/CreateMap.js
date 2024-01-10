@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { setMapArea, setExerciseTime, setTerrain } from '../../redux/DataArray';
 import mainMenu from '../../TSM-img/main_menu.svg';
@@ -19,9 +19,6 @@ export default function CreateMap() {
   const [exerciseTime, setExerciseTimes] = useState(options[0]);
   const [terrain, setTerain] = useState(options1[0]);
 
-  const parameters = useSelector((state) => state.dataArray.parameters);
-  const mapData = useSelector((state) => state.dataArray.mapData);
-
   const handleMapAreaChange = (event) => {
     const value = Number(event.target.value);
     setMapAreas(value);
@@ -38,8 +35,7 @@ export default function CreateMap() {
   };
 
   const handleSave = () => {
-    console.log('Parameters: ', parameters);
-    console.log('Map Data: ', mapData);
+    console.log('Save is clicked!');
   };
 
   return (
