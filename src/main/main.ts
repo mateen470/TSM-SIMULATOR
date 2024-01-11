@@ -70,11 +70,6 @@ ipcMain.on('save-json', (event, args) => {
 ipcMain.on('add-student', async (event, studentData) => {
   const { student, pNo, rank, unit } = studentData;
 
-  // Validation to ensure no field is empty
-  if (!student || !pNo || !rank || !unit) {
-    event.reply('add-student-response', { success: false, message: 'All fields are required.' });
-    return;
-  }
 
   const insertQuery = `INSERT INTO students (Name, PA_No, rank, unit) VALUES (?, ?, ?, ?)`;
   
@@ -93,11 +88,6 @@ ipcMain.on('add-student', async (event, studentData) => {
 ipcMain.on('add-instructor', async (event, instructorData) => {
   const { instructor, pNo, rank, unit } = instructorData;
 
-  // Validation to ensure no field is empty
-  if (!instructor || !pNo || !rank || !unit) {
-    event.reply('add-instructor-response', { success: false, message: 'All fields are required.' });
-    return;
-  }
 
   const insertQuery = `INSERT INTO instructors (Name, PA_No, rank, unit) VALUES (?, ?, ?, ?)`;
 

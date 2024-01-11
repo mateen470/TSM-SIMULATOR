@@ -44,6 +44,9 @@ export default function GridCanvas({ stylingBox }) {
   const [selectedObjectId, setSelectedObjectId] = useState(null);
   const [latestTankId, setLatestTankId] = useState(null);
   const [tankAmmos, setTankAmmos] = useState({});
+  const [xcoord,setXcoord]= useState(null);
+  const [ycoord,setYcoord]= useState(null);
+
   const isTankPresent = () =>
     items.some((item) => item.type === 'tank' || item.type === 'myTank');
 
@@ -53,10 +56,10 @@ export default function GridCanvas({ stylingBox }) {
 
   const initialAmmosTitleArray = data.initialAmmoTitleArray;
 
-  const [apfsds, setApfsdsAmmo] = useState(0);
-  const [he, setHeAmmo] = useState(0);
-  const [heat, setHeatAmmo] = useState(0);
-  const [mg762, setMg762Ammo] = useState(0);
+  const [apfsds, setApfsdsAmmo] = useState(40);
+  const [he, setHeAmmo] = useState(40);
+  const [heat, setHeatAmmo] = useState(40);
+  const [mg762, setMg762Ammo] = useState(1000);
 
   const handleAmmoChange = (tankId, ammoType, value) => {
     setTankAmmos((prevAmmos) => ({
@@ -141,15 +144,15 @@ export default function GridCanvas({ stylingBox }) {
     const gridSize = 10000;
     return `repeating-linear-gradient(
               to right,
-              lightgrey,
-              lightgrey 1px,
+              white,
+              white 1px,
               transparent 1px,
               transparent ${gridSize}px
             ),
             repeating-linear-gradient(
               to bottom,
-              lightgrey,
-              lightgrey 1px,
+              white,
+              white 1px,
               transparent 1px,
               transparent ${gridSize}px
             )`;
@@ -541,6 +544,21 @@ export default function GridCanvas({ stylingBox }) {
 
   return (
     <div>
+      <div style={{
+         backgroundColor: 'rgba(0, 0, 0, 0.4)', // Dark black with 40% transparency
+         color: 'white', // Text color
+         padding: '10px', // Padding around the text
+         display: 'flex', // Makes the div horizontal
+         justifyContent: 'space-around', // Spacing around items
+         alignItems: 'center', // Center items vertically
+         borderRadius: '5px', // Optional: round corners
+
+      }}>
+            <div>x: 31</div>
+            <div>y: 32</div>
+            <div>Scale: {zoom} </div>
+            <div>1 square = 100m</div>
+        </div>
       <div
         className="grid_canvas_main_container"
         style={{

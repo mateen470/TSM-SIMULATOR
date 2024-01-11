@@ -4,12 +4,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from '../redux/CarouselSelectedItemSlice';
 import MapCarousel from '../components/simulation-components/MapCarousel';
 import '../renderer/App.css';
-import tank1 from '../TSM-img/tank1.svg';
-import tank2 from '../TSM-img/tank2.svg';
+import tank1 from '../TSM-img/tank1.png';
+import tank2 from '../TSM-img/tank2.png';
+import tank3 from '../TSM-img/tank3.png';
+import tank4 from '../TSM-img/T59.png';
+import tank5 from '../TSM-img/T80.png';
+import tank6 from '../TSM-img/T72.png';
+import tank7 from '../TSM-img/T55.png';
 import forest1 from '../TSM-img/forest1.svg';
 import forest2 from '../TSM-img/forest2.svg';
 import car1 from '../TSM-img/car1.svg';
-import car2 from '../TSM-img/car2.svg';
+import car2 from '../TSM-img/BMP1.png';
+import car3 from '../TSM-img/BMP2.png';
+import car4 from '../TSM-img/BRDM.png';
 import house1 from '../TSM-img/house1.svg';
 import house2 from '../TSM-img/house2.svg';
 import data from '../data.json';
@@ -69,8 +76,15 @@ export default function SelectObjectCarousel({ carouselObjectType }) {
   const imageMap = {
     tank1: tank1,
     tank2: tank2,
+    tank3: tank3,
+    tank4: tank4,
+    tank5: tank5,
+    tank6: tank6,
+    tank7: tank7,
     car1: car1,
     car2: car2,
+    car3: car3,
+    car4: car4,
     house1: house1,
     house2: house2,
     forest1: forest1,

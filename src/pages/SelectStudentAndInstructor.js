@@ -53,9 +53,11 @@ export default function SelectStudentAndInstructor() {
   useEffect(() => {
     ipcRenderer.on('add-instructor-response', (event, response) => {
       if (response.success) {
+        console.log(response.message);
         notify(response.message);
         // Additional logic on success (e.g., showing a success message)
       } else {
+        console.log(response.message);
         notify(response.message);
         // Handle error (e.g., showing an error message)
       }
@@ -69,6 +71,7 @@ export default function SelectStudentAndInstructor() {
   
 
   const handleSubmitStudent = () => {
+    console.log("Details: ",studentDetails);
     ipcRenderer.send('add-student', studentDetails);
     // Reset form or provide user feedback here
   };
@@ -90,6 +93,18 @@ export default function SelectStudentAndInstructor() {
     maxHeight: toggle ? '100%' : '0',
     overflow: 'hidden',
     transition: 'opacity 0.4s ease-in-out',
+  };
+  const buttonStyle = {
+    backgroundColor: 'transparent', // Example button color
+    color: 'white',
+    padding: '10px 20px',
+    textAlign: 'center',
+    textDecoration: 'none',
+    display: 'inline-block',
+    fontSize: '16px',
+    margin: '4px 2px',
+    cursor: 'pointer',
+    border: 'solid white 1px',
   };
 
   return (
@@ -148,7 +163,7 @@ export default function SelectStudentAndInstructor() {
                 />
               </div>
             ))}
-            <button onClick={handleSubmitStudent}>Submit</button>
+            <button style={buttonStyle} onClick={handleSubmitStudent}>Submit</button>
           </div>
 
           <div
@@ -169,7 +184,7 @@ export default function SelectStudentAndInstructor() {
                 />
               </div>
             ))}
-            <button onClick={handleSubmitInstructor}>Submit</button>
+            <div style={buttonStyle} onClick={handleSubmitInstructor}>Submit</div>
           </div>
         </div>
       </div>

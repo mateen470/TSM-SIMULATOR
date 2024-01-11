@@ -68,7 +68,7 @@
           "status": "dangerous",
           "name": "ARJUN",
           "details": [
-            { "title": "Qty.", "value": 2 },
+            { "title": "Qty.", "value": 1 },
             { "title": "Weight", "value": "51 Ton" },
             { "title": "Fire Rate", "value": "31 / minute" },
             { "title": "Top Speed", "value": "92 / kmh" },
@@ -80,9 +80,9 @@
           "type": "tank",
           "image": "tank2",
           "status": "dangerous",
-          "name": "PANTHER",
+          "name": "Al-Khalid",
           "details": [
-            { "title": "Qty.", "value": 5 },
+            { "title": "Qty.", "value": 1 },
             { "title": "Weight", "value": "52 Ton" },
             { "title": "Fire Rate", "value": "51 / minute" },
             { "title": "Top Speed", "value": "62 / kmh" },
@@ -92,11 +92,67 @@
         },
         {
           "type": "tank",
-          "image": "tank2",
+          "image": "tank3",
           "status": "dangerous",
-          "name": "T-80UD",
+          "name": "T69",
           "details": [
-            { "title": "Qty.", "value": 3 },
+            { "title": "Qty.", "value": 1 },
+            { "title": "Weight", "value": "57 Ton" },
+            { "title": "Fire Rate", "value": "21 / minute" },
+            { "title": "Top Speed", "value": "82 / kmh" },
+            { "title": "Strength", "value": "Very High" },
+            { "title": "Endurance", "value": "Very High" }
+          ]
+        },
+        {
+          "type": "tank",
+          "image": "tank4",
+          "status": "dangerous",
+          "name": "T59",
+          "details": [
+            { "title": "Qty.", "value": 1 },
+            { "title": "Weight", "value": "57 Ton" },
+            { "title": "Fire Rate", "value": "21 / minute" },
+            { "title": "Top Speed", "value": "82 / kmh" },
+            { "title": "Strength", "value": "Very High" },
+            { "title": "Endurance", "value": "Very High" }
+          ]
+        },
+        {
+          "type": "tank",
+          "image": "tank5",
+          "status": "dangerous",
+          "name": "T80",
+          "details": [
+            { "title": "Qty.", "value": 1 },
+            { "title": "Weight", "value": "57 Ton" },
+            { "title": "Fire Rate", "value": "21 / minute" },
+            { "title": "Top Speed", "value": "82 / kmh" },
+            { "title": "Strength", "value": "Very High" },
+            { "title": "Endurance", "value": "Very High" }
+          ]
+        },
+        {
+          "type": "tank",
+          "image": "tank6",
+          "status": "dangerous",
+          "name": "T72",
+          "details": [
+            { "title": "Qty.", "value": 1 },
+            { "title": "Weight", "value": "57 Ton" },
+            { "title": "Fire Rate", "value": "21 / minute" },
+            { "title": "Top Speed", "value": "82 / kmh" },
+            { "title": "Strength", "value": "Very High" },
+            { "title": "Endurance", "value": "Very High" }
+          ]
+        },
+        {
+          "type": "tank",
+          "image": "tank7",
+          "status": "dangerous",
+          "name": "T55",
+          "details": [
+            { "title": "Qty.", "value": 1 },
             { "title": "Weight", "value": "57 Ton" },
             { "title": "Fire Rate", "value": "21 / minute" },
             { "title": "Top Speed", "value": "82 / kmh" },
@@ -117,7 +173,7 @@
           "status": "dangerous",
           "name": "WILLYS MB",
           "details": [
-            { "title": "Qty.", "value": 2 },
+            { "title": "Qty.", "value": 1 },
             { "title": "Type", "value": "4 x 4" },
             { "title": "Capacity", "value": "4 Soliders" },
             { "title": "Top Speed", "value": "62 / kmh" },
@@ -129,9 +185,9 @@
           "type": "car",
           "image": "car2",
           "status": "dangerous",
-          "name": "PRADO",
+          "name": "BMP1",
           "details": [
-            { "title": "Qty.", "value": 3 },
+            { "title": "Qty.", "value": 1 },
             { "title": "Type", "value": "4 x 4" },
             { "title": "Capacity", "value": "8 Soliders" },
             { "title": "Top Speed", "value": "72 / kmh" },
@@ -141,11 +197,25 @@
         },
         {
           "type": "car",
-          "image": "car2",
+          "image": "car3",
           "status": "dangerous",
-          "name": "LAND CRUISER",
+          "name": "BMP2",
           "details": [
-            { "title": "Qty.", "value": 5 },
+            { "title": "Qty.", "value": 1 },
+            { "title": "Type", "value": "4 x 4" },
+            { "title": "Capacity", "value": "9 Soliders" },
+            { "title": "Top Speed", "value": "92 / kmh" },
+            { "title": "Strength", "value": "Very High" },
+            { "title": "Endurance", "value": "Very High" }
+          ]
+        },
+        {
+          "type": "car",
+          "image": "car4",
+          "status": "dangerous",
+          "name": "BRDM2",
+          "details": [
+            { "title": "Qty.", "value": 1 },
             { "title": "Type", "value": "4 x 4" },
             { "title": "Capacity", "value": "9 Soliders" },
             { "title": "Top Speed", "value": "92 / kmh" },

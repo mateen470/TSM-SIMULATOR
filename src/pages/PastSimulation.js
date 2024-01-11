@@ -6,9 +6,28 @@ import backButton from '../TSM-img/back_button.svg';
 import reset from '../TSM-img/reset.svg';
 import Footer from '../utility/Footer';
 import data from '../data.json';
+import Modal from '../utility/Modal';
 
 export default function PastSimulation() {
   const [active, setActive] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedVideo, setSelectedVideo] = useState(null);
+
+  const videos = data.videos;
+  const video={
+    "title": "HOW TO START A SIMULATION?",
+    "url": "https://www.youtube.com/embed/I3VMWG829XE?si=39DbYvPI-8sAc5Q8"
+  }
+
+  const openModal = (video) => {
+    setSelectedVideo(video);
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+    setSelectedVideo(null);
+  };
 
   const trainingArray = data.trainingArray;
   const recentArray = data.recentArray;
@@ -24,6 +43,18 @@ export default function PastSimulation() {
     height: !active && '0px',
     overflow: 'hidden',
     transition: 'opacity 0.4s ease-in-out',
+  };
+  const buttonStyle = {
+    backgroundColor: 'transparent', // Example button color
+    color: 'white',
+    padding: '10px 20px',
+    textAlign: 'center',
+    textDecoration: 'none',
+    display: 'inline-block',
+    fontSize: '16px',
+    margin: '4px 2px',
+    cursor: 'pointer',
+    borderRadius: '5px',
   };
 
   return (
@@ -77,6 +108,9 @@ export default function PastSimulation() {
             <div className="past_simulation_tab_table_name_heading">NAME</div>
             <div className="past_simulation_tab_table_heading">PA. NO</div>
             <div className="past_simulation_tab_table_heading">SCORE</div>
+            <div className="past_simulation_tab_table_heading"></div>
+            {/* <div className="past_simulation_tab_table_heading">SCORE</div> */}
+            
           </div>
 
           <div style={trainingStyle}>
@@ -114,9 +148,23 @@ export default function PastSimulation() {
                   <div className="past_simulation_tab_table_data">
                     {data.score}
                   </div>
+                  <div style={buttonStyle} onClick={() => openModal(video)}>View Video</div>
+                  <div style={buttonStyle} onClick={() => openModal(video)}>Reuse</div>
                 </div>
               );
             })}
+             <Modal isOpen={modalIsOpen} closeModal={closeModal}>
+        {selectedVideo && (
+          <iframe
+            className="iFrame_video_player"
+            title={selectedVideo.title}
+            src={selectedVideo.url}
+            frameBorder="0"
+            allow="autoplay; encrypted-media"
+            allowFullScreen
+          ></iframe>
+        )}
+      </Modal>
           </div>
 
           <div style={recentStyle}>
@@ -154,6 +202,8 @@ export default function PastSimulation() {
                   <div className="past_simulation_tab_table_data">
                     {data.score}
                   </div>
+                  <div style={buttonStyle} onClick={() => openModal(video)}>View Video</div>
+                  <div style={buttonStyle} onClick={() => openModal(video)}>Reuse</div>
                 </div>
               );
             })}
