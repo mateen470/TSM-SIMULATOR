@@ -100,7 +100,7 @@ export default function Weather() {
 
         <div className="select_weather_dropdown_main_class">
           <div className="select_weather_dropdown" style={{ zIndex: 10 }}>
-            <span>SEASON</span>
+            <span>Time</span>
             <DropDown
               options={options}
               selected={selectedWeather}

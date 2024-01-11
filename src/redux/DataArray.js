@@ -15,7 +15,9 @@ export const DataArraySlice = createSlice({
       difficulty: '',
     },
     WeatherConditions: {
-      weather: '',
+      Time: 1500,
+      Rain: 0,
+      Snow: 0,
       temperature: 0,
       WindSpeed: 0,
       WindDirection: 0,
@@ -51,7 +53,7 @@ export const DataArraySlice = createSlice({
       state.ExerciseInfo.instructor = action.payload;
     },
     setWeather: (state, action) => {
-      state.WeatherConditions.weather = action.payload;
+      state.WeatherConditions.Time = action.payload;
     },
     setTemperature: (state, action) => {
       state.WeatherConditions.temperature = action.payload;
@@ -152,31 +154,26 @@ export const DataArraySlice = createSlice({
       }
     },
     addOwnTank: (state, action) => {
-      const { tankName, path, unitId, initialAmmo, spawning_point } =
-        action.payload;
+      const { path, unitId, initialAmmo, spawning_point } = action.payload;
 
-      if (!state.Player[tankName]) {
-        state.Player[tankName] = [];
-      }
-
-      const tankIndex = state.Player[tankName].findIndex(
-        (tank) => tank.unitId === unitId,
-      );
-
-      if (tankIndex !== -1) {
-        state.Player[tankName][tankIndex].Path = path.map((point) => ({
-          pointx: point.x,
-          pointy: point.y,
-        }));
-        state.Player[tankName][tankIndex].Ammo = {
+      if (state.Player && state.Player.id === unitId) {
+        state.Player.Ammo = {
           Heat: initialAmmo.heat,
           APFSDS: initialAmmo.apfsds,
           HE: initialAmmo.he,
           MG: initialAmmo.mg762,
         };
+        state.Player.SpawnLocation = {
+          pointx: spawning_point.x,
+          pointy: spawning_point.y,
+        };
+        state.Player.Path = path.map((point) => ({
+          pointx: point.x,
+          pointy: point.y,
+        }));
       } else {
-        const newTank = {
-          unitId: unitId,
+        state.Player = {
+          id: unitId,
           Ammo: {
             Heat: initialAmmo.heat,
             APFSDS: initialAmmo.apfsds,
@@ -192,8 +189,6 @@ export const DataArraySlice = createSlice({
             pointy: point.y,
           })),
         };
-
-        state.Player[tankName].push(newTank);
       }
     },
     addHouse: (state, action) => {
@@ -390,14 +385,9 @@ export const DataArraySlice = createSlice({
     },
     deleteOwnTank: (state, action) => {
       const unitId = action.payload;
-      Object.keys(state.Player).forEach((tankName) => {
-        state.Player[tankName] = state.Player[tankName].filter(
-          (tank) => tank.unitId !== unitId,
-        );
-        if (state.Player[tankName].length === 0) {
-          delete state.Player[tankName];
-        }
-      });
+      if (state.Player && state.Player.id === unitId) {
+        state.Player = {};
+      }
     },
     deleteHouse: (state, action) => {
       const unitId = action.payload;

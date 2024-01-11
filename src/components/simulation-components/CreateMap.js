@@ -18,6 +18,7 @@ export default function CreateMap() {
 
   const enemy = useSelector((state) => state.dataArray.Enemy);
   const objects = useSelector((state) => state.dataArray.Items);
+  const Player = useSelector((state) => state.dataArray.Player);
 
   const [exerciseTime, setExerciseTimes] = useState(options[0]);
   const [terrain, setTerain] = useState(options1[0]);
@@ -38,7 +39,7 @@ export default function CreateMap() {
   };
 
   const handleSave = () => {
-    console.log('Save is clicked!', objects);
+    console.log('Save is clicked!', Player);
   };
 
   return (
