@@ -42,7 +42,8 @@ export const DataArraySlice = createSlice({
       Rocks: [],
     },
   },
-  reducers: {
+
+    reducers: {
     setOnlyOneOwnTank: (state, action) => {
       state.onlyOneOwnTank = action.payload;
     },

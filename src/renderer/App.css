@@ -777,7 +777,7 @@ input[type='number'] {
 }
 .create_map_save_button {
   position: absolute;
-  right: 5%;
+  right: 10.1%;
 }
 .create_map_save_button button {
   display: flex;
@@ -2756,6 +2756,15 @@ input[type='number'] {
 .grid_canvas_object_details_stats {
   color: #ffffff;
   margin-top: 1rem;
+  font-weight: 600;
+}
+.item_position h3 {
+  color: #ffffff;
+  margin-top: 1rem;
+  font-weight: 800;
+}
+.item_position div {
+  color: #ffffff;
   font-weight: 600;
 }
 /* CUSTOM-DRAG-DROP-GRID-END */

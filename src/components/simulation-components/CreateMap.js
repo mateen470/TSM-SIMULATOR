@@ -40,6 +40,8 @@ export default function CreateMap() {
 
   const handleSave = () => {
     console.log('Save is clicked!', Player);
+    console.log('Save is clicked!', enemy);
+    console.log('Save is clicked!', objects);
   };
 
   return (
