@@ -43,7 +43,7 @@ export const DataArraySlice = createSlice({
     },
   },
 
-    reducers: {
+  reducers: {
     setOnlyOneOwnTank: (state, action) => {
       state.onlyOneOwnTank = action.payload;
     },
@@ -78,8 +78,14 @@ export const DataArraySlice = createSlice({
       state.ExerciseInfo.terrain = action.payload;
     },
     addEnemy: (state, action) => {
-      const { enemyName, path, unitId, initialAmmo, spawning_point } =
-        action.payload;
+      const {
+        enemyName,
+        path,
+        unitId,
+        initialAmmo,
+        spawning_point,
+        initialDirection,
+      } = action.payload;
 
       if (!state.Enemy[enemyName]) {
         state.Enemy[enemyName] = [];
@@ -100,9 +106,11 @@ export const DataArraySlice = createSlice({
           HE: initialAmmo.he,
           MG: initialAmmo.mg762,
         };
+        state.Enemy[enemyName][enemyIndex].initialDirection = initialDirection;
       } else {
         const newEnemy = {
           unitId: unitId,
+          initialDirection: initialDirection,
           Ammo: {
             Heat: initialAmmo.heat,
             APFSDS: initialAmmo.apfsds,
@@ -123,7 +131,8 @@ export const DataArraySlice = createSlice({
       }
     },
     addEnemyCar: (state, action) => {
-      const { enemyName, path, unitId, spawning_point } = action.payload;
+      const { enemyName, path, unitId, spawning_point, initialDirection } =
+        action.payload;
 
       if (!state.Enemy[enemyName]) {
         state.Enemy[enemyName] = [];
@@ -138,9 +147,11 @@ export const DataArraySlice = createSlice({
           pointx: point.x,
           pointy: point.y,
         }));
+        state.Enemy[enemyName][enemyIndex].initialDirection = initialDirection;
       } else {
         const newEnemy = {
           unitId: unitId,
+          initialDirection: initialDirection,
           SpawnLocation: {
             pointx: spawning_point.x,
             pointy: spawning_point.y,
@@ -155,7 +166,8 @@ export const DataArraySlice = createSlice({
       }
     },
     addOwnTank: (state, action) => {
-      const { path, unitId, initialAmmo, spawning_point } = action.payload;
+      const { path, unitId, initialAmmo, spawning_point, initialDirection } =
+        action.payload;
 
       if (state.Player && state.Player.id === unitId) {
         state.Player.Ammo = {
@@ -172,9 +184,11 @@ export const DataArraySlice = createSlice({
           pointx: point.x,
           pointy: point.y,
         }));
+        state.Player.initialDirection = initialDirection;
       } else {
         state.Player = {
           id: unitId,
+          initialDirection: initialDirection,
           Ammo: {
             Heat: initialAmmo.heat,
             APFSDS: initialAmmo.apfsds,

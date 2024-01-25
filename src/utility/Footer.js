@@ -52,16 +52,16 @@ export default function Footer() {
           TUTORIALS
         </NavLink>
         <div id="footer_second_box_second_span">
-          {/* <NavLink
+          <NavLink
             className="underline"
             to="/dashboard"
-            onClick={saveStateToJsonFile}
+            // onClick={saveStateToJsonFile}
           >
             CONTINUE
-          </NavLink> */}
-          <button className="underline" >
+          </NavLink>
+          {/* <button className="underline" >
             CONTINUE
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

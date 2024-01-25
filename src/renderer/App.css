@@ -2758,14 +2758,98 @@ input[type='number'] {
   margin-top: 1rem;
   font-weight: 600;
 }
-.item_position h3 {
-  color: #ffffff;
-  margin-top: 1rem;
-  font-weight: 800;
+.item_position {
+  opacity: 0;
+  visibility: hidden;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  width: 380px;
+  position: absolute;
+  left: 560px;
+  top: -100px;
+  background-color: rgba(0, 0, 0, 0.7);
+  transition: all 0.2s ease-in-out;
+}
+.grid_canvas:hover .item_position {
+  opacity: 1;
+  visibility: visible;
+  top: 0px;
 }
 .item_position div {
   color: #ffffff;
-  font-weight: 600;
+  font-weight: 800;
+  font-size: 1.1rem;
+  width: 80px;
+  text-align: center;
+}
+.item_position_clip_path_1 {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  clip-path: polygon(50% 0%, 50% 100%, 100% 0);
+  margin-left: 23.74rem;
+  height: 51px;
+}
+.item_position_clip_path_2 {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  clip-path: polygon(50% 0%, 0 0, 50% 100%);
+  margin-left: -23.76rem;
+  height: 51px;
+}
+.compass_img_main_container {
+  position: absolute;
+  right: 8px;
+  top: 5px;
+  height: 80px;
+  width: 80px;
+  margin-top: 0.4rem;
+  margin-right: 0.2rem;
+}
+.compass_img_main_container img {
+  margin: 0.1rem 0rem 0rem 0.3rem;
+}
+.compass_img_content {
+  position: relative;
+}
+.compass_direction {
+  position: absolute;
+  color: #ffffff;
+  font-weight: 800;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+.compass_direction:hover {
+  text-decoration: underline;
+}
+.north {
+  top: -7px;
+  left: 0%;
+  width: 80px;
+  text-align: center;
+}
+.south {
+  bottom: -6px;
+  left: 0%;
+  width: 80px;
+  text-align: center;
+}
+.west {
+  left: -2px;
+  top: 22%;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.east {
+  right: 0px;
+  top: 22%;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 /* CUSTOM-DRAG-DROP-GRID-END */
 

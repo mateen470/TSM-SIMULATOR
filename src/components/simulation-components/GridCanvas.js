@@ -63,6 +63,7 @@ import store from '../../TSM-img/Store.png';
 import villageHut from '../../TSM-img/VillageHut.png';
 import wareHouse from '../../TSM-img/WareHouse.png';
 import waterTankTower from '../../TSM-img/WaterTankTower.png';
+import compass from '../../TSM-img/compass.svg';
 
 export default function GridCanvas({ stylingBox }) {
   const gridRef = useRef(null);
@@ -77,9 +78,9 @@ export default function GridCanvas({ stylingBox }) {
   const [selectedObjectId, setSelectedObjectId] = useState(null);
   const [latestTankId, setLatestTankId] = useState(null);
   const [tankAmmos, setTankAmmos] = useState({});
-
+  const [direction, setDirection] = useState({});
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [manuallyClosed, setManuallyClosed] = useState(false);
-
   const [showInitialAmmo, setShowInitialAmmo] = useState(false);
 
   const initialAmmosTitleArray = data.initialAmmoTitleArray;
@@ -97,6 +98,12 @@ export default function GridCanvas({ stylingBox }) {
         [ammoType]: value,
       },
     }));
+  };
+
+  const handleDirectionChange = (tankId, newDirection) => {
+    setDirection((prevDirections) => {
+      return { ...prevDirections, [tankId]: newDirection };
+    });
   };
 
   const handleInputChange = (index, newValue) => {
@@ -261,6 +268,14 @@ export default function GridCanvas({ stylingBox }) {
     const normalizedY = (y - centerY) * scaleY * -1;
 
     return normalizedY;
+  };
+
+  const getMousePosition = (e) => {
+    const rect = gridRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / zoom - pan.x;
+    const y = (e.clientY - rect.top) / zoom - pan.y;
+
+    setMousePosition({ x, y });
   };
 
   const handleItemMouseDown = (itemId, e) => {
@@ -563,12 +578,15 @@ export default function GridCanvas({ stylingBox }) {
         heat: 0,
         mg762: 0,
       };
+      const directionOfObject = direction[point.id] || 'West';
+
       if (point.item.status === 'dangerous') {
         if (point.item.type === 'tank') {
           dispatch(
             addEnemy({
               unitId: point.id,
               enemyName: point.item.name,
+              initialDirection: directionOfObject,
               path: point.path?.map((point) => ({
                 x: normalizePathX(point.x),
                 y: normalizePathY(point.y),
@@ -585,6 +603,7 @@ export default function GridCanvas({ stylingBox }) {
             addEnemyCar({
               unitId: point.id,
               enemyName: point.item.name,
+              initialDirection: directionOfObject,
               path: point.path?.map((point) => ({
                 x: normalizePathX(point.x),
                 y: normalizePathY(point.y),
@@ -601,6 +620,7 @@ export default function GridCanvas({ stylingBox }) {
           addOwnTank({
             unitId: point.id,
             tankName: point.item.name,
+            initialDirection: directionOfObject,
             path: point.path?.map((point) => ({
               x: normalizePathX(point.x),
               y: normalizePathY(point.y),
@@ -744,7 +764,7 @@ export default function GridCanvas({ stylingBox }) {
         );
       }
     });
-  }, [objectStartPoints, items, dispatch, tankAmmos]);
+  }, [objectStartPoints, items, dispatch, tankAmmos, direction]);
 
   useEffect(() => {
     const latestItem = selectedItems[selectedItems.length - 1];
@@ -796,8 +816,8 @@ export default function GridCanvas({ stylingBox }) {
                 <h3> Item Position: </h3>
                 <div>
                   {draggingItem
-                    ? `X : ${draggingItem.x.toFixed(
-                        0,
+                    ? `X : ${normalizePathX(
+                        draggingItem.x.toFixed(2),
                       )}, Y : ${draggingItem.y.toFixed(0)}`
                     : 'None'}
                 </div>
@@ -848,6 +868,7 @@ export default function GridCanvas({ stylingBox }) {
             <div
               ref={gridRef}
               className="grid_canvas"
+              onMouseMove={getMousePosition}
               style={{
                 background: createGridPattern(),
                 backgroundSize: `${30 * zoom}px ${30 * zoom}px`,
@@ -858,6 +879,72 @@ export default function GridCanvas({ stylingBox }) {
                 cursor: 'grab',
               }}
             >
+              <div className="item_position">
+                <div className="item_position_clip_path_1"></div>
+                <div className="item_position_clip_path_2"></div>
+                <div>X : {normalizePathX(mousePosition.x).toFixed(0)}</div>
+                <div>Y : {normalizePathY(mousePosition.y).toFixed(0)}</div>
+                <div style={{ width: '160px' }}>1 BLOCK : 800M</div>
+              </div>
+
+              <div
+                className="compass_img_main_container"
+                style={{
+                  opacity: stylingBox === 1 && hasObjects ? '1' : '0',
+                  transition: 'opacity 0.9s ease-in-out',
+                }}
+              >
+                <div className="compass_img_content">
+                  <div
+                    className="compass_direction west"
+                    onClick={() =>
+                      handleDirectionChange(selectedObjectId, 'West')
+                    }
+                  >
+                    W
+                  </div>
+                  <div
+                    className="compass_direction north"
+                    onClick={() =>
+                      handleDirectionChange(selectedObjectId, 'North')
+                    }
+                  >
+                    N
+                  </div>
+                  <div
+                    className="compass_direction south"
+                    onClick={() =>
+                      handleDirectionChange(selectedObjectId, 'South')
+                    }
+                  >
+                    S
+                  </div>
+                  <div
+                    className="compass_direction east"
+                    onClick={() =>
+                      handleDirectionChange(selectedObjectId, 'East')
+                    }
+                  >
+                    E
+                  </div>
+                  <img
+                    src={compass}
+                    alt="compass"
+                    style={{
+                      rotate:
+                        direction[selectedObjectId] === 'North'
+                          ? '0deg'
+                          : direction[selectedObjectId] === 'South'
+                          ? '180deg'
+                          : direction[selectedObjectId] === 'East'
+                          ? '90deg'
+                          : '-90deg',
+                      transition: 'all 0.3s ease',
+                    }}
+                  />
+                </div>
+              </div>
+
               {items.map((item) => (
                 <React.Fragment key={item.id}>
                   <div
@@ -873,6 +960,16 @@ export default function GridCanvas({ stylingBox }) {
                       cursor: 'pointer',
                       backgroundSize: 'contain',
                       backgroundRepeat: 'no-repeat',
+                      rotate:
+                        item.status !== 'not-dangerous' &&
+                        (direction[item.id] === 'North'
+                          ? '90deg'
+                          : direction[item.id] === 'South'
+                          ? '-90deg'
+                          : direction[item.id] === 'East'
+                          ? '180deg'
+                          : ''),
+                      transition: 'rotate 0.3s ease',
                     }}
                   />
                   {objectStartPoints.find((point) => point.id === item.id) && (
