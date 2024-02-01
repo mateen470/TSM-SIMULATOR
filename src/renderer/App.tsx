@@ -10,6 +10,7 @@ import PastSimulation from '../pages/PastSimulation';
 import TestMode from '../pages/TestMode';
 import Report from '../pages/Report';
 import Dashboard from '../pages/Dashboard';
+import AddBatchUsers from '../pages/AddBatchUser';
 
 export default function App() {
   return (
@@ -28,7 +29,8 @@ export default function App() {
         <Route path="/test_mode" element={<TestMode />} />
         <Route path="/report" element={<Report />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        {/* <Route path="/help" element={<BasicAdvanceTab />} /> */}
+        <Route path="/basicAdvance" element={<BasicAdvanceTab />} />
+        <Route path="/add_batch_user" element={<AddBatchUsers />} />
       </Routes>
     </Router>
   );

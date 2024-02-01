@@ -15,9 +15,10 @@ export const DataArraySlice = createSlice({
       difficulty: '',
     },
     WeatherConditions: {
-      Time: 1500,
-      Rain: 0,
-      Snow: 0,
+      TimeOfDay: '',
+      WeatherCondition: '',
+      WeatherConditionIntensity: 0,
+      Visibilty: 0,
       temperature: 0,
       WindSpeed: 0,
       WindDirection: 0,
@@ -54,7 +55,16 @@ export const DataArraySlice = createSlice({
       state.ExerciseInfo.instructor = action.payload;
     },
     setWeather: (state, action) => {
-      state.WeatherConditions.Time = action.payload;
+      state.WeatherConditions.TimeOfDay = action.payload;
+    },
+    setWeatherConditionIntensity: (state, action) => {
+      state.WeatherConditions.WeatherConditionIntensity = action.payload;
+    },
+    setWeatherVisibility: (state, action) => {
+      state.WeatherConditions.Visibilty = action.payload;
+    },
+    setWeatherCondition: (state, action) => {
+      state.WeatherConditions.WeatherCondition = action.payload;
     },
     setTemperature: (state, action) => {
       state.WeatherConditions.temperature = action.payload;
@@ -545,6 +555,9 @@ export const {
   addJhompri,
   deleteRocks,
   addRocks,
+  setWeatherCondition,
+  setWeatherConditionIntensity,
+  setWeatherVisibility,
 } = DataArraySlice.actions;
 
 export default DataArraySlice.reducer;

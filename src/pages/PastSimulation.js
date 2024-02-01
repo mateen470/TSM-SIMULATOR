@@ -48,7 +48,7 @@ export default function PastSimulation() {
                 color: !active ? 'white' : '#9fa4a9',
                 fontWeight: !active ? 700 : 600,
                 fontSize: !active ? '1.5rem' : '1.4rem',
-                transition: 'all 0.2s ease-in-out',
+                transition: 'all 0.1s ease',
               }}
             >
               TRAINING
@@ -60,7 +60,7 @@ export default function PastSimulation() {
                 color: active ? 'white' : '#9fa4a9',
                 fontWeight: active ? 700 : 600,
                 fontSize: active ? '1.5rem' : '1.4rem',
-                transition: 'all 0.2s ease-in-out',
+                transition: 'all 0.1s ease',
               }}
             >
               RECENT

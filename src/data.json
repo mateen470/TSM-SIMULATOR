@@ -1,7 +1,8 @@
 {
   "dropDownOptionsOfSelectStudent": ["Option 1", "Option 2", "Option 3"],
   "dropDownOptionsOfSelectInstructor": ["Option 4", "Option 5", "Option 6"],
-  "dropDownOptionsOfSelectSeason": ["AUTUMN", "SPRING", "WINTER", "SUMMER"],
+  "dropDownOptionsOfSelectTimeOfDay": ["DAWN", "DUSK", "NIGHT"],
+  "dropDownOptionsOfSelectWeatherCondition": ["RAIN", "SUNNY", "CLOUDY"],
   "dropDownOptionsOfSelectDifficulty": ["EASY", "MEDIUM", "DIFFICULT"],
   "dropDownOptionsOfExcersieTime": ["Option 1", "Option 2", "Option 3"],
   "dropDownOptionsOfSelectTerrain": ["Option 4", "Option 5", "Option 6"],
@@ -473,12 +474,13 @@
     }
   ],
   "buttonArray": [
+    { "name": "START SIMULATION", "link": "/simulation" },
     { "name": "TEST MODE", "link": "/test_mode" },
     { "name": "TUTORIALS", "link": "/tutorials" },
-    { "name": "START SIMULATION", "link": "/simulation" },
     { "name": "ADD INSTRUCTORS", "link": "/select_student_instructor" },
     { "name": "ADD STUDENTS", "link": "/select_student_instructor" },
-    { "name": "PAST SIMULATIONS", "link": "/past_simulation" }
+    { "name": "PAST SIMULATIONS", "link": "/past_simulation" },
+    { "name": "FRIENDLY MODE", "link": "/basicAdvance" }
   ],
   "reportData": [
     {

@@ -47,7 +47,7 @@ export default function TestMode() {
               color: !active ? 'white' : '#9fa4a9',
               fontWeight: !active ? 700 : 600,
               fontSize: !active ? '1.5rem' : '1.4rem',
-              transition: 'all 0.2s ease-in-out',
+              transition: 'all 0.1s ease',
             }}
           >
             SOFTWARE
@@ -59,7 +59,7 @@ export default function TestMode() {
               color: active ? 'white' : '#9fa4a9',
               fontWeight: active ? 700 : 600,
               fontSize: active ? '1.5rem' : '1.4rem',
-              transition: 'all 0.2s ease-in-out',
+              transition: 'all 0.1s ease',
             }}
           >
             HARDWARE

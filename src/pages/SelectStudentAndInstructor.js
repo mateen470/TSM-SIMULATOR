@@ -32,14 +32,14 @@ export default function SelectStudentAndInstructor() {
     opacity: !toggle ? 1 : 0,
     maxHeight: !toggle ? '100%' : '0',
     overflow: 'hidden',
-    transition: 'opacity 0.4s ease-in-out',
+    transition: 'all 0.3s ease-in-out',
   };
 
   const instructorTabStyle = {
     opacity: toggle ? 1 : 0,
     maxHeight: toggle ? '100%' : '0',
     overflow: 'hidden',
-    transition: 'opacity 0.4s ease-in-out',
+    transition: 'all 0.3s ease-in-out',
   };
 
   return (
@@ -47,11 +47,15 @@ export default function SelectStudentAndInstructor() {
       className="select_student_instructor_main_class"
       style={{ backgroundImage: `url(${mainMenu})` }}
     >
-      <NavLink className="navigation_button_with_bigger_width" to="/simulation">
+      <NavLink className="navigation_button" to="/simulation">
         <span id="first_span_navigation_button">
           <img src={backButton} alt="back" /> SIMULATION /
         </span>
-        <span id="second_span_navigation_button">EXERCISE TYPE</span>
+        <span id="second_span_navigation_button">ADD USER</span>
+      </NavLink>
+
+      <NavLink to="/add_batch_user" className="add_batch_user_navigate">
+        ADD BATCH USER
       </NavLink>
 
       <div className="select_student_instructor_main_content_container">
@@ -81,42 +85,46 @@ export default function SelectStudentAndInstructor() {
             </div>
           </div>
 
-          <div
-            className="select_student_instructor__tab_content"
-            style={studentTabStyle}
-          >
-            {Object.keys(studentDetails).map((key) => (
-              <div
-                key={key}
-                className="select_student_instructot_tab_input_container"
-              >
-                <span>{key.toUpperCase()}</span>
-                <input
-                  value={studentDetails[key]}
-                  onChange={(e) => handleInputChange(key, e.target.value, true)}
-                />
-              </div>
-            ))}
-          </div>
+          <div className="tabs_container">
+            <div
+              className="select_student_instructor__tab_content"
+              style={studentTabStyle}
+            >
+              {Object.keys(studentDetails).map((key) => (
+                <div
+                  key={key}
+                  className="select_student_instructot_tab_input_container"
+                >
+                  <span>{key.toUpperCase()}</span>
+                  <input
+                    value={studentDetails[key]}
+                    onChange={(e) =>
+                      handleInputChange(key, e.target.value, true)
+                    }
+                  />
+                </div>
+              ))}
+            </div>
 
-          <div
-            className="select_student_instructor__tab_content"
-            style={instructorTabStyle}
-          >
-            {Object.keys(instructorDetails).map((key) => (
-              <div
-                key={key}
-                className="select_student_instructot_tab_input_container"
-              >
-                <span>{key.toUpperCase()}</span>
-                <input
-                  value={instructorDetails[key]}
-                  onChange={(e) =>
-                    handleInputChange(key, e.target.value, false)
-                  }
-                />
-              </div>
-            ))}
+            <div
+              className="select_student_instructor__tab_content"
+              style={instructorTabStyle}
+            >
+              {Object.keys(instructorDetails).map((key) => (
+                <div
+                  key={key}
+                  className="select_student_instructot_tab_input_container"
+                >
+                  <span>{key.toUpperCase()}</span>
+                  <input
+                    value={instructorDetails[key]}
+                    onChange={(e) =>
+                      handleInputChange(key, e.target.value, false)
+                    }
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

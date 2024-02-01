@@ -17,14 +17,14 @@ export default function BasicAdvanceTab() {
     opacity: !toggle ? 1 : 0,
     maxHeight: !toggle ? '100%' : '0',
     overflow: 'hidden',
-    transition: 'opacity 0.4s ease-in-out',
+    transition: 'all 0.3s ease-in-out',
   };
 
   const instructorTabStyle = {
     opacity: toggle ? 1 : 0,
     maxHeight: toggle ? '100%' : '0',
     overflow: 'hidden',
-    transition: 'opacity 0.4s ease-in-out',
+    transition: 'all 0.3s ease-in-out',
   };
 
   return (
@@ -36,7 +36,7 @@ export default function BasicAdvanceTab() {
         <span id="first_span_navigation_button">
           <img src={backButton} alt="back" /> SIMULATION /
         </span>
-        <span id="second_span_navigation_button">EXERCISE TYPE</span>
+        <span id="second_span_navigation_button">FRIENDLY MODE</span>
       </NavLink>
 
       <div className="basic_advance_tab_main_content_container">
@@ -66,40 +66,45 @@ export default function BasicAdvanceTab() {
             </div>
           </div>
 
-          <div className="basic_advance_tab_content" style={studentTabStyle}>
-            {basicDetails.map((data, index) => {
-              return (
-                <div key={index}>
-                  <div className="basic_advance_tab_content_box">
-                    <div className="basic_advance_tab_content_box_heading">
-                      {data.title}
-                    </div>
-                    <div className="partition" />
-                    <div className="basic_advance_tab_content_box_content">
-                      {data.detail}
+          <div className="tabs_container_basic_advance">
+            <div className="basic_advance_tab_content" style={studentTabStyle}>
+              {basicDetails.map((data, index) => {
+                return (
+                  <div key={index}>
+                    <div className="basic_advance_tab_content_box">
+                      <div className="basic_advance_tab_content_box_heading">
+                        {data.title}
+                      </div>
+                      <div className="partition" />
+                      <div className="basic_advance_tab_content_box_content">
+                        {data.detail}
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
 
-          <div className="basic_advance_tab_content" style={instructorTabStyle}>
-            {advanceDetails.map((data, index) => {
-              return (
-                <div key={index}>
-                  <div className="basic_advance_tab_content_box">
-                    <div className="basic_advance_tab_content_box_heading">
-                      {data.title}
-                    </div>
-                    <div className="partition" />
-                    <div className="basic_advance_tab_content_box_content">
-                      {data.detail}
+            <div
+              className="basic_advance_tab_content"
+              style={instructorTabStyle}
+            >
+              {advanceDetails.map((data, index) => {
+                return (
+                  <div key={index}>
+                    <div className="basic_advance_tab_content_box">
+                      <div className="basic_advance_tab_content_box_heading">
+                        {data.title}
+                      </div>
+                      <div className="partition" />
+                      <div className="basic_advance_tab_content_box_content">
+                        {data.detail}
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

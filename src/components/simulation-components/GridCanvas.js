@@ -180,15 +180,15 @@ export default function GridCanvas({ stylingBox }) {
     return `repeating-linear-gradient(
               to right,
               lightgrey,
-              lightgrey 1px,
-              transparent 1px,
+              lightgrey 1.5px,
+              transparent 1.5px,
               transparent ${gridSize}px
             ),
             repeating-linear-gradient(
               to bottom,
               lightgrey,
-              lightgrey 1px,
-              transparent 1px,
+              lightgrey 1.5px,
+              transparent 1.5px,
               transparent ${gridSize}px
             )`;
   };

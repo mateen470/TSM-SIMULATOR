@@ -137,7 +137,17 @@ input[type='number'] {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 210px;
+  width: 220px;
+  height: 100px;
+  text-decoration: none;
+  position: absolute;
+}
+.navigation_button_with_bigger_width_1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 255px;
   height: 100px;
   text-decoration: none;
   position: absolute;
@@ -283,7 +293,9 @@ input[type='number'] {
 
 /* WEATHER-COMPONENT-START */
 .select_weather_main_content_container {
-  margin-top: 4rem;
+  margin-top: 2rem;
+  height: 70vh;
+  overflow-y: auto;
 }
 .select_weather_dropdown_main_class,
 .temperature_wind_speed_main_class {
@@ -328,7 +340,8 @@ input[type='number'] {
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 20px;
   overflow: hidden;
-  height: 17px;
+  margin-top: 0.5rem;
+  height: 18px;
 }
 .progress_bar_container input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -590,7 +603,7 @@ input[type='number'] {
   background-color: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(2px);
   border-radius: 10px;
-  height: 50vh;
+  height: 44vh;
   margin-top: 1rem;
   padding: 0rem 2rem;
 }
@@ -941,10 +954,15 @@ input[type='number'] {
 /* SELECT-STUDENT-INSTRUCTOR-START */
 .select_student_instructor_main_content_container,
 .basic_advance_tab_main_content_container {
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+  top: 22%;
+}
+.basic_advance_tab_main_content_container {
+  top: 15%;
 }
 .select_student_instructor_main_content {
   display: flex;
@@ -954,7 +972,7 @@ input[type='number'] {
   background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(2px);
   border-radius: 10px;
-  height: 50vh;
+  height: 48vh;
   width: 900px;
 }
 .select_student_instructor__tab_content,
@@ -968,7 +986,18 @@ input[type='number'] {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2rem;
+  position: absolute;
+  top: 3.5rem;
+}
+.tabs_container {
+  position: absolute;
+  height: 30vh;
+  top: 8.5rem;
+}
+.tabs_container_basic_advance {
+  position: absolute;
+  height: 45vh;
+  top: 8.5rem;
 }
 .select_student_instructor_tab_button,
 .basic_advance_tab_button {
@@ -979,7 +1008,8 @@ input[type='number'] {
   border: 1px solid white;
   text-align: center;
 }
-.select_student_instructor_tab_button:hover {
+.select_student_instructor_tab_button:hover,
+.basic_advance_tab_button:hover {
   text-decoration: underline;
 }
 .select_student_instructot_tab_input_container {
@@ -1005,6 +1035,28 @@ input[type='number'] {
   font-weight: 600;
   font-size: 1.5rem;
   padding: 0rem 1rem;
+}
+.add_batch_user_navigate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.7rem;
+  border: 1px solid white;
+  height: 50px;
+  width: 220px;
+  cursor: pointer;
+  text-decoration: none;
+  background: none;
+  position: absolute;
+  right: 510px;
+  top: 150px;
+}
+.add_batch_user_navigate:hover {
+  text-decoration: underline;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.689);
+  backdrop-filter: blur(10px);
 }
 /* SELECT-STUDENT-INSTRUCTOR-END */
 
@@ -1096,7 +1148,7 @@ input[type='number'] {
   background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(2px);
   border-radius: 10px;
-  height: 65vh;
+  height: 60vh;
   width: 900px;
 }
 .basic_advance_tab_content_box {
@@ -2339,6 +2391,86 @@ input[type='number'] {
 }
 /* DASHBORAD-END */
 
+/* ADD BACTH USER-START */
+.add_batch_user_table_main_container {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  margin-top: 15vh;
+}
+.add_batch_user_table_content {
+  background-color: rgba(255, 255, 255, 0.05);
+  box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.137);
+  width: 75vw;
+  height: 60vh;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.add_batch_user_table_head {
+  box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.137);
+  background-color: rgba(255, 255, 255, 0.15);
+  display: flex;
+  padding: 0rem 1rem;
+}
+.add_batch_user_table_head span {
+  color: white;
+  font-weight: 800;
+  font-size: 2rem;
+  height: 8vh;
+  width: 15vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.add_batch_user_table_body {
+  height: 52.4vh;
+  overflow-y: auto;
+}
+.add_batch_user_table_body_row {
+  width: 75vw;
+  height: 7vh;
+  display: flex;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.235);
+}
+.add_batch_user_table_body_row input {
+  width: 15vw;
+  height: 7vh;
+  text-align: center;
+  color: white;
+  font-weight: 600;
+  font-size: 1.7rem;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0rem 0.5rem;
+}
+.add_batch_user_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  height: 50px;
+  width: 210px;
+  border: 5px;
+  position: absolute;
+  bottom: 188px;
+  right: 245px;
+  cursor: pointer;
+  color: white;
+  font-weight: 800;
+  font-size: 1.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.515);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+.add_batch_user_btn:hover {
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.689);
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.09);
+  border: none;
+}
+/* ADD BACTH USER-END */
+
 /* TOPBAR-START */
 .top_bar_main_container {
   position: absolute;
@@ -2583,7 +2715,7 @@ input[type='number'] {
 .twelve {
   top: 0px;
   left: 45%;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 1.1rem;
 }
 .one {
@@ -2607,7 +2739,7 @@ input[type='number'] {
 .three {
   right: 5px;
   top: 44%;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 1.1rem;
 }
 .four {
@@ -2625,7 +2757,7 @@ input[type='number'] {
 .six {
   bottom: 0px;
   left: 46%;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 1.1rem;
 }
 .seven {
@@ -2643,7 +2775,7 @@ input[type='number'] {
 .nine {
   left: 5px;
   top: 44%;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 1.1rem;
 }
 .ten {
